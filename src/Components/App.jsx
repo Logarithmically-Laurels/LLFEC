@@ -50,6 +50,7 @@ const App = () => {
       <div>Nav Bar</div>
       <div>Product Overview</div>
       <div>Reviews</div>
+      <Review currentProduct={currentProduct} />
       <div>Q and A</div>
     </div>
   );
