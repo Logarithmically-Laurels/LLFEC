@@ -1,43 +1,36 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-<<<<<<< HEAD
+import Overview from "./Product_Overview/Overview.jsx";
 import ReviewApp from "./Reviews/reviewApp.jsx";
-=======
-import Questions from './QuestionsAnswers/Questions.jsx';
->>>>>>> 032094a7ee05faad81799b63799e5d5f3f7694ef
+import Questions from "./QuestionsAnswers/Questions.jsx";
 const authtoken = require("/config.js");
 
 const App = () => {
-  const firstProduct = [
-    {
-      id: 37311,
-      campus: "hr-rfe",
-      name: "Camo Onesie",
-      slogan: "Blend in to your crowd",
-      description:
-        "The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.",
-      category: "Jackets",
-      default_price: "140.00",
-      created_at: "2021-08-13T14:37:33.145Z",
-      updated_at: "2021-08-13T14:37:33.145Z",
-    },
-  ];
+  // const firstProduct = [
+  //   {
+  //     id: 37311,
+  //     campus: "hr-rfe",
+  //     name: "Camo Onesie",
+  //     slogan: "Blend in to your crowd",
+  //     description:
+  //       "The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.",
+  //     category: "Jackets",
+  //     default_price: "140.00",
+  //     created_at: "2021-08-13T14:37:33.145Z",
+  //     updated_at: "2021-08-13T14:37:33.145Z",
+  //   },
+  // ];
 
   //effect calling api get /products
   const [products, setProducts] = useState(null);
-  const [currentProduct, setCurrentProduct] = useState(firstProduct[0]);
+  const [currentProduct, setCurrentProduct] = useState(null);
 
   useEffect(() => {
     var options = {
       method: "GET",
-      url: "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products",
+      url: "/products",
       headers: {
-        Authorization: authtoken.default,
         "Content-Type": "application/json",
-      },
-      params: {
-        page: 1,
-        count: 5,
       },
     };
     axios(options)
@@ -53,15 +46,9 @@ const App = () => {
   return (
     <div>
       <div>Nav Bar</div>
-      <div>Product Overview</div>
-<<<<<<< HEAD
+      <Overview currentProduct={currentProduct} />
+      <Questions currentProd={currentProduct} />
       <ReviewApp currentProd={currentProduct} />
-      <div>Q and A</div>
-=======
-      <div>Reviews</div>
-     {/* <Review currentProduct={currentProduct} /> */}
-      <div><Questions /></div>
->>>>>>> 032094a7ee05faad81799b63799e5d5f3f7694ef
     </div>
   );
 };
