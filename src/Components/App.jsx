@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Questions from './QuestionsAnswers/Questions.jsx';
 const authtoken = require("/config.js");
 
 const App = () => {
@@ -43,15 +44,15 @@ const App = () => {
       .catch((err) => {
         console.log(err);
       });
-  });
+  }, []);
 
   return (
     <div>
       <div>Nav Bar</div>
       <div>Product Overview</div>
       <div>Reviews</div>
-      <Review currentProduct={currentProduct} />
-      <div>Q and A</div>
+     {/* <Review currentProduct={currentProduct} /> */}
+      <div><Questions /></div>
     </div>
   );
 };
