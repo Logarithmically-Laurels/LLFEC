@@ -23,28 +23,24 @@ const App = () => {
   const [products, setProducts] = useState(null);
   const [currentProduct, setCurrentProduct] = useState(firstProduct[0]);
 
-  // useEffect(() => {
-  //   var options = {
-  //     method: "GET",
-  //     url: "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products",
-  //     headers: {
-  //       Authorization: authtoken.default,
-  //       "Content-Type": "application/json",
-  //     },
-  //     params: {
-  //       page: 1,
-  //       count: 5,
-  //     },
-  //   };
-  //   axios(options)
-  //     .then((results) => {
-  //       setProducts(results.data);
-  //       setCurrentProduct(results.data[0]);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // });
+  useEffect(() => {
+    var options = {
+      method: "GET",
+      url: "/products",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    axios(options)
+      .then((results) => {
+        console.log(results);
+        // setProducts(results.data);
+        // setCurrentProduct(results.data[0]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
 
   return (
     <div>
