@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+<<<<<<< HEAD
 import Overview from "./Product_Overview/Overview.jsx";
+=======
+import Questions from './QuestionsAnswers/Questions.jsx';
+>>>>>>> 032094a7ee05faad81799b63799e5d5f3f7694ef
 const authtoken = require("/config.js");
 
 const App = () => {
@@ -40,14 +44,17 @@ const App = () => {
       .catch((err) => {
         console.log(err);
       });
-  });
+  }, []);
 
   return (
     <div>
       <div>Nav Bar</div>
+<<<<<<< HEAD
       <Overview currentProduct={currentProduct} />
-      {/* <div>Reviews</div>
-      <div>Q and A</div> */}
+      <ReviewApp currentProd={currentProduct}/>
+=======
+      <Questions currentProd={currentProduct} />
+>>>>>>> 032094a7ee05faad81799b63799e5d5f3f7694ef
     </div>
   );
 };
