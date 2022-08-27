@@ -3,7 +3,7 @@ import axios from "axios";
 import Overview from "./Product_Overview/Overview.jsx";
 import ReviewApp from "./Reviews/reviewApp.jsx";
 import Questions from "./QuestionsAnswers/Questions.jsx";
-const authtoken = require("/config.js");
+
 
 const App = () => {
   // const firstProduct = [
@@ -45,10 +45,12 @@ const App = () => {
 
   return (
     <div>
-      <div>Nav Bar</div>
-      <Overview currentProduct={currentProduct} />
-      <Questions currentProd={currentProduct} />
-      <ReviewApp currentProd={currentProduct} />
+      {currentProduct && <>
+        <div>Nav Bar</div>
+        <Overview currentProduct={currentProduct} />
+        {/* <Questions currentProd={currentProduct} /> */}
+        <ReviewApp currentProd={currentProduct} />
+      </>}
     </div>
   );
 };

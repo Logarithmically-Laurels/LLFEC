@@ -49,10 +49,9 @@ const ReviewList = ({ currentProd, metaData, numReviews }) => {
   //TODO Axios request for current Reviews
   useEffect(() => {
     var options = {
-      url: "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/",
+      url: "/reviews",
       method: 'get',
       headers: {
-        Authorization: authtoken,
         'Content-Type': 'application/json',
       },
       params: {
@@ -82,16 +81,16 @@ const ReviewList = ({ currentProd, metaData, numReviews }) => {
 
   return (
     <div>
-      <Grid container
+      <Grid container="true"
         direction="row"
         justifyContent="space-between"
         alignItems="center"
         padding="2%">
-        <Grid xs={6} container
+        <Grid  container="true"
         justifyContent="flex-start">
-          <span><b>{numReviews} reviews total </b></span>
+          <span><b>Total Reviews: {numReviews} </b></span>
         </Grid>
-        <Grid xs={6} container
+        <Grid  container="true"
         justifyContent="flex-end">
           <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
             <InputLabel id="demo-select-small">Sort by</InputLabel>
@@ -118,7 +117,7 @@ const ReviewList = ({ currentProd, metaData, numReviews }) => {
             product_id={currentProduct.id} />
         ))}
       </>}
-      <Stack spacing={2} direction="row" container padding="2%">
+      <Stack spacing={2} direction="row" container="true" padding="2%">
         <Button variant="outlined"
           onClick={(e) => { handleMoreReviews(e) }}> More Reviews</Button>
         <Button variant="outlined"

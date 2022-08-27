@@ -10,7 +10,7 @@ const ReviewNumber = ({product_id, numReviews}) => {
 
   return (
     <div>
-      {/* <Stars rating={metaData.ratings}/> */}
+      {/* <Stars rating={metaData.ratings} setStar={false}/> */}
       <span> numbers and stars</span>
     </div>
   )

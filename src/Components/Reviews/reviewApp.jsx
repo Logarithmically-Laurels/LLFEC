@@ -6,7 +6,7 @@ import useAxiosGet from '../CommonComponents/axiosRequest.jsx';
 import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import authtoken from './../../../config.js'
+
 
 
 
@@ -31,10 +31,9 @@ const ReviewApp = ({ currentProd }) => {
 
   useEffect(() => {
     var options = {
-      url: "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta/",
+      url: "/reviews/meta",
       method: 'get',
       headers: {
-        Authorization: authtoken,
         'Content-Type': 'application/json',
       },
       params: {
@@ -57,7 +56,7 @@ const ReviewApp = ({ currentProd }) => {
         justifyContent="space-around"
         alignItems="stretch">
         <Grid item xs={3}   >
-          <Item  >
+          <Item >
             <ReviewNumber
               product_id={currentProduct.id}
               metaData={reviewMetaData}
