@@ -82,8 +82,12 @@ const Overview = (props) => {
     >
       <ImgGallery styleToDisplay={currentStyle} />
       <Container justifycontent="space-between" sx={{ my: "4%" }}>
-        <ProductInfo />
-        <StyleSelector prodId={currentProductId} />
+        <ProductInfo prodInfo={props.currentProduct[0]} />
+        <StyleSelector
+          prodId={currentProductId}
+          currentStyle={currentStyle}
+          setStyle={setCurrentStyle}
+        />
         <AddToCart />
       </Container>
     </Container>

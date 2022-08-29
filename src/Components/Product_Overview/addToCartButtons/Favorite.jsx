@@ -11,7 +11,7 @@ export default function () {
     return (
       <ToggleButton
         sx={{
-          ml: "11%",
+          ml: "5%",
           borderRadius: 0,
           borderColor: "black",
         }}
@@ -28,7 +28,7 @@ export default function () {
     return (
       <ToggleButton
         sx={{
-          ml: "11%",
+          ml: "5%",
           borderRadius: 0,
           borderColor: "black",
         }}

@@ -400,21 +400,19 @@ var tempData = {
   ],
 };
 
-var styleThumnails = [];
-// tempData.results.forEach(style => {
-//   style.photos.
-// })
-
 const StyleSelector = (props) => {
   //make api call to retrieve product styles.
   // https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/`${props.currentProductId}`/styles
   // setCurrentStyle(response from api call)
+  console.log(props);
 
   return (
-    <Container sx={{ border: 1, height: "30%", display: "flex" }}>
-      <Typography sx={{ fontWeight: "bold" }}>
-        Style > Selected Style
-      </Typography>
+    <Container
+      disableGutters
+      sx={{ border: 1, height: "30%", display: "flex" }}
+    >
+      <Typography sx={{ fontWeight: "bold" }}>Style > </Typography>
+      <Typography sx={{ ml: "1%" }}> {props.currentStyle.name}</Typography>
     </Container>
   );
 };

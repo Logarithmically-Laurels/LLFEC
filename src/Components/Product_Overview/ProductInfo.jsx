@@ -2,14 +2,15 @@ import React from "react";
 import { Container } from "@mui/material";
 import { Typography } from "@mui/material";
 
-const ProductInfo = () => {
+const ProductInfo = (props) => {
+  console.log(props.prodInfo);
   return (
-    <Container sx={{ border: 1, height: "40%", width: "100%" }}>
+    <Container disableGutters sx={{ border: 1, height: "40%", width: "100%" }}>
       <div>[*****] read all reviews</div>
       <Typography variant="h5" sx={{ fontsize: 20 }}>
-        Expanded Product Name
+        {props.prodInfo.name}
       </Typography>
-      <Typography sx={{ my: "5%" }}>$Price$</Typography>
+      <Typography sx={{ my: "5%" }}>${props.prodInfo.default_price}</Typography>
     </Container>
   );
 };
