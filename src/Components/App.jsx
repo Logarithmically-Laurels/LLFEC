@@ -32,11 +32,17 @@ const App = () => {
       headers: {
         "Content-Type": "application/json",
       },
+      params: {
+        page: 2,
+        count: 20,
+      }
     };
     axios(options)
       .then((results) => {
         setProducts(results.data);
-        setCurrentProduct(results.data[0]);
+        var index = Math.floor(Math.random()*10);
+        setCurrentProduct(results.data[index]);
+
       })
       .catch((err) => {
         console.log(err);

@@ -18,6 +18,10 @@ app.get("/products", (req, res) => {
       Authorization: authToken,
       "content-type": "application/json",
     },
+    params: {
+      page: req.query.page,
+      count: req.query.count,
+    }
   };
   axios(options)
     .then((response) => {
@@ -70,7 +74,46 @@ app.get("/reviews", (req, res) => {
       res.send(err);
     });
 });
-
+app.put("/reviews/helpful", (req, res) => {
+  var options = {
+    method: "put",
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/${req.query.product_id}/helpful`,
+    headers: {
+      Authorization: authToken,
+      "content-type": "application/json",
+    },
+    params: {
+      product_id: req.query.product_id,
+    },
+  };
+  axios(options)
+    .then((response) => {
+      res.sendStatus(204)
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+app.put("/reviews/report", (req, res) => {
+  var options = {
+    method: "put",
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/${req.query.product_id}/report`,
+    headers: {
+      Authorization: authToken,
+      "content-type": "application/json",
+    },
+    params: {
+      product_id: req.query.product_id,
+    },
+  };
+  axios(options)
+    .then((response) => {
+      res.sendStatus(204)
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });

@@ -12,6 +12,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Grid from '@mui/material/Grid';
+import "./review.css";
 
 
 
@@ -27,9 +28,9 @@ const ReviewList = ({ currentProd, metaData, numReviews }) => {
 
 
 
-  const handleSortChange = (event) => {
-    event.preventDefault();
-    setSort(event.target.value);
+  const handleSortChange = (e) => {
+    e.preventDefault();
+    setSort(e.target.value);
   };
 
   const handleMoreReviews = (e) => {
@@ -63,11 +64,12 @@ const ReviewList = ({ currentProd, metaData, numReviews }) => {
     }
     axios(options)
       .then((results) => {
+        console.log(results)
         setCurrentReviews(results.data.results);
         if (!reviewsInView) {
           setReviewsInView(results.data.results.slice(0, 2))
         } else {
-          setReviewsInView(reviewsInView.slice(2).concat(results.data.results.slice(0, 2)))
+          setReviewsInView(reviewsInView.slice(-2).concat(results.data.results.slice(0, 2)))
         }
       })
       .catch((err) => {
@@ -86,11 +88,11 @@ const ReviewList = ({ currentProd, metaData, numReviews }) => {
         justifyContent="space-between"
         alignItems="center"
         padding="2%">
-        <Grid  container="true"
+        <Grid
         justifyContent="flex-start">
           <span><b>Total Reviews: {numReviews} </b></span>
         </Grid>
-        <Grid  container="true"
+        <Grid
         justifyContent="flex-end">
           <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
             <InputLabel id="demo-select-small">Sort by</InputLabel>
@@ -108,6 +110,7 @@ const ReviewList = ({ currentProd, metaData, numReviews }) => {
           </FormControl>
         </Grid>
       </Grid>
+      <div className='ReviewScroll'>
       {currentReviews && <>
         {reviewsInView.map((review) => (
           <ReviewTile key={review.review_id}
@@ -117,6 +120,7 @@ const ReviewList = ({ currentProd, metaData, numReviews }) => {
             product_id={currentProduct.id} />
         ))}
       </>}
+      </div>
       <Stack spacing={2} direction="row" container="true" padding="2%">
         <Button variant="outlined"
           onClick={(e) => { handleMoreReviews(e) }}> More Reviews</Button>
