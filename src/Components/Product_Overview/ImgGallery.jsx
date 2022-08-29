@@ -2,6 +2,8 @@ import React from "react";
 import { Container } from "@mui/material";
 import { Stack } from "@mui/material";
 import { IconButton } from "@mui/material";
+import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
 const ImgGallery = (props) => {
   return (
@@ -10,8 +12,12 @@ const ImgGallery = (props) => {
       sx={{
         border: 1,
         borderColor: "blue",
-        width: "160%",
+        width: "100%",
         display: "flex",
+        backgroundImage: `url(${props.styleToDisplay.photos[0].url})`,
+        backgroundSize: "contain",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
       }}
     >
       <Stack
@@ -19,21 +25,21 @@ const ImgGallery = (props) => {
         alignItems="center"
         sx={{ border: 1, width: "15%", mt: "2%", mb: "30%" }}
       >
-        {/* conditionally disabled up arrow */}
-        <img src="https://picsum.photos/40/40" />
-        <img src="https://picsum.photos/40/40" />
-        <img src="https://picsum.photos/40/40" />
-        <img src="https://picsum.photos/40/40" />
-        <img src="https://picsum.photos/40/40" />
-        {/* conditionally disabled down arrow */}
+        {props.styleToDisplay.photos.map((photo) => {
+          return <img width="40px" height="40px" src={photo.thumbnail_url} />;
+        })}
       </Stack>
       <Stack
         direction="row"
         justifyContent="space-between"
-        sx={{ width: "110%", height: "0%", my: "40%", mx: "2%" }}
+        sx={{ width: "100%", my: "40%", mx: "1%" }}
       >
-        <IconButton sx={{ border: 1 }}></IconButton>
-        <IconButton sx={{ border: 1 }}></IconButton>
+        <IconButton>
+          <KeyboardArrowLeftIcon />
+        </IconButton>
+        <IconButton>
+          <KeyboardArrowRightIcon />
+        </IconButton>
       </Stack>
     </Container>
   );

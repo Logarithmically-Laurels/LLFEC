@@ -4,7 +4,7 @@ import { Typography } from "@mui/material";
 
 const ProductInfo = () => {
   return (
-    <Container sx={{ border: 1, height: "40%" }}>
+    <Container sx={{ border: 1, height: "40%", width: "100%" }}>
       <div>[*****] read all reviews</div>
       <Typography variant="h5" sx={{ fontsize: 20 }}>
         Expanded Product Name

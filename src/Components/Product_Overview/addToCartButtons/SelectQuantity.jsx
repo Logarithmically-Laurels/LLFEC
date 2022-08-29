@@ -14,7 +14,15 @@ const SelectQuantityButton = () => {
   return (
     <div>
       <Button
-        sx={{ border: 1, borderRadius: 0 }}
+        sx={{
+          border: 1,
+          borderRadius: 0,
+          borderColor: "black",
+          color: "black",
+          width: 82,
+          height: "100%",
+          ml: "25%",
+        }}
         id="basic-button"
         aria-controls={open ? "basic-menu" : undefined}
         aria-haspopup="true"

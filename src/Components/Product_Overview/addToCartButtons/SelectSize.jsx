@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { MenuItem, Menu, Button } from "@mui/material";
+import { MenuItem, Menu, Button, IconButton } from "@mui/material";
 
 const SelectSizeButton = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -13,7 +13,13 @@ const SelectSizeButton = () => {
   return (
     <div>
       <Button
-        sx={{ border: 1, borderRadius: 0 }}
+        sx={{
+          border: 1,
+          width: 175,
+          borderRadius: 0,
+          color: "black",
+          height: "100%",
+        }}
         id="basic-button"
         aria-controls={open ? "basic-menu" : undefined}
         aria-haspopup="true"
