@@ -7,12 +7,15 @@ import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Stars from "./stars.jsx";
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import { format, formatDistance, formatRelative, subDays } from 'date-fns'
+import { format, formatDistance, formatRelative, subDays } from 'date-fns';
+import Rating from '@mui/material/Rating';
+
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
-  // padding: theme.spacing(1),
+  padding: theme.spacing(1),
+  margin: '8px',
   textAlign: 'left',
   color: theme.palette.text.secondary,
 }));
@@ -25,16 +28,25 @@ const ReviewTile = ({ review, product_id, metaData }) => {
 
   const handleShowMore = (e, state) => {
     e.preventDefault()
-    console.log('click')
+    // console.log('click')
     if (state === 'summary') {
       setShowSummary(null)
     } else {
       setShowBody(null)
     }
   }
+  const handleHelpfulClick = (e) => {
+    e.preventDefault()
+    console.log('click helpful')
+  }
+
+  const handleReportClick = (e) => {
+    e.preventDefault()
+    console.log('click Report')
+  }
 
   useEffect(() => {
-    console.log(review)
+    // console.log(review)
     if (review.summary && review.summary.length > 60) {
       setShowSummary(review.summary.slice(0, 60) + '...')
     }
@@ -46,42 +58,46 @@ const ReviewTile = ({ review, product_id, metaData }) => {
 
   return (
     <div>
-      <Grid container="true"
-        rowSpacing={1}
-        columnSpacing={1}
-        direction="row"
-        justifyContent="flex-start"
-        alignItems="stretch"
-        margin="2%"
-      >
-        <Grid item xs={6}  >
-          <Item><Stars rating={review.rating} setStar={false} /></Item>
-        </Grid>
-        <Grid item xs={6} >
-          <Item>
-            {review.email && <CheckCircleOutlineIcon />}
-            {format(new Date(review.date), 'PPP')}
-          </Item>
-        </Grid>
-        <Grid item xs={12}>
-          {showSummary && <Item><b>{showSummary}</b>
-            <br></br>
-            <a onClick={(e)=>{handleShowMore(e, 'summary')}}>Show More</a></Item>}
-          {!showSummary && <Item><b>{review.summary}</b></Item>}
-        </Grid>
-        <Grid item xs={12}>
-          {showBody && <Item>{showBody}
-            <br></br>
-            <a onClick={(e)=>{handleShowMore(e, 'body')}}>Show More</a></Item>}
-          {!showBody && <Item>{review.body}</Item>}
-        </Grid>
-        {review.response && <Grid item xs={12}>
-          <Item>Response from seller <br></br>{review.response}</Item>
-        </Grid>}
-      </Grid>
+      <Item>
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(4, 1fr)',
+            gap: 1,
+            gridTemplateRows: 'auto',
+            gridTemplateAreas: `"stars . . date"
+        "summary summary summary summary"
+        "body body body body"
+        "response response response response"
+        "helpful . . ."`,
+          }}
+        >
+          <Box sx={{ gridArea: 'stars' }}>
+            <Rating name="read-only" value={review.rating} precision={0.25} readOnly />
+          </Box>
+          <Box sx={{ gridArea: 'date' }} fontSize={15}>    {review.email && <CheckCircleOutlineIcon />}
+            {review.reviewer_name} {format(new Date(review.date), 'PPP')}
+          </Box>
+          <Box sx={{ gridArea: 'summary' }}>
+            {showSummary && <><b>{showSummary}</b>
+              <br></br>
+              <a onClick={(e) => { handleShowMore(e, 'summary') }} fontSize={12}>Show More</a></>}
+            {!showSummary && <b>{review.summary}</b>}
+          </Box>
+          <Box sx={{ gridArea: 'body' }}>
+            {showBody && <>{showBody}
+              <br></br>
+              <a onClick={(e) => { handleShowMore(e, 'body') }}>Show More</a></>}
+            {!showBody && <>{review.body}</>}
+          </Box>
+          {review.response && <Box sx={{ gridArea: 'response' }}>
+            <>Response from seller <br></br>{review.response}</>
+          </Box>}
+          <Box sx={{ gridArea: 'helpful'}} fontSize={12}> Helpful?  <a onClick={(e)=>{handleHelpfulClick(e)}}>  Yes ({review.helpfulness})  </a>  |  <a onClick={(e)=>{handleReportClick(e)}}>   Report  </a> </Box>
+        </Box>
 
-
-    </div>
+      </Item>
+    </div >
   )
 }
 
