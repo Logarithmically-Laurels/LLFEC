@@ -49,14 +49,10 @@ const App = () => {
 
   return (
     <div>
-      {currentProduct && (
-        <>
-          <div>Nav Bar</div>
-          <Overview currentProduct={currentProduct} />
-          <Questions currentProd={currentProduct} />
-          <ReviewApp currentProd={currentProduct} />
-        </>
-      )}
+      <div>Nav Bar</div>
+      <Overview currentProduct={firstProduct} />
+      <Questions currentProd={currentProduct} />
+      {/* <ReviewApp currentProd={currentProduct} /> */}
     </div>
   );
 };

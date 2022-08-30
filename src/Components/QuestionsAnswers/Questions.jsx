@@ -5,7 +5,8 @@ import AddQuestions from "./AddQuestions.jsx";
 import QuestionList from "./QuestionList.jsx";
 const authtoken = require("/config.js");
 
-const Questions = () => {
+const Questions = (props) => {
+  console.log(props);
   const [questions, setQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState("");
   const [email, setEmail] = useState("");
@@ -106,6 +107,7 @@ const Questions = () => {
   };
 
   useEffect(() => {
+    console.log(authtoken);
     var options = {
       method: "GET",
       url: "/qa/questions",

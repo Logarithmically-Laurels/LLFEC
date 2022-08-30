@@ -8,7 +8,6 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import authtoken from "/config.js";
 
-
 const ReviewApp = ({ currentProd }) => {
   const [currentProduct, setCurrentProduct] = useState(currentProd);
   const [currentReviews, setCurrentReviews] = useState(null);
@@ -24,22 +23,19 @@ const ReviewApp = ({ currentProd }) => {
   }));
 
   if (reviewMetaData) {
-
     var numReviews = 0;
     for (var rating in reviewMetaData.ratings) {
-      numReviews += parseInt(reviewMetaData.ratings[rating])
+      numReviews += parseInt(reviewMetaData.ratings[rating]);
     }
     // var numReviews = parseInt(reviewMetaData.ratings[1]) + parseInt(reviewMetaData.ratings[2]) + parseInt(reviewMetaData.ratings[3]) + parseInt(reviewMetaData.ratings[4]) + parseInt(reviewMetaData.ratings[5]);
   }
 
   useEffect(() => {
     var options = {
-
       url: "/reviews/meta",
-      method: 'get',
+      method: "get",
       headers: {
-        'Content-Type': 'application/json',
-
+        "Content-Type": "application/json",
       },
       params: {
         product_id: currentProduct.id,
@@ -56,28 +52,35 @@ const ReviewApp = ({ currentProd }) => {
 
   return (
     <div>
-      {currentProduct && <Grid container spacing={0.5}
-        container direction="row"
-        justifyContent="space-around"
-        alignItems="stretch">
-        <Grid item xs={3}   >
-          <Item >
-            <ReviewNumber
-              product_id={currentProduct.id}
-              metaData={reviewMetaData}
-              numReviews={numReviews}
-              style={{ height: '100%' }} />
-          </Item>
-        </Grid>
-        <Grid item xs={9} >
-          <Item >
-            <ReviewList
-              numReviews={numReviews}
-              currentProd={currentProduct}
-              metaData={reviewMetaData}
-              style={{ height: '100%' }} />
-          </Item>
-
+      {currentProduct && (
+        <Grid
+          container
+          spacing={0.5}
+          container
+          direction="row"
+          justifyContent="space-around"
+          alignItems="stretch"
+        >
+          <Grid item xs={3}>
+            <Item>
+              <ReviewNumber
+                product_id={currentProduct.id}
+                metaData={reviewMetaData}
+                numReviews={numReviews}
+                style={{ height: "100%" }}
+              />
+            </Item>
+          </Grid>
+          <Grid item xs={9}>
+            <Item>
+              <ReviewList
+                numReviews={numReviews}
+                currentProd={currentProduct}
+                metaData={reviewMetaData}
+                style={{ height: "100%" }}
+              />
+            </Item>
+          </Grid>
         </Grid>
       )}
     </div>

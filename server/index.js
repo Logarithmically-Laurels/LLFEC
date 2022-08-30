@@ -8,20 +8,20 @@ const port = 3000;
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname + "/../public")));
-app.use(express.urlencoded({extended:true}))
+app.use(express.urlencoded({ extended: true }));
 
 app.get("/products", (req, res) => {
   var options = {
     method: "GET",
     url: "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products",
     headers: {
-      Authorization: authToken.default,
+      Authorization: authToken.authtoken,
       "content-type": "application/json",
     },
     params: {
       page: req.query.page,
       count: req.query.count,
-    }
+    },
   };
   axios(options)
     .then((response) => {
@@ -31,13 +31,12 @@ app.get("/products", (req, res) => {
       res.send(err);
     });
 });
-<<<<<<< HEAD
 app.get("/reviews/meta", (req, res) => {
   var options = {
     method: "GET",
     url: "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta",
     headers: {
-      Authorization: authToken,
+      Authorization: authToken.authtoken,
       "content-type": "application/json",
     },
     params: {
@@ -57,13 +56,13 @@ app.get("/reviews", (req, res) => {
     method: "GET",
     url: "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews",
     headers: {
-      Authorization: authToken,
+      Authorization: authToken.authtoken,
       "content-type": "application/json",
     },
     params: {
       page: req.query.page,
-        count: req.query.count,
-        sort: req.query.sort,
+      count: req.query.count,
+      sort: req.query.sort,
       product_id: req.query.product_id,
     },
   };
@@ -80,7 +79,7 @@ app.put("/reviews/helpful", (req, res) => {
     method: "put",
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/${req.query.product_id}/helpful`,
     headers: {
-      Authorization: authToken,
+      Authorization: authToken.authtoken,
       "content-type": "application/json",
     },
     params: {
@@ -89,7 +88,7 @@ app.put("/reviews/helpful", (req, res) => {
   };
   axios(options)
     .then((response) => {
-      res.sendStatus(204)
+      res.sendStatus(204);
     })
     .catch((err) => {
       res.send(err);
@@ -100,7 +99,7 @@ app.put("/reviews/report", (req, res) => {
     method: "put",
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/${req.query.product_id}/report`,
     headers: {
-      Authorization: authToken,
+      Authorization: authToken.authtoken,
       "content-type": "application/json",
     },
     params: {
@@ -109,28 +108,27 @@ app.put("/reviews/report", (req, res) => {
   };
   axios(options)
     .then((response) => {
-      res.sendStatus(204)
+      res.sendStatus(204);
     })
     .catch((err) => {
       res.send(err);
     });
 });
 
-
-<<<<<<< HEAD
 app.get("/qa/questions", (req, res) => {
+  console.log(authToken);
   let options = {
     method: "GET",
     url: "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions",
     headers: {
-      Authorization: authToken.default,
+      Authorization: authToken.authtoken,
       "content-type": "application/json",
     },
     params: {
       product_id: 37312,
-    }
+    },
   };
-  console.log('options', options);
+  console.log("options", options);
   axios(options)
     .then((response) => {
       res.json(response.data);
@@ -139,7 +137,7 @@ app.get("/qa/questions", (req, res) => {
       res.json(err);
     });
 });
-=======
+
 // app.get("/styles", (req, res) => {
 //   let prodId = parseInt(req.headers.prodid);
 //   var options = {
@@ -158,8 +156,6 @@ app.get("/qa/questions", (req, res) => {
 //       res.send(err);
 //     });
 // });
->>>>>>> main
-
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
