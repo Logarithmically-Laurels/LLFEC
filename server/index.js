@@ -25,6 +25,7 @@ app.get("/products", (req, res) => {
   };
   axios(options)
     .then((response) => {
+      console.log(response.data);
       res.send(response.data);
     })
     .catch((err) => {

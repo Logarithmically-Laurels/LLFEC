@@ -41,6 +41,7 @@ const App = () => {
         setProducts(results.data);
         var index = Math.floor(Math.random() * 10);
         setCurrentProduct(results.data[index]);
+        console.log(results.data);
       })
       .catch((err) => {
         console.log(err);
@@ -49,10 +50,14 @@ const App = () => {
 
   return (
     <div>
-      <div>Nav Bar</div>
-      <Overview currentProduct={firstProduct} />
-      <Questions currentProd={currentProduct} />
-      {/* <ReviewApp currentProd={currentProduct} /> */}
+      {currentProduct && (
+        <>
+          <div>Nav Bar</div>
+          {/* <Overview currentProduct={currentProduct} /> */}
+          <Questions currentProd={currentProduct} />
+          <ReviewApp currentProd={currentProduct} />
+        </>
+      )}
     </div>
   );
 };
