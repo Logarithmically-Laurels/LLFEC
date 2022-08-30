@@ -12,6 +12,8 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Grid from '@mui/material/Grid';
+import "./review.css";
+import ReviewModal from './reviewModal.jsx';
 
 
 
@@ -24,12 +26,14 @@ const ReviewList = ({ currentProd, metaData, numReviews }) => {
   const [page, setPage] = useState(1);
   const [count, setCount] = useState(10);
   const [sort, setSort] = useState('relevant')
+  const [modalOpen, setModalOpen] = useState(false)
 
 
 
-  const handleSortChange = (event) => {
-    event.preventDefault();
-    setSort(event.target.value);
+
+  const handleSortChange = (e) => {
+    e.preventDefault();
+    setSort(e.target.value);
   };
 
   const handleMoreReviews = (e) => {
@@ -43,16 +47,16 @@ const ReviewList = ({ currentProd, metaData, numReviews }) => {
 
   const handleAddReviews = (e) => {
     e.preventDefault()
-    console.log('add reviews')
+    console.log('click')
+    setModalOpen(true)
   }
 
   //TODO Axios request for current Reviews
   useEffect(() => {
     var options = {
-      url: "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/",
+      url: "/reviews",
       method: 'get',
       headers: {
-        Authorization: authtoken,
         'Content-Type': 'application/json',
       },
       params: {
@@ -64,11 +68,12 @@ const ReviewList = ({ currentProd, metaData, numReviews }) => {
     }
     axios(options)
       .then((results) => {
+        // console.log(results)
         setCurrentReviews(results.data.results);
         if (!reviewsInView) {
           setReviewsInView(results.data.results.slice(0, 2))
         } else {
-          setReviewsInView(reviewsInView.slice(2).concat(results.data.results.slice(0, 2)))
+          setReviewsInView(reviewsInView.slice(-2).concat(results.data.results.slice(0, 2)))
         }
       })
       .catch((err) => {
@@ -87,19 +92,19 @@ const ReviewList = ({ currentProd, metaData, numReviews }) => {
         justifyContent="space-between"
         alignItems="center"
         padding="2%">
-        <Grid xs={6} container
-        justifyContent="flex-start">
-          <span><b>{numReviews} reviews total </b></span>
+        <Grid
+          justifyContent="flex-start">
+          <span><b>Total Reviews: {numReviews} </b></span>
         </Grid>
-        <Grid xs={6} container
-        justifyContent="flex-end">
+        <Grid
+          justifyContent="flex-end">
           <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
             <InputLabel id="demo-select-small">Sort by</InputLabel>
             <Select
               labelId="demo-select-small"
               id="demo-select-small"
               value={sort}
-              label="Sort by"
+              label="Sort on"
               onChange={(e) => { handleSortChange(e) }}
             >
               <MenuItem value={'relevant'}>Relevant</MenuItem>
@@ -109,21 +114,24 @@ const ReviewList = ({ currentProd, metaData, numReviews }) => {
           </FormControl>
         </Grid>
       </Grid>
-      {currentReviews && <>
-        {reviewsInView.map((review) => (
-          <ReviewTile key={review.review_id}
-            review={review}
-            metaData={metaData}
-            sort={sort}
-            product_id={currentProduct.id} />
-        ))}
-      </>}
-      <Stack spacing={2} direction="row" container padding="2%">
+      <div className='ReviewScroll'>
+        {currentReviews && <>
+          {reviewsInView.map((review) => (
+            <ReviewTile key={review.review_id}
+              review={review}
+              metaData={metaData}
+              sort={sort}
+              product_id={currentProduct.id} />
+          ))}
+        </>}
+      </div>
+      <Stack spacing={2} direction="row" container="true" padding="2%">
         <Button variant="outlined"
           onClick={(e) => { handleMoreReviews(e) }}> More Reviews</Button>
         <Button variant="outlined"
           endIcon={<AddIcon />}
           onClick={(e) => { handleAddReviews(e) }}>Add a Review </Button>
+        {modalOpen && <ReviewModal product={currentProd} metaData={metaData}/>}
       </Stack>
     </div>
   )
