@@ -31,6 +31,7 @@ app.get("/products", (req, res) => {
       res.send(err);
     });
 });
+<<<<<<< HEAD
 app.get("/reviews/meta", (req, res) => {
   var options = {
     method: "GET",
@@ -114,6 +115,28 @@ app.put("/reviews/report", (req, res) => {
       res.send(err);
     });
 });
+
+
+// app.get("/styles", (req, res) => {
+//   let prodId = parseInt(req.headers.prodid);
+//   var options = {
+//     method: "GET",
+//     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${prodId}/styles`,
+//     headers: {
+//       Authorization: authToken,
+//       "content-type": "application/json",
+//     },
+//   };
+//   axios(options)
+//     .then((response) => {
+//       res.send(response.data);
+//     })
+//     .catch((err) => {
+//       res.send(err);
+//     });
+// });
+
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });

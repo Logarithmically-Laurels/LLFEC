@@ -2,12 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ReviewNumber from "./reviewNumbers.jsx";
 import ReviewList from "./reviewList.jsx";
-import useAxiosGet from '../CommonComponents/axiosRequest.jsx';
-import { styled } from '@mui/material/styles';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-
-
+import useAxiosGet from "../CommonComponents/axiosRequest.jsx";
+import { styled } from "@mui/material/styles";
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
+import authtoken from "/config.js";
 
 
 const ReviewApp = ({ currentProd }) => {
@@ -20,11 +19,12 @@ const ReviewApp = ({ currentProd }) => {
     ...theme.typography.body2,
     // padding: theme.spacing(1),
     height: "100%",
-    textAlign: 'center',
+    textAlign: "center",
     color: theme.palette.text.secondary,
   }));
 
   if (reviewMetaData) {
+
     var numReviews = 0;
     for (var rating in reviewMetaData.ratings) {
       numReviews += parseInt(reviewMetaData.ratings[rating])
@@ -32,26 +32,27 @@ const ReviewApp = ({ currentProd }) => {
     // var numReviews = parseInt(reviewMetaData.ratings[1]) + parseInt(reviewMetaData.ratings[2]) + parseInt(reviewMetaData.ratings[3]) + parseInt(reviewMetaData.ratings[4]) + parseInt(reviewMetaData.ratings[5]);
   }
 
-
   useEffect(() => {
     var options = {
+
       url: "/reviews/meta",
       method: 'get',
       headers: {
         'Content-Type': 'application/json',
+
       },
       params: {
         product_id: currentProduct.id,
       },
-    }
+    };
     axios(options)
       .then((results) => {
-        setReviewMetaData(results.data)
+        setReviewMetaData(results.data);
       })
-      .catch(err => {
-        console.log(err)
-      })
-  }, [])
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <div>
@@ -76,10 +77,11 @@ const ReviewApp = ({ currentProd }) => {
               metaData={reviewMetaData}
               style={{ height: '100%' }} />
           </Item>
+
         </Grid>
-      </Grid>}
+      )}
     </div>
-  )
-}
+  );
+};
 
 export default ReviewApp;
