@@ -13,6 +13,7 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Grid from '@mui/material/Grid';
 import "./review.css";
+import ReviewModal from './reviewModal.jsx';
 
 
 
@@ -25,6 +26,8 @@ const ReviewList = ({ currentProd, metaData, numReviews }) => {
   const [page, setPage] = useState(1);
   const [count, setCount] = useState(10);
   const [sort, setSort] = useState('relevant')
+  const [modalOpen, setModalOpen] = useState(false)
+
 
 
 
@@ -44,7 +47,8 @@ const ReviewList = ({ currentProd, metaData, numReviews }) => {
 
   const handleAddReviews = (e) => {
     e.preventDefault()
-    console.log('add reviews')
+    console.log('click')
+    setModalOpen(true)
   }
 
   //TODO Axios request for current Reviews
@@ -64,7 +68,7 @@ const ReviewList = ({ currentProd, metaData, numReviews }) => {
     }
     axios(options)
       .then((results) => {
-        console.log(results)
+        // console.log(results)
         setCurrentReviews(results.data.results);
         if (!reviewsInView) {
           setReviewsInView(results.data.results.slice(0, 2))
@@ -83,24 +87,24 @@ const ReviewList = ({ currentProd, metaData, numReviews }) => {
 
   return (
     <div>
-      <Grid container="true"
+      <Grid container
         direction="row"
         justifyContent="space-between"
         alignItems="center"
         padding="2%">
         <Grid
-        justifyContent="flex-start">
+          justifyContent="flex-start">
           <span><b>Total Reviews: {numReviews} </b></span>
         </Grid>
         <Grid
-        justifyContent="flex-end">
+          justifyContent="flex-end">
           <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
             <InputLabel id="demo-select-small">Sort by</InputLabel>
             <Select
               labelId="demo-select-small"
               id="demo-select-small"
               value={sort}
-              label="Sort by"
+              label="Sort on"
               onChange={(e) => { handleSortChange(e) }}
             >
               <MenuItem value={'relevant'}>Relevant</MenuItem>
@@ -111,15 +115,15 @@ const ReviewList = ({ currentProd, metaData, numReviews }) => {
         </Grid>
       </Grid>
       <div className='ReviewScroll'>
-      {currentReviews && <>
-        {reviewsInView.map((review) => (
-          <ReviewTile key={review.review_id}
-            review={review}
-            metaData={metaData}
-            sort={sort}
-            product_id={currentProduct.id} />
-        ))}
-      </>}
+        {currentReviews && <>
+          {reviewsInView.map((review) => (
+            <ReviewTile key={review.review_id}
+              review={review}
+              metaData={metaData}
+              sort={sort}
+              product_id={currentProduct.id} />
+          ))}
+        </>}
       </div>
       <Stack spacing={2} direction="row" container="true" padding="2%">
         <Button variant="outlined"
@@ -127,6 +131,7 @@ const ReviewList = ({ currentProd, metaData, numReviews }) => {
         <Button variant="outlined"
           endIcon={<AddIcon />}
           onClick={(e) => { handleAddReviews(e) }}>Add a Review </Button>
+        {modalOpen && <ReviewModal product={currentProd} metaData={metaData}/>}
       </Stack>
     </div>
   )

@@ -25,7 +25,11 @@ const ReviewApp = ({ currentProd }) => {
   }));
 
   if (reviewMetaData) {
-    var numReviews = parseInt(reviewMetaData.ratings[1]) + parseInt(reviewMetaData.ratings[2]) + parseInt(reviewMetaData.ratings[3]) + parseInt(reviewMetaData.ratings[4]) + parseInt(reviewMetaData.ratings[5]);
+    var numReviews = 0;
+    for (var rating in reviewMetaData.ratings) {
+      numReviews += parseInt(reviewMetaData.ratings[rating])
+    }
+    // var numReviews = parseInt(reviewMetaData.ratings[1]) + parseInt(reviewMetaData.ratings[2]) + parseInt(reviewMetaData.ratings[3]) + parseInt(reviewMetaData.ratings[4]) + parseInt(reviewMetaData.ratings[5]);
   }
 
 
