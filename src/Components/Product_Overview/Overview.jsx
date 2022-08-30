@@ -76,9 +76,10 @@ const Overview = (props) => {
   return (
     <Container
       sx={{
-        border: 1,
+        border: 2,
         display: "flex",
       }}
+      maxWidth="xl"
     >
       <ImgGallery styleToDisplay={currentStyle} />
       <Container justifycontent="space-between" sx={{ my: "4%" }}>

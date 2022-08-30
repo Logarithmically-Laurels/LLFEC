@@ -3,12 +3,18 @@ import { MenuItem, Menu, Button } from "@mui/material";
 
 const SelectQuantityButton = () => {
   const [anchorEl, setAnchorEl] = useState(null);
+  const [currentQty, setQty] = useState(1);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleChange = (e) => {
+    setQty(e);
+    handleClose();
   };
 
   return (
@@ -29,7 +35,7 @@ const SelectQuantityButton = () => {
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
-        1
+        {currentQty}
       </Button>
       <Menu
         id="basic-menu"
@@ -40,16 +46,18 @@ const SelectQuantityButton = () => {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={handleClose}>1</MenuItem>
-        <MenuItem onClick={handleClose}>2</MenuItem>
-        <MenuItem onClick={handleClose}>3</MenuItem>
-        <MenuItem onClick={handleClose}>4</MenuItem>
-        <MenuItem onClick={handleClose}>5</MenuItem>
-        <MenuItem onClick={handleClose}>6</MenuItem>
-        <MenuItem onClick={handleClose}>7</MenuItem>
-        <MenuItem onClick={handleClose}>8</MenuItem>
-        <MenuItem onClick={handleClose}>9</MenuItem>
-        <MenuItem onClick={handleClose}>10</MenuItem>
+        <MenuItem onClick={(e) => handleChange(e.target.innerText)}>1</MenuItem>
+        <MenuItem onClick={(e) => handleChange(e.target.innerText)}>2</MenuItem>
+        <MenuItem onClick={(e) => handleChange(e.target.innerText)}>3</MenuItem>
+        <MenuItem onClick={(e) => handleChange(e.target.innerText)}>4</MenuItem>
+        <MenuItem onClick={(e) => handleChange(e.target.innerText)}>5</MenuItem>
+        <MenuItem onClick={(e) => handleChange(e.target.innerText)}>6</MenuItem>
+        <MenuItem onClick={(e) => handleChange(e.target.innerText)}>7</MenuItem>
+        <MenuItem onClick={(e) => handleChange(e.target.innerText)}>8</MenuItem>
+        <MenuItem onClick={(e) => handleChange(e.target.innerText)}>9</MenuItem>
+        <MenuItem onClick={(e) => handleChange(e.target.innerText)}>
+          10
+        </MenuItem>
       </Menu>
     </div>
   );

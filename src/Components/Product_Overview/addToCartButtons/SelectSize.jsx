@@ -3,6 +3,7 @@ import { MenuItem, Menu, Button, IconButton } from "@mui/material";
 
 const SelectSizeButton = () => {
   const [anchorEl, setAnchorEl] = useState(null);
+  const [currentSize, setSize] = useState("select a size");
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -10,6 +11,12 @@ const SelectSizeButton = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleChange = (e) => {
+    setSize(e);
+    handleClose(null);
+  };
+
   return (
     <div>
       <Button
@@ -26,7 +33,7 @@ const SelectSizeButton = () => {
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
-        Select Size
+        {currentSize}
       </Button>
       <Menu
         id="basic-menu"
@@ -37,11 +44,19 @@ const SelectSizeButton = () => {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={handleClose}>XS</MenuItem>
-        <MenuItem onClick={handleClose}>S</MenuItem>
-        <MenuItem onClick={handleClose}>MD</MenuItem>
-        <MenuItem onClick={handleClose}>LG</MenuItem>
-        <MenuItem onClick={handleClose}>XL</MenuItem>
+        <MenuItem onClick={(e) => handleChange(e.target.innerText)}>
+          XS
+        </MenuItem>
+        <MenuItem onClick={(e) => handleChange(e.target.innerText)}>S</MenuItem>
+        <MenuItem onClick={(e) => handleChange(e.target.innerText)}>
+          MD
+        </MenuItem>
+        <MenuItem onClick={(e) => handleChange(e.target.innerText)}>
+          LG
+        </MenuItem>
+        <MenuItem onClick={(e) => handleChange(e.target.innerText)}>
+          XL
+        </MenuItem>
       </Menu>
     </div>
   );
