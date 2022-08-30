@@ -46,9 +46,9 @@ const App = () => {
   return (
     <div>
       <div>Nav Bar</div>
-      <Overview currentProduct={currentProduct} />
+      {/* <Overview currentProduct={currentProduct} /> */}
       <Questions currentProd={currentProduct} />
-      <ReviewApp currentProd={currentProduct} />
+      {/* <ReviewApp currentProd={currentProduct} /> */}
     </div>
   );
 };
