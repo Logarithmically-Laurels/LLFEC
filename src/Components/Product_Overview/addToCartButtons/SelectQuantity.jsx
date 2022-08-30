@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { MenuItem, Menu, Button } from "@mui/material";
+import { MenuItem, Menu, Button, Container } from "@mui/material";
 
 const SelectQuantityButton = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -18,16 +18,15 @@ const SelectQuantityButton = () => {
   };
 
   return (
-    <div>
+    <Container disableGutters sx={{ width: "30%" }}>
       <Button
         sx={{
           border: 1,
           borderRadius: 0,
           borderColor: "black",
           color: "black",
-          width: 82,
+          width: "100%",
           height: "100%",
-          ml: "25%",
         }}
         id="basic-button"
         aria-controls={open ? "basic-menu" : undefined}
@@ -59,7 +58,7 @@ const SelectQuantityButton = () => {
           10
         </MenuItem>
       </Menu>
-    </div>
+    </Container>
   );
 };
 

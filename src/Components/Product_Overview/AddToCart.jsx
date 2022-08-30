@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, MenuItem, Menu, Button } from "@mui/material";
+import { Container, MenuItem, Menu, Button, Stack } from "@mui/material";
 import SelectSizeButton from "./addToCartButtons/SelectSize.jsx";
 import SelectQuantityButton from "./addToCartButtons/SelectQuantity.jsx";
 import AddToBag from "./addToCartButtons/AddToBag.jsx";
@@ -11,7 +11,9 @@ const AddToCart = () => {
       disableGutters
       sx={{ border: 1, height: "30%", borderColor: "green" }}
     >
-      <Container
+      <Stack
+        direction="row"
+        justifyContent="space-between"
         disableGutters
         sx={{
           border: 1,
@@ -24,8 +26,10 @@ const AddToCart = () => {
       >
         <SelectSizeButton />
         <SelectQuantityButton />
-      </Container>
-      <Container
+      </Stack>
+      <Stack
+        direction="row"
+        justifyContent="space-between"
         disableGutters
         sx={{
           border: 1,
@@ -36,7 +40,7 @@ const AddToCart = () => {
       >
         <AddToBag />
         <FavoriteButton />
-      </Container>
+      </Stack>
     </Container>
   );
 };

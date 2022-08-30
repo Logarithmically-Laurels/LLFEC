@@ -76,13 +76,22 @@ const Overview = (props) => {
   return (
     <Container
       sx={{
-        border: 2,
+        border: 5,
+        borderColor: "green",
         display: "flex",
       }}
-      maxWidth="xl"
     >
       <ImgGallery styleToDisplay={currentStyle} />
-      <Container justifycontent="space-between" sx={{ my: "4%" }}>
+      <Container
+        disableGutters
+        justifycontent="space-between"
+        sx={{
+          my: "4%",
+          border: 5,
+          borderColor: "pink",
+          width: "40%",
+        }}
+      >
         <ProductInfo prodInfo={props.currentProduct[0]} />
         <StyleSelector
           prodId={currentProductId}

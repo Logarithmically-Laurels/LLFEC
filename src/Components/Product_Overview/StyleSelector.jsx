@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container } from "@mui/material";
 import { Typography } from "@mui/material";
 import { Grid } from "@mui/material";
 import { Avatar } from "@mui/material";
+import axios from "axios";
 
 var tempData = {
   product_id: "37311",
@@ -401,18 +402,49 @@ var tempData = {
 };
 
 const StyleSelector = (props) => {
+  // console.log(props.prodId);
+  // let options = {
+  //   url: "/styles",
+  //   method: "GET",
+  //   headers: { "Content-Type": "application/json", prodId: props.prodId },
+  // };
+
+  // useEffect(() => {
+  //   axios(options).then((result) => {
+  //     console.log(result.data);
+  //   });
+  // });
+
+  //current product Id will default to first style
   //make api call to retrieve product styles.
   // https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/`${props.currentProductId}`/styles
   // setCurrentStyle(response from api call)
-  console.log(props);
 
   return (
-    <Container
-      disableGutters
-      sx={{ border: 1, height: "30%", display: "flex" }}
-    >
-      <Typography sx={{ fontWeight: "bold" }}>Style > </Typography>
-      <Typography sx={{ ml: "1%" }}> {props.currentStyle.name}</Typography>
+    <Container disableGutters sx={{ border: 1, height: "35%" }}>
+      <Container disableGutters sx={{ display: "flex" }}>
+        <Typography sx={{ fontWeight: "bold" }}>{"Style >   "} </Typography>
+        <Typography sx={{ ml: "1%" }}> {props.currentStyle.name}</Typography>
+      </Container>
+
+      <Container
+        disableGutters
+        sx={{
+          display: "grid",
+          columnGap: 0,
+          rowGap: 1,
+          gridTemplateColumns: "repeat(4, 1fr)",
+          ml: "0%",
+          my: "2%",
+        }}
+      >
+        {/* should not be current style photos but current product styles */}
+        {tempData.results.map((style, index) => {
+          return (
+            <Avatar sx={{}} key={index} src={style.photos[0].thumbnail_url} />
+          );
+        })}
+      </Container>
     </Container>
   );
 };

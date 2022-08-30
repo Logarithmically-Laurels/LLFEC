@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { MenuItem, Menu, Button, IconButton } from "@mui/material";
+import { MenuItem, Menu, Button, IconButton, Container } from "@mui/material";
 
 const SelectSizeButton = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -18,11 +18,11 @@ const SelectSizeButton = () => {
   };
 
   return (
-    <div>
+    <Container disableGutters sx={{ width: "60%" }}>
       <Button
         sx={{
           border: 1,
-          width: 175,
+          width: "100%",
           borderRadius: 0,
           color: "black",
           height: "100%",
@@ -58,7 +58,7 @@ const SelectSizeButton = () => {
           XL
         </MenuItem>
       </Menu>
-    </div>
+    </Container>
   );
 };
 

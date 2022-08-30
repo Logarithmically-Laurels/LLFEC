@@ -46,6 +46,7 @@ const ImgGallery = (props) => {
         border: 1,
         borderColor: "blue",
         width: "100%",
+        height: "100%",
         display: "flex",
         backgroundImage: mainImg,
         backgroundSize: "contain",
@@ -61,8 +62,8 @@ const ImgGallery = (props) => {
         {props.styleToDisplay.photos.map((photo, index) => {
           return (
             <img
-              width="40px"
-              height="40px"
+              width="50px"
+              height="50px"
               src={photo.thumbnail_url}
               name={index}
               key={index}

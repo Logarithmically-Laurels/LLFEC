@@ -25,30 +25,30 @@ const App = () => {
   const [products, setProducts] = useState(null);
   const [currentProduct, setCurrentProduct] = useState(null);
 
-  // useEffect(() => {
-  //   var options = {
-  //     method: "GET",
-  //     url: "/products",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   };
-  //   axios(options)
-  //     .then((results) => {
-  //       setProducts(results.data);
-  //       setCurrentProduct(results.data[0]);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, []);
+  useEffect(() => {
+    var options = {
+      method: "GET",
+      url: "/products",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    axios(options)
+      .then((results) => {
+        setProducts(results.data);
+        setCurrentProduct(results.data[0]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <div>
       <div>Nav Bar</div>
       <Overview currentProduct={firstProduct} />
-      {/* <Questions currentProd={currentProduct} />
-      <ReviewApp currentProd={firstProduct} /> */}
+      <Questions currentProd={currentProduct} />
+      <ReviewApp currentProd={firstProduct} />
     </div>
   );
 };

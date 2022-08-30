@@ -6,7 +6,7 @@ const AddToBag = () => {
     <Button
       sx={{
         borderRadius: "0",
-        width: 200,
+        width: "70%",
         borderColor: "black",
         color: "black",
       }}

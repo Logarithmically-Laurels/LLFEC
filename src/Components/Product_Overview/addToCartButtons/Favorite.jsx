@@ -11,9 +11,9 @@ export default function () {
     return (
       <ToggleButton
         sx={{
-          ml: "5%",
           borderRadius: 0,
           borderColor: "black",
+          width: "20%",
         }}
         value="check"
         selected={selected}
@@ -28,9 +28,9 @@ export default function () {
     return (
       <ToggleButton
         sx={{
-          ml: "5%",
           borderRadius: 0,
           borderColor: "black",
+          width: "20%",
         }}
         value="check"
         selected={selected}
