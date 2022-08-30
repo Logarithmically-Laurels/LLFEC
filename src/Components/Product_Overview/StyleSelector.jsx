@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container } from "@mui/material";
 import { Typography } from "@mui/material";
 import { Grid } from "@mui/material";
 import { Avatar } from "@mui/material";
+import axios from "axios";
 
 var tempData = {
   product_id: "37311",
@@ -400,25 +401,50 @@ var tempData = {
   ],
 };
 
-var styleThumnails = [];
-// tempData.results.forEach(style => {
-//   style.photos.
-// })
+const StyleSelector = (props) => {
+  // console.log(props.prodId);
+  // let options = {
+  //   url: "/styles",
+  //   method: "GET",
+  //   headers: { "Content-Type": "application/json", prodId: props.prodId },
+  // };
 
-const StyleSelector = () => {
+  // useEffect(() => {
+  //   axios(options).then((result) => {
+  //     console.log(result.data);
+  //   });
+  // });
+
+  //current product Id will default to first style
+  //make api call to retrieve product styles.
+  // https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/`${props.currentProductId}`/styles
+  // setCurrentStyle(response from api call)
+
   return (
-    <Container sx={{ border: 1, height: "30%" }}>
-      <Typography sx={{ fontWeight: "bold" }}>
-        Style > Selected Style
-      </Typography>
+    <Container disableGutters sx={{ border: 1, height: "35%" }}>
+      <Container disableGutters sx={{ display: "flex" }}>
+        <Typography sx={{ fontWeight: "bold" }}>{"Style >   "} </Typography>
+        <Typography sx={{ ml: "1%" }}> {props.currentStyle.name}</Typography>
+      </Container>
 
-      {/* <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-  {Array.from(Array(6)).map((_, index) => (
-    <Grid item xs={2} sm={4} md={4} key={index}>
-      <Item>xs=2</Item>
-    </Grid>
-  ))}
-</Grid> */}
+      <Container
+        disableGutters
+        sx={{
+          display: "grid",
+          columnGap: 0,
+          rowGap: 1,
+          gridTemplateColumns: "repeat(4, 1fr)",
+          ml: "0%",
+          my: "2%",
+        }}
+      >
+        {/* should not be current style photos but current product styles */}
+        {tempData.results.map((style, index) => {
+          return (
+            <Avatar sx={{}} key={index} src={style.photos[0].thumbnail_url} />
+          );
+        })}
+      </Container>
     </Container>
   );
 };
