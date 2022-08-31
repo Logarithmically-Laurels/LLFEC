@@ -130,7 +130,9 @@ const ReviewList = ({ currentProd, metaData, numReviews }) => {
           onClick={(e) => { handleMoreReviews(e) }}> More Reviews</Button>
         <Button variant="outlined"
           endIcon={<AddIcon />}
-          onClick={(e) => { handleAddReviews(e) }}>Add a Review </Button>
+          onClick={(e) => { handleAddReviews(e)}}
+          data-testid="reviewModal"
+          >Add a Review </Button>
         {modalOpen && <ReviewModal product={currentProd} metaData={metaData}/>}
       </Stack>
     </div>

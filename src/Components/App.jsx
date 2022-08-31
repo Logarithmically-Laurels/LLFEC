@@ -38,10 +38,10 @@ const App = () => {
     };
     axios(options)
       .then((results) => {
-        setProducts(results.data);
-        var index = Math.floor(Math.random() * 10);
-        setCurrentProduct(results.data[index]);
-        console.log(results.data);
+        let products = results.data;
+        setProducts(products);
+        var index = Math.floor(Math.random() * products.length);
+        setCurrentProduct(products[index]);
       })
       .catch((err) => {
         console.log(err);
@@ -53,7 +53,7 @@ const App = () => {
       {currentProduct && (
         <>
           <div>Nav Bar</div>
-          {/* <Overview currentProduct={currentProduct} /> */}
+          <Overview currentProduct={firstProduct} />
           <Questions currentProd={currentProduct} />
           <ReviewApp currentProd={currentProduct} />
         </>

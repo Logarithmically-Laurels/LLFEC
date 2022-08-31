@@ -6,7 +6,7 @@ import useAxiosGet from "../CommonComponents/axiosRequest.jsx";
 import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-import authtoken from "/config.js";
+
 
 const ReviewApp = ({ currentProd }) => {
   const [currentProduct, setCurrentProduct] = useState(currentProd);

@@ -36,6 +36,7 @@ const ReviewModal = ({product, metaData}) => {
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        data-testid='modal'
       >
         <Box sx={style} >
           <h2>Write Your Review</h2>

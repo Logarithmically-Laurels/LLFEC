@@ -22,7 +22,7 @@ module.exports = {
       // First rule is to idenify js and jsx files and turn on babel
       {
         test: /\.(jsx|js)$/,
-        exclude: [/node_modules/, /public/bundle.js],
+        exclude: [/node_modules/, /config.js/],
         loader: "babel-loader"
       },
       // Second rule is to check for css files and load them with the following loaders

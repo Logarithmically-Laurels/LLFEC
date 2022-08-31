@@ -25,7 +25,6 @@ app.get("/products", (req, res) => {
   };
   axios(options)
     .then((response) => {
-      console.log(response.data);
       res.send(response.data);
     })
     .catch((err) => {
@@ -129,7 +128,7 @@ app.get("/qa/questions", (req, res) => {
       product_id: 37312,
     },
   };
-  console.log("options", options);
+
   axios(options)
     .then((response) => {
       res.json(response.data);

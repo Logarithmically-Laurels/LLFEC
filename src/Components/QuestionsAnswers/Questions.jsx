@@ -3,7 +3,7 @@ import axios from "axios";
 import Search from "./Search.jsx";
 import AddQuestions from "./AddQuestions.jsx";
 import QuestionList from "./QuestionList.jsx";
-const authtoken = require("/config.js");
+
 
 const Questions = (props) => {
   console.log(props);
@@ -107,12 +107,10 @@ const Questions = (props) => {
   };
 
   useEffect(() => {
-    console.log(authtoken);
     var options = {
       method: "GET",
       url: "/qa/questions",
       headers: {
-        Authorization: authtoken.default,
         "Content-Type": "application/json",
       },
     };
