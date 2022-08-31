@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { MenuItem, Menu, Button } from "@mui/material";
+import { MenuItem, Menu, Button, IconButton, Container } from "@mui/material";
 
 const SelectSizeButton = () => {
   const [anchorEl, setAnchorEl] = useState(null);
+  const [currentSize, setSize] = useState("select a size");
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -10,17 +11,29 @@ const SelectSizeButton = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleChange = (e) => {
+    setSize(e);
+    handleClose(null);
+  };
+
   return (
-    <div>
+    <Container disableGutters sx={{ width: "60%" }}>
       <Button
-        sx={{ border: 1, borderRadius: 0 }}
+        sx={{
+          border: 1,
+          width: "100%",
+          borderRadius: 0,
+          color: "black",
+          height: "100%",
+        }}
         id="basic-button"
         aria-controls={open ? "basic-menu" : undefined}
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
-        Select Size
+        {currentSize}
       </Button>
       <Menu
         id="basic-menu"
@@ -31,13 +44,21 @@ const SelectSizeButton = () => {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={handleClose}>XS</MenuItem>
-        <MenuItem onClick={handleClose}>S</MenuItem>
-        <MenuItem onClick={handleClose}>MD</MenuItem>
-        <MenuItem onClick={handleClose}>LG</MenuItem>
-        <MenuItem onClick={handleClose}>XL</MenuItem>
+        <MenuItem onClick={(e) => handleChange(e.target.innerText)}>
+          XS
+        </MenuItem>
+        <MenuItem onClick={(e) => handleChange(e.target.innerText)}>S</MenuItem>
+        <MenuItem onClick={(e) => handleChange(e.target.innerText)}>
+          MD
+        </MenuItem>
+        <MenuItem onClick={(e) => handleChange(e.target.innerText)}>
+          LG
+        </MenuItem>
+        <MenuItem onClick={(e) => handleChange(e.target.innerText)}>
+          XL
+        </MenuItem>
       </Menu>
-    </div>
+    </Container>
   );
 };
 

@@ -1,0 +1,45 @@
+.reviewAppRoot {
+  height: 100vh
+}
+
+.link {
+  text-decoration: underline;
+}
+
+.ReviewScroll {
+  max-height: 80vh;
+  overflow: scroll;
+}
+
+.modalImage {
+  max-height: 80vh;
+  max-width: 80vw;
+}
+
+.thumbnail {
+  max-height: 120px;
+  width: auto;
+}
+.dateSize {
+  font-size: 14px;
+}
+.summarySize {
+  font-size: 18px;
+}
+.recommend {
+  margin-left: 3%;
+  font-size: 15px;
+}
+.response {
+  margin-left: 5%;
+  padding-left: 1%;
+  background-color: #e8e8e9;
+  font-size: 15px;
+
+}
+.body{
+  font-size: 16px;
+}
+.showMore {
+  font-size:14px;
+}
