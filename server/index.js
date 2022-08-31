@@ -116,7 +116,6 @@ app.put("/reviews/report", (req, res) => {
 });
 
 app.get("/qa/questions", (req, res) => {
-  console.log(authToken);
   let options = {
     method: "GET",
     url: "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions",

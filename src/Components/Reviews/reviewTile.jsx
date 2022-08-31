@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import authtoken from '../../../config.js';
 import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
@@ -139,7 +138,7 @@ const ReviewTile = ({ review, product_id, metaData }) => {
           }}
         >
           <Box sx={{ gridArea: 'stars' }}>
-            <Rating name="read-only" value={review.rating} precision={0.25} readOnly />
+            <Rating size="small" name="read-only" value={review.rating} precision={0.25} readOnly />
           </Box>
           <Box sx={{ gridArea: 'date' }} className='dateSize'>    {review.email && <CheckCircleOutlineIcon />}
             {review.reviewer_name} on {format(new Date(review.date), 'PPP')}

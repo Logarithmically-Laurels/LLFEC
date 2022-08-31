@@ -24,7 +24,7 @@ const ReviewList = ({ currentProd, metaData, numReviews }) => {
   const [reviewsInView, setReviewsInView] = useState(null);
   const [currentProduct, setCurrentProduct] = useState(currentProd);
   const [page, setPage] = useState(1);
-  const [count, setCount] = useState(10);
+  const [count, setCount] = useState(50);
   const [sort, setSort] = useState('relevant')
   const [modalOpen, setModalOpen] = useState(false)
 
@@ -47,8 +47,7 @@ const ReviewList = ({ currentProd, metaData, numReviews }) => {
 
   const handleAddReviews = (e) => {
     e.preventDefault()
-    console.log('click')
-    setModalOpen(true)
+    setModalOpen(!modalOpen)
   }
 
   //TODO Axios request for current Reviews
@@ -68,12 +67,20 @@ const ReviewList = ({ currentProd, metaData, numReviews }) => {
     }
     axios(options)
       .then((results) => {
-        // console.log(results)
-        setCurrentReviews(results.data.results);
-        if (!reviewsInView) {
-          setReviewsInView(results.data.results.slice(0, 2))
+        var sortedReviews;
+        if (sort === 'newest') {
+          sortedReviews = results.data.results.sort((a, b) => { b.date - a.date })
+        } else if (sort === 'helpful') {
+          sortedReviews = results.data.results.sort((a, b) => { b.helpfulness - a.helpfulness })
         } else {
-          setReviewsInView(reviewsInView.slice(-2).concat(results.data.results.slice(0, 2)))
+          sortedReviews = results.data.results;
+        }
+
+        setCurrentReviews(sortedReviews);
+        if (!reviewsInView) {
+          setReviewsInView(sortedReviews.slice(0, 2))
+        } else {
+          setReviewsInView(sortedReviews.slice(0, reviewsInView.length+2))
         }
       })
       .catch((err) => {
@@ -130,10 +137,10 @@ const ReviewList = ({ currentProd, metaData, numReviews }) => {
           onClick={(e) => { handleMoreReviews(e) }}> More Reviews</Button>
         <Button variant="outlined"
           endIcon={<AddIcon />}
-          onClick={(e) => { handleAddReviews(e)}}
+          onClick={(e) => { handleAddReviews(e) }}
           data-testid="reviewModal"
-          >Add a Review </Button>
-        {modalOpen && <ReviewModal product={currentProd} metaData={metaData}/>}
+        >Add a Review </Button>
+        {modalOpen && <ReviewModal product={currentProd} metaData={metaData} />}
       </Stack>
     </div>
   )

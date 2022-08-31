@@ -43,3 +43,6 @@
 .showMore {
   font-size:14px;
 }
+.inputReviewModal {
+  overflow: scroll;
+}
