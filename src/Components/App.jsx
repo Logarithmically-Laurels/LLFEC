@@ -51,7 +51,7 @@ const App = () => {
     <div>
       <div>Nav Bar</div>
       {/* <Overview currentProduct={firstProduct} /> */}
-      <Questions currentProd={currentProduct} />
+      <Questions currentProd={firstProduct} />
       {/* <ReviewApp currentProd={currentProduct} /> */}
     </div>
   );
