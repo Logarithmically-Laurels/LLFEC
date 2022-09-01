@@ -6,8 +6,6 @@ import Questions from "./QuestionsAnswers/Questions.jsx";
 import Navbar from "./Navbar.jsx";
 
 const App = () => {
-
-
   //effect calling api get /products
   const [products, setProducts] = useState(null);
   const [currentProduct, setCurrentProduct] = useState(null);
