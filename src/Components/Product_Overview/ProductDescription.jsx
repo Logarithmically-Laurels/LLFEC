@@ -30,7 +30,6 @@ const ProductDescription = (props) => {
       </Typography>
     </div>
   );
-  console.log(props.prodInfo);
   return (
     <Grid
       disableGutters

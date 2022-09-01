@@ -10,7 +10,7 @@ const dummyData = require("./dummydata.js").data;
 
 const Overview = (props) => {
   var currentProductId = 37311; /*props.currentProduct.id*/
-  console.log("CURRENT PROD ID: ", currentProductId);
+  // console.log("CURRENT PROD ID: ", currentProductId);
   const [allStyles, setAllStyles] = useState(dummyData);
   const [currentStyle, setCurrentStyle] = useState(allStyles.results[0]);
 
