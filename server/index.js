@@ -116,7 +116,6 @@ app.put("/reviews/report", (req, res) => {
 });
 
 app.get("/qa/questions", (req, res) => {
-  console.log(authToken);
   let options = {
     method: "GET",
     url: "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions",
@@ -124,11 +123,8 @@ app.get("/qa/questions", (req, res) => {
       Authorization: authToken.authtoken,
       "content-type": "application/json",
     },
-    params: {
-      product_id: 37312,
-    },
+    params: {},
   };
-  console.log("options", options);
   axios(options)
     .then((response) => {
       res.json(response.data);
@@ -138,24 +134,24 @@ app.get("/qa/questions", (req, res) => {
     });
 });
 
-// app.get("/styles", (req, res) => {
-//   let prodId = parseInt(req.headers.prodid);
-//   var options = {
-//     method: "GET",
-//     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${prodId}/styles`,
-//     headers: {
-//       Authorization: authToken,
-//       "content-type": "application/json",
-//     },
-//   };
-//   axios(options)
-//     .then((response) => {
-//       res.send(response.data);
-//     })
-//     .catch((err) => {
-//       res.send(err);
-//     });
-// });
+app.get("/styles", (req, res) => {
+  var prodId = req.query.prodId;
+  var options = {
+    method: "GET",
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${prodId}/styles`,
+    headers: {
+      Authorization: authToken.authtoken,
+      "content-type": "application/json",
+    },
+  };
+  axios(options)
+    .then((response) => {
+      res.send(response.data);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

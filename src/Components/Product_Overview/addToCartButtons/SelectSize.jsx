@@ -18,7 +18,7 @@ const SelectSizeButton = () => {
   };
 
   return (
-    <Container disableGutters sx={{ width: "60%" }}>
+    <Container disableGutters sx={{ width: "160%", ml: "0", mr: "10%" }}>
       <Button
         sx={{
           border: 1,

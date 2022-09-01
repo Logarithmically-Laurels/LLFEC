@@ -79,7 +79,7 @@ const Questions = (props) => {
         method: "GET",
         url: "/qa/questions",
         headers: {
-          Authorization: authtoken.default,
+          Authorization: authtoken.authtoken,
           "Content-Type": "application/json",
         },
       };
@@ -112,7 +112,7 @@ const Questions = (props) => {
       method: "GET",
       url: "/qa/questions",
       headers: {
-        Authorization: authtoken.default,
+        Authorization: authtoken.authtoken,
         "Content-Type": "application/json",
       },
     };

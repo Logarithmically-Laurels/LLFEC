@@ -3,6 +3,7 @@ import axios from "axios";
 import Overview from "./Product_Overview/Overview.jsx";
 import ReviewApp from "./Reviews/reviewApp.jsx";
 import Questions from "./QuestionsAnswers/Questions.jsx";
+import Navbar from "./Navbar.jsx";
 
 const App = () => {
   const firstProduct = [
@@ -46,13 +47,16 @@ const App = () => {
         console.log(err);
       });
   }, []);
-
   return (
     <div>
-      <div>Nav Bar</div>
-      <Overview currentProduct={firstProduct} />
-      <Questions currentProd={currentProduct} />
-      {/* <ReviewApp currentProd={currentProduct} /> */}
+      {currentProduct && (
+        <>
+          <Navbar />
+          <Overview currentProduct={currentProduct} />
+          {/* <Questions currentProd={currentProduct} />
+          <ReviewApp currentProd={currentProduct} /> */}
+        </>
+      )}
     </div>
   );
 };
