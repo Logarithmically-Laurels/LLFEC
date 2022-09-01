@@ -5,8 +5,6 @@ import ReviewApp from "./Reviews/reviewApp.jsx";
 import Questions from "./QuestionsAnswers/Questions.jsx";
 
 const App = () => {
-
-
   //effect calling api get /products
   const [products, setProducts] = useState(null);
   const [currentProduct, setCurrentProduct] = useState(null);
