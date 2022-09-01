@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Stack, IconButton } from "@mui/material";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import PhotoModal from "./PhotoModal.jsx";
 
 const ImgGallery = (props) => {
   console.log("CURRENT PROPS IN IMG GALLERY: ", props.stylesToDisplay);
@@ -92,6 +93,7 @@ const ImgGallery = (props) => {
           <KeyboardArrowRightIcon />
         </IconButton>
       </Stack>
+      <PhotoModal img={mainImg} />
     </Container>
   );
 };

@@ -4,14 +4,14 @@ import NavSearch from "./NavbarSearch.jsx";
 
 const Navbar = () => {
   return (
-    <Container disableGutters align="center">
+    <Container disableGutters align="center" sx={{ width: "100%", height: 80 }}>
       <Container
         disableGutters
         align="justify"
         justifyContent="space-between"
         sx={{
           width: "100%",
-          height: 50,
+          height: "60%",
           backgroundColor: "gray",
           border: 1,
           display: "flex",
@@ -81,13 +81,14 @@ const Navbar = () => {
             ></path>{" "}
           </svg>
         </Container>
-
         <NavSearch />
       </Container>
-      <Typography variant="caption" sx={{ height: 30 }}>
-        SITE-WIDE ANNOUNCEMENT MESSAGE! -- SALE / DISCOUNT OFFER -- NEW PRODUCT
-        HIGHLIGHT
-      </Typography>
+      <Container sx={{ mt: 0.7 }}>
+        <Typography variant="caption">
+          SITE-WIDE ANNOUNCEMENT MESSAGE! -- SALE / DISCOUNT OFFER -- NEW
+          PRODUCT HIGHLIGHT
+        </Typography>
+      </Container>
     </Container>
   );
 };
