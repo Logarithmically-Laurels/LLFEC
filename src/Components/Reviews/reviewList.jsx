@@ -164,7 +164,9 @@ const ReviewList = ({ currentProd, metaData, numReviews }) => {
           aria-labelledby="add-a-review"
           aria-describedby="modal-review-form"
         >
-          <ReviewModal product={currentProduct} metaData={metaDataState} />
+          <div>
+            <ReviewModal product={currentProduct} metaData={metaDataState} />
+          </div>
         </Modal>
       </Item>
     </div>
