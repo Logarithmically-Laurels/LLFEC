@@ -14,9 +14,24 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Grid from '@mui/material/Grid';
 import "./review.css";
 import ReviewModal from './reviewModal.jsx';
+import Modal from '@mui/material/Modal';
+import { styled } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
 
 
+const Item = styled(Paper)(({ theme }) => ({
+  // backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  // ...theme.typography.body2,
+  // position: 'absolute',
+  // top: '50%',
+  // left: '50%',
+  // transform: 'translate(-50%, -50%)',
 
+  // padding: theme.spacing(1),
+  // margin: '8px',
+  // textAlign: 'left',
+  // color: theme.palette.text.secondary,
+}));
 
 
 const ReviewList = ({ currentProd, metaData, numReviews }) => {
@@ -26,7 +41,9 @@ const ReviewList = ({ currentProd, metaData, numReviews }) => {
   const [page, setPage] = useState(1);
   const [count, setCount] = useState(50);
   const [sort, setSort] = useState('relevant')
-  const [modalOpen, setModalOpen] = useState(false)
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
 
 
@@ -45,10 +62,7 @@ const ReviewList = ({ currentProd, metaData, numReviews }) => {
     }
   }
 
-  const handleAddReviews = (e) => {
-    e.preventDefault()
-    setModalOpen(!modalOpen)
-  }
+
 
   //TODO Axios request for current Reviews
   useEffect(() => {
@@ -80,7 +94,7 @@ const ReviewList = ({ currentProd, metaData, numReviews }) => {
         if (!reviewsInView) {
           setReviewsInView(sortedReviews.slice(0, 2))
         } else {
-          setReviewsInView(sortedReviews.slice(0, reviewsInView.length+2))
+          setReviewsInView(sortedReviews.slice(0, reviewsInView.length + 2))
         }
       })
       .catch((err) => {
@@ -137,11 +151,21 @@ const ReviewList = ({ currentProd, metaData, numReviews }) => {
           onClick={(e) => { handleMoreReviews(e) }}> More Reviews</Button>
         <Button variant="outlined"
           endIcon={<AddIcon />}
-          onClick={(e) => { handleAddReviews(e) }}
+          onClick={handleOpen}
           data-testid="reviewModal"
         >Add a Review </Button>
-        {modalOpen && <ReviewModal product={currentProd} metaData={metaData} />}
       </Stack>
+
+      <Item>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="add-a-review"
+          aria-describedby="modal-review-form"
+        >
+          <ReviewModal product={currentProd} metaData={metaData} />
+        </Modal>
+      </Item>
     </div>
   )
 }
