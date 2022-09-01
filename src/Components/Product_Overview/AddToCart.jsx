@@ -7,11 +7,14 @@ import FavoriteButton from "./addToCartButtons/Favorite.jsx";
 
 const AddToCart = () => {
   return (
-    <Container disableGutters sx={{ border: 1, height: "33%", width: "100%" }}>
+    <Container
+      disablegutters
+      sx={{ border: 1, height: "30%", borderColor: "green" }}
+    >
       <Stack
         direction="row"
         justifyContent="space-between"
-        disableGutters
+        disablegutters
         sx={{
           display: "flex",
           height: "35%",

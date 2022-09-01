@@ -6,6 +6,24 @@ import { Avatar } from "@mui/material";
 import axios from "axios";
 
 const StyleSelector = (props) => {
+  // console.log(props.prodId);
+  // let options = {
+  //   url: "/styles",
+  //   method: "GET",
+  //   headers: { "Content-Type": "application/json", prodId: props.prodId },
+  // };
+
+  // useEffect(() => {
+  //   axios(options).then((result) => {
+  //     console.log(result.data);
+  //   });
+  // });
+
+  //current product Id will default to first style
+  //make api call to retrieve product styles.
+  // https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/`${props.currentProductId}`/styles
+  // setCurrentStyle(response from api call)
+  console.log(props);
   return (
     <Container
       disableGutters
@@ -29,13 +47,12 @@ const StyleSelector = (props) => {
           height: "60%",
         }}
       >
-        {props.allStyles.results.map((style, index) => {
+        {tempData.results.map((style, index) => {
           return (
             <Avatar
-              onClick={() => props.setStyle(style)}
+              onClick={() => props.setStyle(style.style_id)}
               key={index}
               src={style.photos[0].thumbnail_url}
-              sx={{ width: 45, height: 45 }}
             />
           );
         })}
