@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Button, Grid, TextField, ListItem, Typography, Paper, Box } from "@mui/material";
 import AnswerList from './AnswerList.jsx';
+import AnswerModal from "./AnswerModal.jsx";
 
 const QuestionListItem = ({question, answers, question_date, question_helpfulness, onYes, question_id, asker_name, onReport}) => {
   const [newAnswers, setNewAnswers] = useState('');
@@ -136,31 +137,56 @@ const QuestionListItem = ({question, answers, question_date, question_helpfulnes
       });
   }, [numOfRenderedAnswers]);
 
-  return (
-    <Box component="span" sx={{display:"flex", justifyContent:"center", alignItems:"center", width:'900px'}}>
-      <ListItem>
-        <Paper elevation={6}>
-        <Grid container spacing={0}>
-          <Grid item xs={10}>
-            <Typography color="#5A5A5A" variant="h6"><strong>Q: {question}</strong></Typography>
+  if (newAnswers.length > 0) {
+    return (
+      <Box component="span" sx={{display:"flex", justifyContent:"center", alignItems:"center", width:'1200px', minWidth:'1200px'}}>
+        <ListItem>
+          <Paper elevation={1}>
+          <Grid container spacing={0}>
+            <Grid item xs={10}>
+              <Typography color="#5A5A5A" variant="h6"><strong>Q: {question}</strong></Typography>
+            </Grid>
+            <Grid item xs ={2} textAlign="center">
+              <Typography color="#5A5A5A" variant="caption" id={question_id} isClicked={false} onClick={onYes}>Helpful? | Yes ({question_helpfulness})</Typography>
+              <AnswerModal onAnswerSubmit={onAnswerSubmit} onChangeNewAnswer={onChangeNewAnswer} onChangeNewEmail={onChangeNewEmail} onChangeNewUsername={onChangeNewUsername}/>
+            </Grid>
+            <Grid item xs={12}>
+              <AnswerList answers={renderedAnswers} onChangeNewAnswer={onChangeNewAnswer} onChangeNewEmail={onChangeNewEmail} onChangeNewUsername={onChangeNewUsername} onClickAddAnswer={onClickAddAnswer} addAnswer={addAnswer} onAnswerSubmit={onAnswerSubmit} onClickShowMoreAnswers={onClickShowMoreAnswers} onClickHideMoreAnswers={onClickHideMoreAnswers} onYesAnswer={onYesAnswer} onAnswerReport={onAnswerReport} allAnswers={newAnswers}/>
+            </Grid>
+            <Grid item xs={12}>
+              <span><Typography color="#808080" variant="caption"><i>Posted by {asker_name} on {newTime}</i> &nbsp;&nbsp;|&nbsp;&nbsp;  </Typography></span>
+              <span><u><Typography color="#808080" variant="caption" id={question_id} onClick={onReport}> Report </Typography></u></span>
+            </Grid>
           </Grid>
-          <Grid item xs ={2} textAlign="center">
-            <Typography color="#5A5A5A" variant="caption" id={question_id} isClicked={false} onClick={onYes}>Helpful? | Yes ({question_helpfulness})</Typography>
-          </Grid>
-          <Grid item xs={12}>
-            <AnswerList answers={renderedAnswers} onChangeNewAnswer={onChangeNewAnswer} onChangeNewEmail={onChangeNewEmail} onChangeNewUsername={onChangeNewUsername} onClickAddAnswer={onClickAddAnswer} addAnswer={addAnswer} onAnswerSubmit={onAnswerSubmit} onClickShowMoreAnswers={onClickShowMoreAnswers} onClickHideMoreAnswers={onClickHideMoreAnswers} onYesAnswer={onYesAnswer} onAnswerReport={onAnswerReport}/>
-          </Grid>
-          <Grid item xs={11}>
-            <Typography color="#5A5A5A" variant="caption"><i>Posted by {asker_name} on {newTime}</i></Typography>
-          </Grid>
-          <Grid item xs={1}>
-            <u><Typography color="#5A5A5A" variant="caption" id={question_id} onClick={onReport}>Report</Typography></u>
-          </Grid>
-        </Grid>
-        </Paper>
-      </ListItem>
-    </Box>
-  )
+          </Paper>
+        </ListItem>
+      </Box>
+    )
+  } else {
+      return (
+        <Box component="span" sx={{display:"flex", justifyContent:"center", alignItems:"center", width:'1200px', minWidth:'1200px'}}>
+          <ListItem>
+            <Paper elevation={1}>
+            <Grid container spacing={0}>
+              <Grid item xs={10}>
+                <Typography color="#5A5A5A" variant="h6"><strong>Q: {question}</strong></Typography>
+              </Grid>
+              <Grid item xs ={2} textAlign="center">
+                <Typography color="#5A5A5A" variant="caption" id={question_id} isClicked={false} onClick={onYes}>Helpful? | Yes ({question_helpfulness})</Typography>
+              </Grid>
+              <Grid item xs={12}>
+                <AnswerModal onAnswerSubmit={onAnswerSubmit} onChangeNewAnswer={onChangeNewAnswer} onChangeNewEmail={onChangeNewEmail} onChangeNewUsername={onChangeNewUsername}/>
+              </Grid>
+              <Grid item xs={12}>
+                <span><Typography color="#808080" variant="caption"><i>Posted by {asker_name} on {newTime}</i> &nbsp;&nbsp;|&nbsp;&nbsp;  </Typography></span>
+                <span><u><Typography color="#808080" variant="caption" id={question_id} onClick={onReport}> Report </Typography></u></span>
+              </Grid>
+            </Grid>
+            </Paper>
+          </ListItem>
+        </Box>
+      )
+  }
 }
 
 export default QuestionListItem;

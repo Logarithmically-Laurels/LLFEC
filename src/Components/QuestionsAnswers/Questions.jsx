@@ -48,7 +48,7 @@ const Questions = ({ currentProd }) => {
             "Content-Type": "application/json",
           },
           params: {
-            product_id: currentProd[0].id,
+            product_id: currentProd.id,
           },
         };
         axios(options)
@@ -101,7 +101,7 @@ const Questions = ({ currentProd }) => {
   const onAddQuestion = () => {
     axios
       .post(`/qa/questions`, {
-        product_id: currentProd[0].id,
+        product_id: currentProd.id,
         body: currentQuestion,
         name: username,
         email: email,
@@ -115,7 +115,7 @@ const Questions = ({ currentProd }) => {
             "Content-Type": "application/json",
           },
           params: {
-            product_id: currentProd[0].id,
+            product_id: currentProd.id,
           },
         };
         axios(options)
@@ -159,7 +159,7 @@ const Questions = ({ currentProd }) => {
           "Content-Type": "application/json",
         },
         params: {
-          product_id: currentProd[0].id,
+          product_id: currentProd.id,
         },
       };
       axios(options)

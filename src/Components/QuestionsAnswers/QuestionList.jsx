@@ -18,18 +18,10 @@ const QuestionList = ({questions, onYes, showMoreQuestions, renderedQuestions, o
         </List>
         <Grid container spacing={0} textAlign="center">
           <Grid xs={12}>
-            <Button size="large" variant="outlined" onClick={showMoreQuestions} style={{width:'850px', height:'60px'}}>
+            <Button size="large" variant="outlined" onClick={showMoreQuestions} style={{width:'1150px', height:'60px'}}>
               Show more questions...
             </Button>
           </Grid>
-          {/* <Grid xs={6}>
-          <QuestionModal
-            onAddQuestion={onAddQuestion}
-            onQuestionChange={onQuestionChange}
-            onUserChange={onUserChange}
-            onEmailChange={onEmailChange}
-            product_id={product_id}/>
-          </Grid> */}
         </Grid>
 
     </div>

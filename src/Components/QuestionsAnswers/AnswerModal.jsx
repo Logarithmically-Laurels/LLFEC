@@ -34,7 +34,7 @@ const AnswerModal = ({onAnswerSubmit, onChangeNewAnswer, onChangeNewEmail, onCha
 
   return (
     <div>
-      <Button size="small" variant="outlined" onClick={handleOpen}>Add an answer...</Button>
+      <Button size="small" variant="text" onClick={handleOpen} sx={{color:"#5A5A5A"}} >Add an answer...</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -48,13 +48,13 @@ const AnswerModal = ({onAnswerSubmit, onChangeNewAnswer, onChangeNewEmail, onCha
           <form>
             <Grid container spacing={1}>
               <Grid item xs={12}>
-                <TextField type='text' placeholder='Answer the question...' size="normal" style={{width: 800}} onChange={onChangeNewAnswer} inputProps={{ maxLength: 1000}}></TextField>
+                <TextField type='text' id="outlined-multiline-static" multiline label='Answer the question' rows={4} placeholder="Maximum 1000 characters..." size="normal" style={{width: 800}} onChange={onChangeNewAnswer} inputProps={{ maxLength: 1000}}></TextField>
               </Grid>
               <Grid item xs={6}>
-                <TextField type='text' placeholder='Username...' size="small" style={{width: 400}} onChange={onChangeNewUsername} inputProps={{ maxLength: 60}}></TextField>
+                <TextField type='text' label='Username' placeholder="Maximum 60 characters..." size="small" style={{width: 400}} onChange={onChangeNewUsername} inputProps={{ maxLength: 60}}></TextField>
               </Grid>
               <Grid item xs={6}>
-                <TextField type='email' placeholder='johnsmith@gmail.com' size="small" style={{width: 396}} onChange={onChangeNewEmail} inputProps={{ maxLength: 60}}></TextField>
+                <TextField type='email' label='Email' placeholder="Maximum 60 characters..." size="small" style={{width: 396}} onChange={onChangeNewEmail} inputProps={{ maxLength: 60}}></TextField>
               </Grid>
               <Grid item xs={12} textAlign="center">
                 <Button variant="outlined" onClick={twoFunctionsSubmit} style={{width:'800px', height:'50px'}}>Submit your answer</Button>
