@@ -74,6 +74,47 @@ app.get("/reviews", (req, res) => {
       res.send(err);
     });
 });
+app.post("/reviews", (req, res) => {
+  console.log(req.body);
+  var options = {
+    method: "POST",
+    url: "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews",
+    headers: {
+      Authorization: authToken.authtoken,
+      "content-type": "application/json",
+    },
+    // query: {
+    //   rating: parseInt(req.query.rating),
+    //   summary: req.query.summary,
+    //   body: req.query.body,
+    //   recommend: Boolean(req.query.recommend),
+    //   name: req.query.name,
+    //   email: req.query.email,
+    //   photos: req.query.photos,
+    //   characteristics: req.query.characteristics,
+    //   product_id: parseInt(req.query.product_id),
+    // },
+    data: {
+      rating: parseInt(req.body.rating),
+      summary: req.body.summary,
+      body: req.body.body,
+      recommend: Boolean(req.body.recommend),
+      name: req.body.name,
+      email: req.body.email,
+      photos: req.body.photos,
+      characteristics: req.body.characteristics,
+      product_id: parseInt(req.body.product_id),
+    },
+  };
+  axios(options)
+    .then((response) => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
 app.put("/reviews/helpful", (req, res) => {
   var options = {
     method: "put",
@@ -126,9 +167,10 @@ app.get("/qa/questions", (req, res) => {
     params: {
       product_id: req.query.product_id,
       count: 10000,
-      page: 1
+      page: 1,
     },
   };
+
   axios(options)
     .then((response) => {
       res.json(response.data);
@@ -148,7 +190,7 @@ app.get("/qa/questions/:question_id/answers", (req, res) => {
     },
     params: {
       question_id: req.params.question_id,
-      count: 10000
+      count: 10000,
     },
   };
   axios(options)
@@ -172,7 +214,7 @@ app.post("/qa/questions/:question_id/answers", (req, res) => {
       body: req.body.body,
       name: req.body.name,
       email: req.body.email,
-      photos: req.body.photos
+      photos: req.body.photos,
     },
   };
   axios(options)
@@ -217,7 +259,7 @@ app.put("/qa/questions/:question_id/helpful", (req, res) => {
       "content-type": "application/json",
     },
     data: {
-      question_id: req.body.question_id
+      question_id: req.body.question_id,
     },
   };
   axios(options)
@@ -238,7 +280,7 @@ app.put("/qa/answers/:answer_id/helpful", (req, res) => {
       "content-type": "application/json",
     },
     data: {
-      answer_id: req.body.answer_id
+      answer_id: req.body.answer_id,
     },
   };
   axios(options)
@@ -259,7 +301,7 @@ app.put("/qa/answers/:answer_id/report", (req, res) => {
       "content-type": "application/json",
     },
     data: {
-      answer_id: req.body.answer_id
+      answer_id: req.body.answer_id,
     },
   };
   axios(options)
@@ -280,7 +322,7 @@ app.put("/qa/questions/:question_id/report", (req, res) => {
       "content-type": "application/json",
     },
     data: {
-      question_id: req.body.question_id
+      question_id: req.body.question_id,
     },
   };
   axios(options)

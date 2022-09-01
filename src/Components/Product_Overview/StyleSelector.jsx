@@ -419,7 +419,7 @@ const StyleSelector = (props) => {
   //make api call to retrieve product styles.
   // https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/`${props.currentProductId}`/styles
   // setCurrentStyle(response from api call)
-
+  console.log(props);
   return (
     <Container disableGutters sx={{ border: 1, height: "35%" }}>
       <Container disableGutters sx={{ display: "flex" }}>
@@ -438,10 +438,13 @@ const StyleSelector = (props) => {
           my: "2%",
         }}
       >
-        {/* should not be current style photos but current product styles */}
         {tempData.results.map((style, index) => {
           return (
-            <Avatar sx={{}} key={index} src={style.photos[0].thumbnail_url} />
+            <Avatar
+              onClick={() => props.setStyle(style.style_id)}
+              key={index}
+              src={style.photos[0].thumbnail_url}
+            />
           );
         })}
       </Container>

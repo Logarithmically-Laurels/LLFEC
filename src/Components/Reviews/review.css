@@ -20,6 +20,11 @@
   max-height: 120px;
   width: auto;
 }
+.thumbnailModal {
+  max-height: 120px;
+  width: auto;
+  padding-right: 5px;
+}
 .dateSize {
   font-size: 14px;
 }
@@ -42,4 +47,11 @@
 }
 .showMore {
   font-size:14px;
+}
+.inputReviewModal {
+  overflow: scroll;
+}
+.invalidEmail {
+  border-color: red;
+  color: red;
 }

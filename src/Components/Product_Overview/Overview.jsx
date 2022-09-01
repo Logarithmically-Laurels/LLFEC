@@ -71,8 +71,8 @@ const Overview = (props) => {
       },
     },
   });
-  var currentProductId = props.currentProduct[0].id;
-
+  // var currentProductId = props.currentProduct[0].id;
+  var currentProductId = props.currentProduct.id
   return (
     <Container
       sx={{
@@ -92,7 +92,7 @@ const Overview = (props) => {
           width: "40%",
         }}
       >
-        <ProductInfo prodInfo={props.currentProduct[0]} />
+        <ProductInfo prodInfo={props.currentProduct} />
         <StyleSelector
           prodId={currentProductId}
           currentStyle={currentStyle}

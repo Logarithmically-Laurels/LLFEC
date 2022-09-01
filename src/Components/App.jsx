@@ -5,21 +5,6 @@ import ReviewApp from "./Reviews/reviewApp.jsx";
 import Questions from "./QuestionsAnswers/Questions.jsx";
 
 const App = () => {
-  const firstProduct = [
-    {
-      id: 37311,
-      campus: "hr-rfe",
-      name: "Camo Onesie",
-      slogan: "Blend in to your crowd",
-      description:
-        "The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.",
-      category: "Jackets",
-      default_price: "140.00",
-      created_at: "2021-08-13T14:37:33.145Z",
-      updated_at: "2021-08-13T14:37:33.145Z",
-    },
-  ];
-
   //effect calling api get /products
   const [products, setProducts] = useState(null);
   const [currentProduct, setCurrentProduct] = useState(null);
@@ -38,9 +23,10 @@ const App = () => {
     };
     axios(options)
       .then((results) => {
-        setProducts(results.data);
-        var index = Math.floor(Math.random() * 10);
-        setCurrentProduct(results.data[index]);
+        let products = results.data;
+        setProducts(products);
+        var index = Math.floor(Math.random() * products.length);
+        setCurrentProduct(products[index]);
       })
       .catch((err) => {
         console.log(err);
@@ -49,10 +35,14 @@ const App = () => {
 
   return (
     <div>
-      <div>Nav Bar</div>
-      {/* <Overview currentProduct={firstProduct} /> */}
-      <Questions currentProd={firstProduct} />
-      {/* <ReviewApp currentProd={currentProduct} /> */}
+      {currentProduct && (
+        <>
+          <div>Nav Bar</div>
+          <Overview currentProduct={currentProduct} />
+          <Questions currentProd={currentProduct} />
+          <ReviewApp currentProd={currentProduct} />
+        </>
+      )}
     </div>
   );
 };
