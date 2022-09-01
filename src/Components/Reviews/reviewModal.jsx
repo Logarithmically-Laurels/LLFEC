@@ -44,16 +44,18 @@ const ReviewModal = ({ product, metaData }) => {
 
 
   const [formState, setFormState] = useState({
-    description: ' None selected.',
-    body: '',
-    bodyLength: 50,
-    summary: '',
-    nickname: '',
-    email: '',
-    photos: [],
-  });
+    description: ' None selected.'
+  })
   const [rating, setRating] = useState(5);
-
+  const [summary, setSummary] = useState('');
+  const [body, setBody] = useState('')
+  const [bodyLength, setBodyLength] = useState(50);
+  const [recommend, setRecommend] = useState('banana');
+  const [nickname, setNickname] = useState('');
+  const [email, setEmail] = useState('');
+  const [photos, setPhotos] = useState([]);
+  const [currentPhoto, setCurrentPhoto] = useState(null);
+  const [characteristics, setCharacteristics] = useState({});
   const [charArray, setCharArray] = useState(null);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -79,23 +81,23 @@ const ReviewModal = ({ product, metaData }) => {
   const handleFormSubmit = (e) => {
     e.preventDefault()
     var errorString = 'Please perform the following actions:';
-    if (formState.body.length < 50) {
+    if (body.length < 50) {
       errorString += ' increase length of review body to 50 character minimum,'
     }
-    if (!isValidEmail(formState.email)) {
+    if (!isValidEmail(email)) {
       errorString += ' change to valid email address,'
     }
-    formState.photos.forEach((photo, index) => {
+    photos.forEach((photo, index) => {
       if (!isValidUrl(photo)) {
         errorString += ` photo number ${index + 1} is invalid,`
       }
     })
     charArray.forEach(([characteristic, obj]) => {
-      if (!!formState[characteristic]) {
+      if (!!characteristics[obj.id]) {
         errorString += ` fill in ${characteristic} rating,`
       }
     })
-    if (!!rating || !!formState.recommend || !!formState.nickname) {
+    if (!!rating || recommend === 'banana' || !!nickname) {
       errorString += ' complete all required fields,'
     }
     if (errorString.length > 37) {
@@ -112,15 +114,16 @@ const ReviewModal = ({ product, metaData }) => {
         params: {
           product_id: product.id,
           rating: rating,
-          summary: formState.summary,
-          body: formState.body,
-          recommend: formState.recommend,
-          name: formState.name,
-          email: formState.email,
-          photos: formState.photos,
-
+          summary: summary,
+          body: body,
+          recommend: recommend,
+          name: nickname,
+          email: email,
+          photos: photos,
+          characteristics: characteristics,
         },
       };
+      console.log(options)
       axios(options)
         .then((results) => {
         })
@@ -134,82 +137,68 @@ const ReviewModal = ({ product, metaData }) => {
 
   const handlePhotoUpload = (e) => {
     e.preventDefault()
-    var photoArray = formState.photos
+    var photoArray = photos
     photoArray.push(e.target.value)
-    setFormState({
-      ...formState,
-      currentPhoto: e.target.value,
-      photos: photoArray,
-    })
+    setCurrentPhoto(e.target.value)
+    setPhotos(photoArray)
   }
 
   const handlePhotoDelete = (index) => {
-    var photoArray = formState.photos;
+    var photoArray = photos;
     photoArray.splice(index, 1)
-    setFormState({
-      ...formState,
-      photos: photoArray,
-    })
+    setPhotos(photoArray)
   }
 
-  const handleFormChange = (e) => {
+  const handleBodyChange = (e) => {
     e.preventDefault()
     var bodyString = e.target.value
-    console.log(e.target.value)
-    var currentBodyLength = formState.bodyLength;
-    if (e.target.name === 'body') {
-      var currentBodyLength = 50 - bodyString.length
-    }
-    setFormState({
-      ...formState,
-      [e.target.name]: e.target.value,
-      bodyLength: currentBodyLength,
-    })
-
+    var currentBodyLength = 50 - bodyString.length
+    setBody(e.target.value)
+    setBodyLength(currentBodyLength)
   }
 
   const charKey = {
     Size: {
-      "1": 'A size too small',
-      "2": '1/2 a size too small',
-      "3": 'Perfect',
-      "4": '1/2 size too big',
-      "5": 'A size too big'
+      1: 'A size too small',
+      2: '1/2 a size too small',
+      3: 'Perfect',
+      4: '1/2 size too big',
+      5: 'A size too big'
     },
     Width: {
-      "1": 'Too narrow',
-      "2": 'Slightly narrow',
-      "3": 'Perfect',
-      "4": 'Slightly wide',
-      "5": 'Too wide'
+      1: 'Too narrow',
+      2: 'Slightly narrow',
+      3: 'Perfect',
+      4: 'Slightly wide',
+      5: 'Too wide'
     },
     Comfort: {
-      "1": 'Uncomfortable',
-      "2": 'Slightly uncomfortable',
-      "3": 'Ok',
-      "4": 'Comfortable',
-      "5": 'Perfect'
+      1: 'Uncomfortable',
+      2: 'Slightly uncomfortable',
+      3: 'Ok',
+      4: 'Comfortable',
+      5: 'Perfect'
     },
     Quality: {
-      "1": 'Poor',
-      "2": 'Below Average',
-      "3": 'What I expected',
-      "4": 'Pretty great',
-      "5": 'Perfect'
+      1: 'Poor',
+      2: 'Below Average',
+      3: 'What I expected',
+      4: 'Pretty great',
+      5: 'Perfect'
     },
     Length: {
-      "1": 'Runs short',
-      "2": 'Runs slightly short',
-      "3": 'Perfect',
-      "4": 'Runs slightly long',
-      "5": 'Runs long'
+      1: 'Runs short',
+      2: 'Runs slightly short',
+      3: 'Perfect',
+      4: 'Runs slightly long',
+      5: 'Runs long'
     },
     Fit: {
-      "1": 'Runs tight',
-      "2": 'Runs slightly tight',
-      "3": 'Perfect',
-      "4": 'Runs slightly long',
-      "5": 'Runs long'
+      1: 'Runs tight',
+      2: 'Runs slightly tight',
+      3: 'Perfect',
+      4: 'Runs slightly long',
+      5: 'Runs long'
     }
   }
 
@@ -224,6 +213,7 @@ const ReviewModal = ({ product, metaData }) => {
   useEffect(() => {
     const charArray = Object.entries(metaData.characteristics);
     setCharArray(charArray)
+    console.log(charArray)
 
 
   }, [])
@@ -272,8 +262,11 @@ const ReviewModal = ({ product, metaData }) => {
               row
               aria-labelledby="demo-row-radio-buttons-recommend"
               name="recommend"
-              value={formState.recommend}
-              onChange={(e) => { handleFormChange(e) }}
+              value={recommend}
+              onChange={(e) => {
+                e.preventDefault();
+                setRecommend(e.target.value)
+              }}
             >
               <FormControlLabel value={true} control={<Radio />} label="Yes" />
               <FormControlLabel value={false} control={<Radio />} label="No" />
@@ -287,22 +280,25 @@ const ReviewModal = ({ product, metaData }) => {
                   row
                   aria-labelledby="demo-row-radio-buttons"
                   name={characteristic}
-                  value={formState[obj.id]}
+                  value={characteristics[obj.id]}
                   onChange={(e) => {
-                    // handleFormChange(e)
+                    console.log(obj.id)
+                    setCharacteristics({
+                      ...characteristics,
+                      [obj.id]: [e.target.value]
+                    })
                     setFormState({
                       ...formState,
-                      [obj.id]: [e.target.value],
                       [characteristic]: charKey[characteristic][e.target.value]
                     })
 
                   }}
                 >
-                  <FormControlLabel value="1" control={<Radio />} label={charKey[characteristic]['1']} labelPlacement="bottom" />
-                  <FormControlLabel value="2" control={<Radio />} label="" labelPlacement="bottom" />
-                  <FormControlLabel value="3" control={<Radio />} label="" labelPlacement="bottom" />
-                  <FormControlLabel value="4" control={<Radio />} label="" labelPlacement="bottom" />
-                  <FormControlLabel value="5" control={<Radio />} label={charKey[characteristic]['5']} labelPlacement="bottom" />
+                  <FormControlLabel value={1} control={<Radio />} label={charKey[characteristic][1]} labelPlacement="bottom" />
+                  <FormControlLabel value={2} control={<Radio />} label="" labelPlacement="bottom" />
+                  <FormControlLabel value={3} control={<Radio />} label="" labelPlacement="bottom" />
+                  <FormControlLabel value={4} control={<Radio />} label="" labelPlacement="bottom" />
+                  <FormControlLabel value={5} control={<Radio />} label={charKey[characteristic][5]} labelPlacement="bottom" />
                 </RadioGroup>
               </div>
             ))}
@@ -315,11 +311,14 @@ const ReviewModal = ({ product, metaData }) => {
               placeholder="Example: Best purchase ever!"
               fullWidth
               name="summary"
-              value={formState.summary}
+              value={summary}
               inputProps={{
                 maxLength: 60
               }}
-              onChange={(e) => { handleFormChange(e) }}
+              onChange={(e) => {
+
+                setSummary(e.target.value)
+              }}
             />
           </Box>
           <Box sx={{ gridArea: 'body' }}>
@@ -329,24 +328,21 @@ const ReviewModal = ({ product, metaData }) => {
               multiline
               name='body'
               minRows={4}
-              value={formState.body}
+              value={body}
               placeholder="Why did you like the product or not?"
               fullWidth
               inputProps={{
                 maxLength: 1000
               }}
-              onChange={(e) => { handleFormChange(e) }}
+              onChange={(e) => { handleBodyChange(e) }}
             />
-            <p>  {(formState.bodyLength >= 0 ? `Minimum required characters left: ${formState.bodyLength}` : 'Minimum reached.')}
+            <p>  {(bodyLength >= 0 ? `Minimum required characters left: ${bodyLength}` : 'Minimum reached.')}
             </p>
           </Box>
           <Box sx={{ gridArea: 'upload' }}>
-            {formState.photos.length < 5 && <Button variant="outlined" component="span" onClick={() => {
+            {photos.length < 5 && <Button variant="outlined" component="span" onClick={() => {
               handleOpen()
-              setFormState({
-                ...formState,
-                currentPhoto: '',
-              })
+              setCurrentPhoto('')
             }}>
               Upload a Photo
             </Button>}
@@ -375,7 +371,7 @@ const ReviewModal = ({ product, metaData }) => {
                       placeholder="Insert photo url here"
                       fullWidth
                       name="currentPhoto"
-                      value={formState.currentPhoto}
+                      value={currentPhoto}
 
                       onChange={(e) => { handlePhotoUpload(e) }}
                     />
@@ -386,8 +382,8 @@ const ReviewModal = ({ product, metaData }) => {
                     </Button>
                   </Box>
                   <Box sx={{ gridArea: 'photo' }}>
-                    {formState.photos.length > 0 &&
-                      formState.photos.map((photo, index) => (
+                    {photos.length > 0 &&
+                      photos.map((photo, index) => (
                         <img src={photo} alt="reviewer photo" className='thumbnailModal' key={index} onClick={(index) => { handlePhotoDelete(index) }}></img>
                       ))
                     }
@@ -397,8 +393,8 @@ const ReviewModal = ({ product, metaData }) => {
             </Item>
           </Box>
           <Box sx={{ gridArea: 'photos' }}>
-            {formState.photos.length > 0 &&
-              formState.photos.map((photo, index) => (
+            {photos.length > 0 &&
+              photos.map((photo, index) => (
                 <img src={photo} alt="reviewer photo" className='thumbnailModal' key={index} onClick={(index) => { handlePhotoDelete(index) }}></img>
               ))
             }
@@ -411,13 +407,16 @@ const ReviewModal = ({ product, metaData }) => {
               placeholder="Example: jackson11!"
               fullWidth
               name="nickname"
-              value={formState.nickname}
+              value={nickname}
               inputProps={{
                 maxLength: 60
               }}
-              onChange={(e) => { handleFormChange(e) }}
+              onChange={(e) => {
+                e.preventDefault();
+                setNickname(e.target.value)
+              }}
             />
-            {formState.nickname && <p>For privacy reasons, do not use your full name or email address.</p>}
+            {nickname && <p>For privacy reasons, do not use your full name or email address.</p>}
           </Box>
           <Box sx={{ gridArea: 'email' }}>
             <TextField
@@ -426,14 +425,16 @@ const ReviewModal = ({ product, metaData }) => {
               placeholder="Email"
               fullWidth
               name="email"
-              value={formState.email}
-              // {isValidEmail(formState.email) ? 'className="validEmail"' : 'className="invalidEmail"'}
+              value={email}
               inputProps={{
                 maxLength: 60
               }}
-              onChange={(e) => { handleFormChange(e) }}
+              onChange={(e) => {
+                e.preventDefault();
+                setEmail(e)
+              }}
             />
-            {formState.email && <p>For authentication reasons, you will not be emailed.</p>}
+            {email && <p>For authentication reasons, you will not be emailed.</p>}
 
           </Box>
           {validate && <Box sx={{ gridArea: 'error' }}>
