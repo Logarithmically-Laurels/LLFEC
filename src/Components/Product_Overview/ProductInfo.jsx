@@ -1,12 +1,13 @@
 import React from "react";
 import { Container } from "@mui/material";
 import { Typography } from "@mui/material";
+import Stars from "../Reviews/stars.jsx";
 
 const ProductInfo = (props) => {
-  console.log(props.prodInfo);
   return (
-    <Container disableGutters sx={{ border: 1, height: "40%", width: "100%" }}>
-      <div>[*****] read all reviews</div>
+    <Container disableGutters sx={{ border: 1, height: "33%", width: "100%" }}>
+      <Stars product_id={props.prodInfo.id} />
+      <Typography variant="body2">CATEGORY</Typography>
       <Typography variant="h5" sx={{ fontsize: 20 }}>
         {props.prodInfo.name}
       </Typography>

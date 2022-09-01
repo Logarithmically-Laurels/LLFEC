@@ -16,12 +16,9 @@ const AddToCart = () => {
         justifyContent="space-between"
         disablegutters
         sx={{
-          border: 1,
-          borderColor: "purple",
           display: "flex",
           height: "35%",
           mb: "5%",
-          width: "100%",
         }}
       >
         <SelectSizeButton />
@@ -32,8 +29,6 @@ const AddToCart = () => {
         justifyContent="space-between"
         disableGutters
         sx={{
-          border: 1,
-          borderColor: "purple",
           display: "flex",
           height: "35%",
         }}
