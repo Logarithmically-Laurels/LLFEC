@@ -47,7 +47,7 @@ const StyleSelector = (props) => {
           height: "60%",
         }}
       >
-        {tempData.results.map((style, index) => {
+        {props.allStyles.results.map((style, index) => {
           return (
             <Avatar
               onClick={() => props.setStyle(style.style_id)}

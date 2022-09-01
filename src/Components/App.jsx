@@ -37,7 +37,7 @@ const App = () => {
     <div>
       {currentProduct && (
         <>
-          <div>Nav Bar</div>
+          <Navbar />
           <Overview currentProduct={currentProduct} />
           <Questions currentProd={currentProduct} />
           <ReviewApp currentProd={currentProduct} />
