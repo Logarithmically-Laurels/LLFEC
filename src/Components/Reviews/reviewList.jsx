@@ -38,6 +38,7 @@ const ReviewList = ({ currentProd, metaData, numReviews }) => {
   const [currentReviews, setCurrentReviews] = useState(null);
   const [reviewsInView, setReviewsInView] = useState(null);
   const [currentProduct, setCurrentProduct] = useState(currentProd);
+  const [metaDataState, setMetaDataState] = useState(metaData)
   const [page, setPage] = useState(1);
   const [count, setCount] = useState(50);
   const [sort, setSort] = useState('relevant')
@@ -163,7 +164,7 @@ const ReviewList = ({ currentProd, metaData, numReviews }) => {
           aria-labelledby="add-a-review"
           aria-describedby="modal-review-form"
         >
-          <ReviewModal product={currentProd} metaData={metaData} />
+          <ReviewModal product={currentProduct} metaData={metaDataState} />
         </Modal>
       </Item>
     </div>
