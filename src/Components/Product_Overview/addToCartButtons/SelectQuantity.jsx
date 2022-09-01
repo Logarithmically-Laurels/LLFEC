@@ -18,7 +18,7 @@ const SelectQuantityButton = () => {
   };
 
   return (
-    <Container disableGutters sx={{ width: "30%" }}>
+    <Container disableGutters sx={{ width: "100%", mr: "0" }}>
       <Button
         sx={{
           border: 1,
