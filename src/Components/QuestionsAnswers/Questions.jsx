@@ -3,9 +3,19 @@ import axios from "axios";
 import Search from "./Search.jsx";
 import AddQuestions from "./AddQuestions.jsx";
 import QuestionList from "./QuestionList.jsx";
+import QuestionModal from "./QuestionModal.jsx";
+import {
+  Button,
+  Grid,
+  TextField,
+  ListItem,
+  Typography,
+  Paper,
+  Box,
+} from "@mui/material";
+const authtoken = require("/config.js");
 
-const Questions = (props) => {
-  console.log(props);
+const Questions = ({ currentProd }) => {
   const [questions, setQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState("");
   const [email, setEmail] = useState("");
@@ -22,42 +32,70 @@ const Questions = (props) => {
     setEmail(e.target.value);
   };
 
+  const onUserChange = (e) => {
+    setUsername(e.target.value);
+  };
+
   const onYes = (e) => {
-    let id = e.target.id;
-
-    const updateState = () => {
-      const newState = questions.map((question) => {
-        if (parseInt(id) === parseInt(question.question_id)) {
-          return {
-            ...question,
-            question_helpfulness: question.question_helpfulness - 1,
-          };
-        }
-        return question;
+    let question_id = e.target.id;
+    axios
+      .put(`/qa/questions/${question_id}/helpful`, { question_id })
+      .then(() => {
+        var options = {
+          method: "GET",
+          url: "/qa/questions",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          params: {
+            product_id: currentProd[0].id,
+          },
+        };
+        axios(options)
+          .then((res) => {
+            let temp = res.data.results.sort(
+              (a, b) =>
+                parseFloat(b.question_helpfulness) -
+                parseFloat(a.question_helpfulness)
+            );
+            setQuestions(temp);
+            setRenderedQuestions(temp.slice(0, shownQuestions));
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       });
-      setQuestions(newState);
-      e.target.isClicked = true;
-    };
+  };
 
-    const updateAnotherState = () => {
-      const newState = questions.map((question) => {
-        if (parseInt(id) === parseInt(question.question_id)) {
-          return {
-            ...question,
-            question_helpfulness: question.question_helpfulness + 1,
-          };
-        }
-        return question;
+  const onReport = (e) => {
+    let question_id = e.target.id;
+    axios
+      .put(`/qa/questions/${question_id}/report`, { question_id })
+      .then(() => {
+        var options = {
+          method: "GET",
+          url: "/qa/questions",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          params: {
+            product_id: currentProd.id,
+          },
+        };
+        axios(options)
+          .then((res) => {
+            let temp = res.data.results.sort(
+              (a, b) =>
+                parseFloat(b.question_helpfulness) -
+                parseFloat(a.question_helpfulness)
+            );
+            setQuestions(temp);
+            setRenderedQuestions(temp.slice(0, shownQuestions));
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       });
-      setQuestions(newState);
-      e.target.isClicked = false;
-    };
-
-    if (e.target.isClicked === false) {
-      updateState();
-    } else {
-      updateAnotherState();
-    }
   };
 
   const onAddQuestion = () => {
@@ -152,7 +190,7 @@ const Questions = (props) => {
         "Content-Type": "application/json",
       },
       params: {
-        product_id: currentProd[0].id,
+        product_id: currentProd.id,
       },
     };
     axios(options)
@@ -188,7 +226,7 @@ const Questions = (props) => {
           onQuestionChange={onQuestionChange}
           onUserChange={onUserChange}
           onEmailChange={onEmailChange}
-          product_id={currentProd[0].id}
+          product_id={currentProd.id}
         />
       </Box>
     </Typography>
