@@ -38,10 +38,10 @@ const App = () => {
     <div>
       {currentProduct && (
         <>
-          {/* <Navbar /> */}
+          <Navbar />
           <Overview currentProduct={currentProduct} />
-          {/* <Questions currentProd={currentProduct} />
-          <ReviewApp currentProd={currentProduct} /> */}
+          <Questions currentProd={currentProduct} />
+          <ReviewApp currentProd={currentProduct} />
         </>
       )}
     </div>
