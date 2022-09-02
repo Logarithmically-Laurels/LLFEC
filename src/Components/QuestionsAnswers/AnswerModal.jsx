@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { Button, Grid, TextField } from "@mui/material";
+import AnswerModalPhotos from './AnswerModalPhotos.jsx';
 
 const style = {
   position: 'absolute',
@@ -16,7 +17,7 @@ const style = {
   p: 4,
 };
 
-const AnswerModal = ({onAnswerSubmit, onChangeNewAnswer, onChangeNewEmail, onChangeNewUsername}) => {
+const AnswerModal = ({onAnswerSubmit, onChangeNewAnswer, onChangeNewEmail, onChangeNewUsername, onChangePhotos, newPhotos, onURLChange}) => {
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => {
@@ -34,7 +35,7 @@ const AnswerModal = ({onAnswerSubmit, onChangeNewAnswer, onChangeNewEmail, onCha
 
   return (
     <div>
-      <Button size="small" variant="text" onClick={handleOpen} sx={{color:"#5A5A5A"}} >Add an answer...</Button>
+      <Button size="small" variant="text" onClick={handleOpen} sx={{color:"#5A5A5A", width:'150px', height:'29px'}} >Add answer +</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -48,13 +49,16 @@ const AnswerModal = ({onAnswerSubmit, onChangeNewAnswer, onChangeNewEmail, onCha
           <form>
             <Grid container spacing={1}>
               <Grid item xs={12}>
-                <TextField type='text' id="outlined-multiline-static" multiline label='Answer the question' rows={4} placeholder="Maximum 1000 characters..." size="normal" style={{width: 800}} onChange={onChangeNewAnswer} inputProps={{ maxLength: 1000}}></TextField>
+                <TextField required type='text' id="outlined-multiline-static" multiline label='Answer the question' rows={4} placeholder="Maximum 1000 characters..." size="normal" style={{width: 800}} onChange={onChangeNewAnswer} inputProps={{ maxLength: 1000}}></TextField>
               </Grid>
               <Grid item xs={6}>
-                <TextField type='text' label='Username' placeholder="Maximum 60 characters..." size="small" style={{width: 400}} onChange={onChangeNewUsername} inputProps={{ maxLength: 60}}></TextField>
+                <TextField required type='text' label='Username' placeholder="Maximum 60 characters..." size="small" style={{width: 400}} onChange={onChangeNewUsername} inputProps={{ maxLength: 60}}></TextField>
               </Grid>
               <Grid item xs={6}>
-                <TextField type='email' label='Email' placeholder="Maximum 60 characters..." size="small" style={{width: 396}} onChange={onChangeNewEmail} inputProps={{ maxLength: 60}}></TextField>
+                <TextField required type='email' label='Email' placeholder="Maximum 60 characters..." size="small" style={{width: 396}} onChange={onChangeNewEmail} inputProps={{ maxLength: 60}}></TextField>
+              </Grid>
+              <Grid item xs={12}>
+                <AnswerModalPhotos onChangePhotos={onChangePhotos} newPhotos={newPhotos} onURLChange={onURLChange}/>
               </Grid>
               <Grid item xs={12} textAlign="center">
                 <Button variant="outlined" onClick={twoFunctionsSubmit} style={{width:'800px', height:'50px'}}>Submit your answer</Button>

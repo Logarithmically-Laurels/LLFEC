@@ -35,7 +35,7 @@ const QuestionModal = ({onQuestionChange, onAddQuestion, onEmailChange, onUserCh
 
   return (
     <div>
-      <Button size="large" variant="outlined" onClick={handleOpen} style={{width:'1150px', height:'60px'}}>Ask a question...</Button>
+      <Button size="large" variant="outlined" onClick={handleOpen} style={{width:'570px', height:'60px'}}>Ask a question +</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -49,13 +49,13 @@ const QuestionModal = ({onQuestionChange, onAddQuestion, onEmailChange, onUserCh
           <form>
             <Grid container spacing={1}>
               <Grid item xs={12}>
-                <TextField type='text' id="outlined-multiline-static" multiline label='Ask a question' rows={4} placeholder="Maximum 1000 characters..." onChange={onQuestionChange} size="medium" style={{width: 800}} inputProps={{ maxLength: 1000}}></TextField>
+                <TextField required type='text' id="outlined-multiline-static" multiline label='Ask a question' rows={4} placeholder="Maximum 1000 characters..." onChange={onQuestionChange} size="medium" style={{width: 800}} inputProps={{ maxLength: 1000}}></TextField>
               </Grid>
               <Grid item xs={6}>
-                <TextField type='text' label='Username' placeholder="Maximum 60 characters..." onChange={onUserChange} size="small" style={{width: 400}} inputProps={{ maxLength: 60}}></TextField>
+                <TextField required type='text' label='Username' placeholder="Maximum 60 characters..." onChange={onUserChange} size="small" style={{width: 400}} inputProps={{ maxLength: 60}}></TextField>
               </Grid>
               <Grid item xs={6}>
-                <TextField type='email' label='Email' placeholder="Maximum 60 characters..." onChange={onEmailChange} size="small" style={{width: 396}} inputProps={{ maxLength: 60}}></TextField>
+                <TextField required type='email' label='Email' placeholder="Maximum 60 characters..." onChange={onEmailChange} size="small" style={{width: 396}} inputProps={{ maxLength: 60}}></TextField>
               </Grid>
               <Grid item xs={12} textAlign="center">
                 <Button variant="outlined" onClick={twoFunctionsSubmit} style={{width:'800px', height:'50px'}}>Submit your question</Button>

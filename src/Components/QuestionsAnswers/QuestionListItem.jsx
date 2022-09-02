@@ -5,14 +5,17 @@ import AnswerList from './AnswerList.jsx';
 import AnswerModal from "./AnswerModal.jsx";
 
 const QuestionListItem = ({question, answers, question_date, question_helpfulness, onYes, question_id, asker_name, onReport}) => {
-  const [newAnswers, setNewAnswers] = useState('');
+  const [newAnswers, setNewAnswers] = useState([]);
   const [addAnswer, setAddAnswer] = useState(false);
   const [newAnswerBody, setNewAnswerBody] = useState('');
   const [newUsername, setNewUsername] = useState('');
   const [newEmail, setNewEmail] = useState('');
   const [newHelpfulness, setNewHelpfulness] = useState(0);
-  const [renderedAnswers, setRenderedAnswers] = useState('');
+  const [renderedAnswers, setRenderedAnswers] = useState([]);
   const [numOfRenderedAnswers, setNumOfRenderedAnswers] = useState(2);
+  const [counter, setCounter] = useState(0);
+  const [newPhotos, setNewPhotos] = useState([]);
+  const [photoURL, setPhotoURL] = useState('');
 
   let newTime = question_date.slice(0,10);
 
@@ -27,7 +30,7 @@ const QuestionListItem = ({question, answers, question_date, question_helpfulnes
         body: newAnswerBody,
         name: newUsername,
         email: newEmail,
-        photos: []
+        photos: newPhotos
     })
       .then(() => {
         var options = {
@@ -63,6 +66,14 @@ const QuestionListItem = ({question, answers, question_date, question_helpfulnes
 
   const onChangeNewEmail = (e) => {
     setNewEmail(e.target.value);
+  }
+
+  const onURLChange = (e) => {
+    setPhotoURL(e.target.value);
+  }
+
+  const onChangePhotos = (e) => {
+    setNewPhotos([...newPhotos, photoURL])
   }
 
   const onYesAnswer = (e) => {
@@ -109,8 +120,6 @@ const QuestionListItem = ({question, answers, question_date, question_helpfulnes
       })
   }
 
-
-
   const onClickShowMoreAnswers = () => {
     setNumOfRenderedAnswers(numOfRenderedAnswers + 2);
   }
@@ -135,7 +144,7 @@ const QuestionListItem = ({question, answers, question_date, question_helpfulnes
       .catch((err) => {
         console.log(err);
       });
-  }, [numOfRenderedAnswers]);
+  }, [answers, numOfRenderedAnswers]);
 
   if (newAnswers.length > 0) {
     return (
@@ -143,13 +152,15 @@ const QuestionListItem = ({question, answers, question_date, question_helpfulnes
         <ListItem>
           <Paper elevation={1}>
           <Grid container spacing={0}>
-            <Grid item xs={10}>
+            <Grid item xs={9}>
               <Typography color="#5A5A5A" variant="h6"><strong>Q: {question}</strong></Typography>
             </Grid>
-            <Grid item xs ={2} textAlign="center">
-              <Typography color="#5A5A5A" variant="caption" id={question_id} isClicked={false} onClick={onYes}>Helpful? | Yes ({question_helpfulness})</Typography>
-              <AnswerModal onAnswerSubmit={onAnswerSubmit} onChangeNewAnswer={onChangeNewAnswer} onChangeNewEmail={onChangeNewEmail} onChangeNewUsername={onChangeNewUsername}/>
+            <Grid item xs ={1.5} textAlign="center">
+              <span><Typography color="#5A5A5A" variant="caption" id={question_id} onClick={onYes}>Helpful? | Yes ({question_helpfulness})</Typography></span>
             </Grid>
+            <Grid item xs={1.5}>
+                <AnswerModal onAnswerSubmit={onAnswerSubmit} onChangeNewAnswer={onChangeNewAnswer} onChangeNewEmail={onChangeNewEmail} onChangeNewUsername={onChangeNewUsername} onChangePhotos={onChangePhotos} newPhotos={newPhotos} onURLChange={onURLChange}/>
+              </Grid>
             <Grid item xs={12}>
               <AnswerList answers={renderedAnswers} onChangeNewAnswer={onChangeNewAnswer} onChangeNewEmail={onChangeNewEmail} onChangeNewUsername={onChangeNewUsername} onClickAddAnswer={onClickAddAnswer} addAnswer={addAnswer} onAnswerSubmit={onAnswerSubmit} onClickShowMoreAnswers={onClickShowMoreAnswers} onClickHideMoreAnswers={onClickHideMoreAnswers} onYesAnswer={onYesAnswer} onAnswerReport={onAnswerReport} allAnswers={newAnswers}/>
             </Grid>
@@ -168,17 +179,19 @@ const QuestionListItem = ({question, answers, question_date, question_helpfulnes
           <ListItem>
             <Paper elevation={1}>
             <Grid container spacing={0}>
-              <Grid item xs={10}>
+              <Grid item xs={9}>
                 <Typography color="#5A5A5A" variant="h6"><strong>Q: {question}</strong></Typography>
               </Grid>
-              <Grid item xs ={2} textAlign="center">
+              <Grid item xs ={3} textAlign="center">
                 <Typography color="#5A5A5A" variant="caption" id={question_id} isClicked={false} onClick={onYes}>Helpful? | Yes ({question_helpfulness})</Typography>
               </Grid>
               <Grid item xs={12}>
-                <AnswerModal onAnswerSubmit={onAnswerSubmit} onChangeNewAnswer={onChangeNewAnswer} onChangeNewEmail={onChangeNewEmail} onChangeNewUsername={onChangeNewUsername}/>
+                <Paper elevation={0}>
+                  <AnswerModal onAnswerSubmit={onAnswerSubmit} onChangeNewAnswer={onChangeNewAnswer} onChangeNewEmail={onChangeNewEmail} onChangeNewUsername={onChangeNewUsername} onChangePhotos={onChangePhotos} newPhotos={newPhotos} onURLChange={onURLChange}/>
+                </Paper>
               </Grid>
               <Grid item xs={12}>
-                <span><Typography color="#808080" variant="caption"><i>Posted by {asker_name} on {newTime}</i> &nbsp;&nbsp;|&nbsp;&nbsp;  </Typography></span>
+                <span><Typography color="#808080" variant="caption"><i>{asker_name} on {newTime}</i> &nbsp;&nbsp;|&nbsp;&nbsp;  </Typography></span>
                 <span><u><Typography color="#808080" variant="caption" id={question_id} onClick={onReport}> Report </Typography></u></span>
               </Grid>
             </Grid>
