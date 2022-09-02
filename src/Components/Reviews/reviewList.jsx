@@ -26,7 +26,6 @@ const Item = styled(Paper)(({ theme }) => ({
   // top: '50%',
   // left: '50%',
   // transform: 'translate(-50%, -50%)',
-
   // padding: theme.spacing(1),
   // margin: '8px',
   // textAlign: 'left',
@@ -54,24 +53,24 @@ const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
   const handleSortChange = (e) => {
     e.preventDefault();
     setSort(e.target.value);
+
   };
 
   const handleMoreReviews = (e) => {
     e.preventDefault()
-    console.log('handle more reviews')
-    console.log('reviews in View ', reviewsInView)
-    console.log('currentReviews ', currentReviews)
-    if (reviewsInView.length < currentReviews.length -1) {
+    if (reviewsInView.length < currentReviews.length) {
       setReviewsInView(currentReviews.slice(0, reviewsInView.length + 2))
     } else {
       setPage(page + 1)
     }
   }
 
+useEffect(()=>{
+  setSort(window.sessionStorage.getItem('sort'))
+}, [])
 
-
-  //TODO Axios request for current Reviews
   useEffect(() => {
+    window.sessionStorage.setItem('sort', sort)
     var options = {
       url: "/reviews",
       method: 'get',
@@ -87,14 +86,16 @@ const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
     }
     axios(options)
       .then((results) => {
-        var sortedReviews;
-        if (sort === 'newest') {
-          sortedReviews = results.data.results.sort((a, b) => { b.date - a.date })
-        } else if (sort === 'helpful') {
-          sortedReviews = results.data.results.sort((a, b) => { b.helpfulness - a.helpfulness })
-        } else {
-          sortedReviews = results.data.results;
-        }
+        // var sortedReviews;
+        // if (sort === 'newest') {
+        //   sortedReviews = results.data.results.sort((a, b) => { b.date - a.date })
+        // } else if (sort === 'helpful') {
+        //   sortedReviews = results.data.results.sort((a, b) => { b.helpfulness - a.helpfulness })
+        // } else {
+        //   sortedReviews = results.data.results;
+        // }
+
+        var sortedReviews = results.data.results;
 
         var starCurrentReviews = []
         if (!reviewsInView) {
@@ -144,7 +145,9 @@ const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
         direction="row"
         justifyContent="space-between"
         alignItems="center"
-        padding="2%">
+        paddingLeft="2%"
+        paddingRight="2%"
+      >
         <Grid
           justifyContent="flex-start">
           <span><b>Total Reviews: {numReviews} </b></span>
@@ -180,8 +183,8 @@ const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
       </div>
       <Stack spacing={2} direction="row" container="true" padding="2%">
         {(currentReviews && reviewsInView.length > 0) &&
-        <Button variant="outlined"
-          onClick={(e) => { handleMoreReviews(e) }}> More Reviews</Button>}
+          <Button variant="outlined"
+            onClick={(e) => { handleMoreReviews(e) }}> More Reviews</Button>}
         <Button variant="outlined"
           endIcon={<AddIcon />}
           onClick={handleOpen}

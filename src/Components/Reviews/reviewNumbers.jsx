@@ -7,6 +7,7 @@ import Stack from '@mui/material/Stack';
 import Slider, { SliderThumb, SliderValueLabelProps } from '@mui/material/Slider';
 import { green } from '@mui/material/colors';
 import charKey from './reviewData.jsx';
+// import greenTriangle from '../Green_equilateral_triangle_point_down.svg'
 
 
 
@@ -27,6 +28,17 @@ const ReviewNumber = ({ product_id, numReviews, metaData, handleStarSort, starsT
     '& .MuiSlider-thumb': {
       height: 2,
       width: 2,
+    },
+    '& .MuiSlider-track': {
+      width: '70%',
+    }
+  }))
+  const CharSlider = styled(Slider)(({ theme }) => ({
+    '& .MuiSlider-thumb': {
+      width: 2,
+      height: 2,
+      //backgroundImage: `url('data:image/svg+xml;utf8,${greenTriangle}')`,
+      //backgroundColor: '#fff'
     },
     '& .MuiSlider-track': {
       width: '70%',
@@ -61,11 +73,7 @@ const ReviewNumber = ({ product_id, numReviews, metaData, handleStarSort, starsT
   //create array of characteristics and values
   const charArray = Object.entries(metaData.characteristics)
 
-  var styleSelect = background ? 'colorChange' : ''
-
-
-
-  console.log('review number', starsToRender)
+  var styleSelect = background ? 'colorChange' : '';
 
   return (
     <div>
@@ -97,7 +105,7 @@ const ReviewNumber = ({ product_id, numReviews, metaData, handleStarSort, starsT
                   max={100}
                   step={1}
                   aria-label="star slider"
-                  sx={{ color: green[500], width: '60%' }} />
+                  sx={{ color: green[500], width: '70%', display: 'flex', alignItems: 'center' }} />
                 <span className='starLabels'>{metaData.ratings[rating] ? metaData.ratings[rating] : 0}</span>
               </Stack>
             ))
@@ -109,8 +117,8 @@ const ReviewNumber = ({ product_id, numReviews, metaData, handleStarSort, starsT
             {charArray.map(([characteristic, obj], index) => (
               <div key={index}>
                 <span className='characteristicTitle'>{characteristic}</span>
-                <StarSlider
-                  value={obj.value}
+                <CharSlider
+                  value={Math.round(obj.value)}
                   min={1}
                   max={5}
                   step={1}

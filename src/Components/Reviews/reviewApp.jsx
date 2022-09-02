@@ -67,7 +67,7 @@ const ReviewApp = ({ currentProd }) => {
   }, []);
 
   return (
-    <div>
+    <div className='reviewAppRoot'>
       {reviewMetaData && (
         <Grid
           container
