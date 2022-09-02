@@ -5,7 +5,6 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import PhotoModal from "./PhotoModal.jsx";
 
 const ImgGallery = (props) => {
-  console.log("CURRENT PROPS IN IMG GALLERY: ", props.stylesToDisplay);
   const getImgUrl = (i) => {
     let url = props.stylesToDisplay.photos[i].url;
     return `url(${url})`;
@@ -14,10 +13,9 @@ const ImgGallery = (props) => {
     `url(${props.stylesToDisplay.photos[0].url}`
   );
   const [currentImgIndex, setCurrentImgIndex] = useState(0);
-  // console.log("MAIN IMG URL: ", mainImg);
 
   useEffect(() => {
-    setMainImg(props.stylesToDisplay.photos[0].url);
+    setMainImg(`url(${props.stylesToDisplay.photos[0].url})`);
   }, [props.stylesToDisplay]);
 
   const handleClick = (e) => {
@@ -37,7 +35,7 @@ const ImgGallery = (props) => {
         setMainImg(getImgUrl(lastImgIndex));
       }
     } else if (e === "right") {
-      if (currentImgIndex === props.stylesToDisplay.photos.length - 1) {
+      if (currentImgIndex == props.stylesToDisplay.photos.length - 1) {
         setCurrentImgIndex(0);
         setMainImg(getImgUrl(0));
       } else {
