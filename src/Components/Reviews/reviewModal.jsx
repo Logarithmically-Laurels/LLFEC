@@ -17,6 +17,9 @@ import FormSummaryInput from './formSummaryInput.jsx';
 import FormNicknameInput from './formNicknameInput.jsx';
 import FormEmailInput from './formEmailInput.jsx';
 import FormControl from '@mui/material/FormControl'
+import charKey from './reviewData.jsx'
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 
 const ReviewModal = ({ product, metaData }) => {
   const style = {
@@ -160,65 +163,14 @@ const ReviewModal = ({ product, metaData }) => {
     var photoArray = photos;
     var photoArrayString = photosString;
     photoArray.splice(index, 1)
-    photoArrayString.splice(index,1)
+    photoArrayString.splice(index, 1)
     setPhotos([...photoArray])
     setPhotosString([...photoArrayString])
   }
 
 
 
-  const charKey = {
-    Size: {
-      1: 'A size too small',
-      2: '1/2 a size too small',
-      3: 'Perfect',
-      4: '1/2 size too big',
-      5: 'A size too big'
-    },
-    Width: {
-      1: 'Too narrow',
-      2: 'Slightly narrow',
-      3: 'Perfect',
-      4: 'Slightly wide',
-      5: 'Too wide'
-    },
-    Comfort: {
-      1: 'Uncomfortable',
-      2: 'Slightly uncomfortable',
-      3: 'Ok',
-      4: 'Comfortable',
-      5: 'Perfect'
-    },
-    Quality: {
-      1: 'Poor',
-      2: 'Below Average',
-      3: 'What I expected',
-      4: 'Pretty great',
-      5: 'Perfect'
-    },
-    Length: {
-      1: 'Runs short',
-      2: 'Runs slightly short',
-      3: 'Perfect',
-      4: 'Runs slightly long',
-      5: 'Runs long'
-    },
-    Fit: {
-      1: 'Runs tight',
-      2: 'Runs slightly tight',
-      3: 'Perfect',
-      4: 'Runs slightly long',
-      5: 'Runs long'
-    }
-  }
 
-  const ratingKey = {
-    1: 'Poor',
-    2: 'Fair',
-    3: 'Average',
-    4: 'Good',
-    5: 'Great',
-  }
 
   useEffect(() => {
     const charArray = Object.entries(metaData.characteristics);
@@ -228,19 +180,27 @@ const ReviewModal = ({ product, metaData }) => {
 
   }, [])
 
+  const ratingKey = {
+    1: 'Poor',
+    2: 'Fair',
+    3: 'Average',
+    4: 'Good',
+    5: 'Great',
+  }
+
   return (
     <div data-testid='modal'>
 
       <Item>
         <form>
-        <Box
-          sx={{
-            ...style,
-            display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
-            gap: 1,
-            gridTemplateRows: 'auto',
-            gridTemplateAreas: `"Title Title Title Title"
+          <Box
+            sx={{
+              ...style,
+              display: 'grid',
+              gridTemplateColumns: 'repeat(4, 1fr)',
+              gap: 1,
+              gridTemplateRows: 'auto',
+              gridTemplateAreas: `"Title Title Title Title"
             "stars stars recommend recommend"
             "characteristic characteristic characteristic characteristic "
             "upload photos photos photos"
@@ -248,9 +208,9 @@ const ReviewModal = ({ product, metaData }) => {
             "body body body body"
             "nickname nickname email email"
             "error error . submit"`,
-          }}
-          className='inputReviewModal'
-        >
+            }}
+            className='inputReviewModal'
+          >
             <Box sx={{ gridArea: 'Title' }}>
               <h3>Write Your Review</h3>
               <span>About the ${product.name}</span>
@@ -291,12 +251,12 @@ const ReviewModal = ({ product, metaData }) => {
                     row
                     aria-labelledby="demo-row-radio-buttons"
                     name={characteristic}
-                    value={characteristics[obj.id]}
+                    value={characteristics[obj.id.toString()]}
                     onChange={(e) => {
                       var key = [obj.id].toString();
                       setCharacteristics({
                         ...characteristics,
-                        key: [e.target.value]
+                        [key]: [e.target.value]
                       })
                       setFormState({
                         ...formState,
@@ -390,7 +350,10 @@ const ReviewModal = ({ product, metaData }) => {
 
             </Box>
             {validate && <Box sx={{ gridArea: 'error' }}>
-              <p>{validate}</p>
+                <Alert severity="error">
+                  <AlertTitle>Warning</AlertTitle>
+                  {validate}
+                </Alert>
             </Box>}
             <Box sx={{ gridArea: 'submit' }}>
               <Button variant="outlined"
@@ -400,8 +363,8 @@ const ReviewModal = ({ product, metaData }) => {
                 }}> Submit</Button>
             </Box>
 
-        </Box>
-          </form>
+          </Box>
+        </form>
       </Item>
     </div >
   )

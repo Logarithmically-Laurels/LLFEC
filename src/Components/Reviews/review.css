@@ -1,5 +1,5 @@
 .reviewAppRoot {
-  height: 100vh
+  height: 90vh
 }
 
 .link {
@@ -54,4 +54,37 @@
 .invalidEmail {
   border-color: red;
   color: red;
+}
+.largeNumber {
+  font-size: 5em;
+}
+.smallStars{
+  font-size: 5em;
+}
+.MuiSlider-thumb {
+  height: 1;
+  width: 1;
+}
+.characteristicLabels {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  font-size: .7em;
+}
+.characteristicTitle{
+  display: flex;
+  justify-content: flex-start;
+  font-size: 1em;
+  font-weight: bold;
+  margin-top: 2vh;
+}
+.ratingTitle {
+  font-size: 1.25em;
+  font-weight: bold;
+}
+.starLabels {
+  font-size: .7em;
+}
+.colorChange {
+  background-color: #e8e8e9;
 }
