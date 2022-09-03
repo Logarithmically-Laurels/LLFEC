@@ -16,9 +16,10 @@ const style = {
   backgroundSize: "contain",
   backgroundRepeat: "no-repeat",
   backgroundPosition: "center",
-  // border: 0.6,
+  border: 0.6,
   boxShadow: 24,
   p: 4,
+  backgroundColor: "rgba(220, 220, 220, .9)",
 };
 
 const PhotoModal = (props) => {
@@ -38,7 +39,7 @@ const PhotoModal = (props) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}></Box>
+        <Box onClick={() => handleClose()} sx={style}></Box>
       </Modal>
     </div>
   );

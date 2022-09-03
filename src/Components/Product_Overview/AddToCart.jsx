@@ -5,7 +5,10 @@ import SelectQuantityButton from "./addToCartButtons/SelectQuantity.jsx";
 import AddToBag from "./addToCartButtons/AddToBag.jsx";
 import FavoriteButton from "./addToCartButtons/Favorite.jsx";
 
-const AddToCart = () => {
+const AddToCart = (props) => {
+  const [currentSize, setSize] = useState({ size: "Select Size" });
+  const [currentQty, setQty] = useState("-");
+  const [oosStatus, setOosStatus] = useState(false);
   return (
     <Container
       disableGutters
@@ -21,8 +24,19 @@ const AddToCart = () => {
           mb: "5%",
         }}
       >
-        <SelectSizeButton />
-        <SelectQuantityButton />
+        <SelectSizeButton
+          currentSize={currentSize}
+          setSize={setSize}
+          currentStyle={props.currentStyle.skus}
+          setQty={setQty}
+          setOosStatus={setOosStatus}
+        />
+        <SelectQuantityButton
+          currentSize={currentSize}
+          currentStyle={props.currentStyle.skus}
+          currentQty={currentQty}
+          setQty={setQty}
+        />
       </Stack>
       <Stack
         direction="row"
@@ -33,7 +47,7 @@ const AddToCart = () => {
           height: "35%",
         }}
       >
-        <AddToBag />
+        <AddToBag oosStatus={oosStatus} />
         <FavoriteButton />
       </Stack>
     </Container>

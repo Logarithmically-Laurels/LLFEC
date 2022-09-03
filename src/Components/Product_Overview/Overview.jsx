@@ -5,12 +5,12 @@ import StyleSelector from "./StyleSelector.jsx";
 import AddToCart from "./AddToCart.jsx";
 import ProductDescription from "./ProductDescription.jsx";
 import axios from "axios";
-import { Container } from "@mui/material";
+import { Container, Paper } from "@mui/material";
+
 const dummyData = require("./dummydata.js").data;
 
 const Overview = (props) => {
   var currentProductId = 37311; /*props.currentProduct.id*/
-  // console.log("CURRENT PROD ID: ", currentProductId);
   const [allStyles, setAllStyles] = useState(dummyData);
   const [currentStyle, setCurrentStyle] = useState(allStyles.results[0]);
 
@@ -34,7 +34,7 @@ const Overview = (props) => {
       });
   }, []);
   return (
-    <Container disableGutters>
+    <Container disableGutters sx={{ width: "100%", mb: "2.5%" }}>
       <Container
         sx={{
           border: 1,
@@ -50,14 +50,14 @@ const Overview = (props) => {
             width: "40%",
           }}
         >
-          <ProductInfo prodInfo={props.currentProduct} />
+          <ProductInfo prodId={currentProductId} prodInfo={currentStyle} />
           <StyleSelector
             prodId={currentProductId}
             currentStyle={currentStyle}
             allStyles={allStyles}
             setStyle={setCurrentStyle}
           />
-          <AddToCart />
+          <AddToCart currentStyle={currentStyle} />
         </Container>
       </Container>
       <Container>
