@@ -3,8 +3,9 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
+import "./review.css";
 
-const Stars = ({ product_id }) => {
+const Stars = ({ product_id, size='large' }) => {
   const [rating, setRating] = React.useState(null);
 
 
@@ -44,7 +45,7 @@ const Stars = ({ product_id }) => {
       }}
     >
       {rating &&
-        <Rating name="read-only" value={rating} precision={0.25} readOnly />}
+        <Rating name="read-only" value={rating} precision={0.25} readOnly size={size}/>}
     </Box>
   );
 }

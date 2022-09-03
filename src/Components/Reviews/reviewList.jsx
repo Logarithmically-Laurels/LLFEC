@@ -34,7 +34,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 
-const ReviewList = ({ currentProd, metaData, numReviews }) => {
+const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
   const [currentReviews, setCurrentReviews] = useState(null);
   const [reviewsInView, setReviewsInView] = useState(null);
   const [currentProduct, setCurrentProduct] = useState(currentProd);
@@ -42,31 +42,36 @@ const ReviewList = ({ currentProd, metaData, numReviews }) => {
   const [page, setPage] = useState(1);
   const [count, setCount] = useState(50);
   const [sort, setSort] = useState('relevant')
+  const [sortStars, setSortStars] = useState(starsToRender)
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
 
 
+  // console.log('reviewsinView ', reviewsInView)
 
   const handleSortChange = (e) => {
     e.preventDefault();
     setSort(e.target.value);
+
   };
 
   const handleMoreReviews = (e) => {
     e.preventDefault()
-    if (reviewsInView.length < currentReviews.length - 2) {
+    if (reviewsInView.length < currentReviews.length) {
       setReviewsInView(currentReviews.slice(0, reviewsInView.length + 2))
     } else {
       setPage(page + 1)
     }
   }
 
+useEffect(()=>{
+  setSort(window.sessionStorage.getItem('sort'))
+}, [])
 
-
-  //TODO Axios request for current Reviews
   useEffect(() => {
+    window.sessionStorage.setItem('sort', sort)
     var options = {
       url: "/reviews",
       method: 'get',
@@ -82,27 +87,55 @@ const ReviewList = ({ currentProd, metaData, numReviews }) => {
     }
     axios(options)
       .then((results) => {
-        var sortedReviews;
-        if (sort === 'newest') {
-          sortedReviews = results.data.results.sort((a, b) => { b.date - a.date })
-        } else if (sort === 'helpful') {
-          sortedReviews = results.data.results.sort((a, b) => { b.helpfulness - a.helpfulness })
-        } else {
-          sortedReviews = results.data.results;
-        }
+        // var sortedReviews;
+        // if (sort === 'newest') {
+        //   sortedReviews = results.data.results.sort((a, b) => { b.date - a.date })
+        // } else if (sort === 'helpful') {
+        //   sortedReviews = results.data.results.sort((a, b) => { b.helpfulness - a.helpfulness })
+        // } else {
+        //   sortedReviews = results.data.results;
+        // }
 
-        setCurrentReviews(sortedReviews);
+        var sortedReviews = results.data.results;
+
+        var starCurrentReviews = []
         if (!reviewsInView) {
-          setReviewsInView(sortedReviews.slice(0, 2))
+          if (starsToRender.length > 0) {
+            starsToRender.forEach(star => {
+              sortedReviews.forEach(review => {
+                if (review.rating === star) {
+                  starCurrentReviews.push(review)
+                }
+              })
+            })
+            setCurrentReviews(starCurrentReviews)
+            setReviewsInView(starCurrentReviews.slice(0, 2))
+          } else {
+            setCurrentReviews(sortedReviews);
+            setReviewsInView(sortedReviews.slice(0, 2))
+          }
         } else {
-          setReviewsInView(sortedReviews.slice(0, reviewsInView.length + 2))
+          if (starsToRender.length > 0) {
+            starsToRender.forEach(star => {
+              sortedReviews.forEach(review => {
+                if (review.rating === star) {
+                  starCurrentReviews.push(review)
+                }
+              })
+            })
+            setCurrentReviews(starCurrentReviews)
+            setReviewsInView(starCurrentReviews.slice(0, 2))
+          } else {
+            setCurrentReviews(sortedReviews);
+            setReviewsInView(sortedReviews.slice(0, reviewsInView.length + 2))
+          }
         }
       })
       .catch((err) => {
         console.log(err);
       });
 
-  }, [page, sort]);
+  }, [sort, starsToRender]);
 
 
 
@@ -113,7 +146,9 @@ const ReviewList = ({ currentProd, metaData, numReviews }) => {
         direction="row"
         justifyContent="space-between"
         alignItems="center"
-        padding="2%">
+        paddingLeft="2%"
+        paddingRight="2%"
+      >
         <Grid
           justifyContent="flex-start">
           <span><b>Total Reviews: {numReviews} </b></span>
@@ -137,7 +172,7 @@ const ReviewList = ({ currentProd, metaData, numReviews }) => {
         </Grid>
       </Grid>
       <div className='ReviewScroll'>
-        {currentReviews && <>
+        {(currentReviews && reviewsInView.length > 0) && <>
           {reviewsInView.map((review) => (
             <ReviewTile key={review.review_id}
               review={review}
@@ -148,8 +183,9 @@ const ReviewList = ({ currentProd, metaData, numReviews }) => {
         </>}
       </div>
       <Stack spacing={2} direction="row" container="true" padding="2%">
-        <Button variant="outlined"
-          onClick={(e) => { handleMoreReviews(e) }}> More Reviews</Button>
+        {(currentReviews && reviewsInView.length > 0) &&
+          <Button variant="outlined"
+            onClick={(e) => { handleMoreReviews(e) }}> More Reviews</Button>}
         <Button variant="outlined"
           endIcon={<AddIcon />}
           onClick={handleOpen}
@@ -164,7 +200,9 @@ const ReviewList = ({ currentProd, metaData, numReviews }) => {
           aria-labelledby="add-a-review"
           aria-describedby="modal-review-form"
         >
-          <ReviewModal product={currentProduct} metaData={metaDataState} />
+          <div>
+            <ReviewModal product={currentProduct} metaData={metaDataState} handleClose={handleClose}/>
+          </div>
         </Modal>
       </Item>
     </div>
