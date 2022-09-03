@@ -41,7 +41,6 @@ const ReviewApp = ({ currentProd }) => {
     }
     var tempStarsCopy = tempStars.slice()
     setStarsToRender(tempStarsCopy)
-    console.log('review App', tempStars)
   }
 
 

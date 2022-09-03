@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-
   "scripts": {
     "test": "jest",
     "start": "webpack --mode=development",
@@ -33,7 +32,8 @@
     "jest-environment-jsdom": "^29.0.1",
     "nodemon": "^2.0.19",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-scroll": "^1.8.7"
   },
   "devDependencies": {
     "@babel/core": "^7.18.13",

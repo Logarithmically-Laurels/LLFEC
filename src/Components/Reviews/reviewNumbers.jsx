@@ -88,17 +88,16 @@ const ReviewNumber = ({ product_id, numReviews, metaData, handleStarSort, starsT
       <div>
         <Stack spacing={0} direction="column" container="true" paddingTop="3%" width="100%">
           <span className='ratingTitle'>Rating Breakdown</span>
-          <Stack spacing={0} direction="column" container="true" margin="2%" paddingTop="3%" width='100%' className={styleSelect}
-          onMouseEnter={()=>{setBackground(true)}}
-          onMouseLeave={()=>{setBackground(false)}}
+          <Stack spacing={0} direction="column" container="true" margin="2%" paddingTop="3%" width='100%'
+
           >
             {[5, 4, 3, 2, 1].map((rating, index) => (
               <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center" key={index}>
-                <a className='starLabels' onClick={(e) => {
+                <button className='starLabels' onClick={(e) => {
                   handleStarSort(e, rating)
                 }}>
-                  {numbersStarsToRender.indexOf(rating) > -1 ? <b>{rating} Stars</b> : <>{rating} Stars</>}
-                  </a>
+                  {numbersStarsToRender.indexOf(rating) > -1 ? <span ><b>{rating} Stars</b></span> : <span >{rating} Stars</span>}
+                  </button>
                 <StarSlider
                   value={ratingPercentage[index]}
                   min={0}
