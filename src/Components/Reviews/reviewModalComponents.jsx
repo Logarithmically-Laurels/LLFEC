@@ -22,6 +22,7 @@ import Stack from '@mui/material/Stack';
 
 const ReviewModalComponents = ({ product, metaData, validate }) => {
   const [charArray, setCharArray] = useState(null);
+  const [validateForm, setValidateForm] = useState(validate);
 
   const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -116,8 +117,8 @@ const ReviewModalComponents = ({ product, metaData, validate }) => {
         </Box>
         <Box sx={{ gridArea: 'error' }}>
             <div>
-              {/* <FormValidate validate={validate} /> */}
-              <FormValidate />
+              <FormValidate validate={validate} />
+              {/* <FormValidate /> */}
             </div>
         </Box>
         <Box sx={{ gridArea: 'submit' }}>
