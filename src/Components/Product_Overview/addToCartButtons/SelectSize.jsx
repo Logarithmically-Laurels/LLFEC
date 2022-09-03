@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { MenuItem, Menu, Button, IconButton, Container } from "@mui/material";
 
-const SelectSizeButton = () => {
+const SelectSizeButton = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
-  const [currentSize, setSize] = useState("select a size");
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -12,54 +11,85 @@ const SelectSizeButton = () => {
     setAnchorEl(null);
   };
 
-  const handleChange = (e) => {
-    setSize(e);
+  const handleChange = (size) => {
+    props.setSize(size);
+    props.setQty(1);
     handleClose(null);
   };
+  var sizes = Object.values(props.currentStyle);
 
-  return (
-    <Container disableGutters sx={{ width: "160%", ml: "0", mr: "10%" }}>
-      <Button
-        sx={{
-          border: 1,
-          width: "100%",
-          borderRadius: 0,
-          color: "black",
-          height: "100%",
-        }}
-        id="basic-button"
-        aria-controls={open ? "basic-menu" : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? "true" : undefined}
-        onClick={handleClick}
-      >
-        {currentSize}
-      </Button>
-      <Menu
-        id="basic-menu"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        MenuListProps={{
-          "aria-labelledby": "basic-button",
-        }}
-      >
-        <MenuItem onClick={(e) => handleChange(e.target.innerText)}>
-          XS
-        </MenuItem>
-        <MenuItem onClick={(e) => handleChange(e.target.innerText)}>S</MenuItem>
-        <MenuItem onClick={(e) => handleChange(e.target.innerText)}>
-          MD
-        </MenuItem>
-        <MenuItem onClick={(e) => handleChange(e.target.innerText)}>
-          LG
-        </MenuItem>
-        <MenuItem onClick={(e) => handleChange(e.target.innerText)}>
-          XL
-        </MenuItem>
-      </Menu>
-    </Container>
-  );
+  var outOfStock = () => {
+    for (let i = 0; i < sizes.length; i++) {
+      if (sizes[i].quantity !== 0) {
+        return false;
+      }
+    }
+    props.setOosStatus(true);
+    return true;
+  };
+
+  if (outOfStock()) {
+    return (
+      <Container disableGutters sx={{ width: "160%", ml: "0", mr: "10%" }}>
+        <Button
+          sx={{
+            border: 1,
+            width: "100%",
+            borderRadius: 0,
+            color: "red",
+            height: "100%",
+          }}
+          id="basic-button"
+          aria-controls={open ? "basic-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? "true" : undefined}
+          onClick={handleClick}
+        >
+          OUT OF STOCK
+        </Button>
+      </Container>
+    );
+  } else {
+    return (
+      <Container disableGutters sx={{ width: "160%", ml: "0", mr: "10%" }}>
+        <Button
+          sx={{
+            border: 1,
+            width: "100%",
+            borderRadius: 0,
+            color: "black",
+            height: "100%",
+          }}
+          id="basic-button"
+          aria-controls={open ? "basic-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? "true" : undefined}
+          onClick={handleClick}
+        >
+          {props.currentSize.size}
+        </Button>
+        <Menu
+          id="basic-menu"
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+          MenuListProps={{
+            "aria-labelledby": "basic-button",
+          }}
+        >
+          {sizes.map((size, i) => {
+            if (size.quantity !== 0) {
+              return (
+                <MenuItem key={i} onClick={() => handleChange(size)}>
+                  {size.size}
+                </MenuItem>
+              );
+            }
+          })}
+        </Menu>
+      </Container>
+    );
+  }
 };
 
 export default SelectSizeButton;

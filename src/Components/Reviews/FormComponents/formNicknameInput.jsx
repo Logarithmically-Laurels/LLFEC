@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import TextField from '@mui/material/TextField';
 
-const FormNicknameInput = ({ nicknameRef }) => {
-
+const FormNicknameInput = () => {
+const [nicknameDesc, setNicknameDesc] = useState(false)
 
 
   return (
@@ -14,13 +14,15 @@ const FormNicknameInput = ({ nicknameRef }) => {
         placeholder="Example: jackson11!"
         fullWidth
         name="nickname"
-        inputRef={nicknameRef}
+
         inputProps={{
           maxLength: 60
         }}
-
+        onChange={()=> {
+          setNicknameDesc(true)
+        }}
       />
-{nicknameRef && <p>Nickname*: For privacy reasons, do not use your full name or email address.</p>}
+{nicknameDesc && <p className='bodyCount'>Nickname*: For privacy reasons, do not use your full name or email address.</p>}
     </>);
 }
 

@@ -83,17 +83,6 @@ app.post("/reviews", (req, res) => {
       Authorization: authToken.authtoken,
       "content-type": "application/json",
     },
-    // query: {
-    //   rating: parseInt(req.query.rating),
-    //   summary: req.query.summary,
-    //   body: req.query.body,
-    //   recommend: Boolean(req.query.recommend),
-    //   name: req.query.name,
-    //   email: req.query.email,
-    //   photos: req.query.photos,
-    //   characteristics: req.query.characteristics,
-    //   product_id: parseInt(req.query.product_id),
-    // },
     data: {
       rating: parseInt(req.body.rating),
       summary: req.body.summary,

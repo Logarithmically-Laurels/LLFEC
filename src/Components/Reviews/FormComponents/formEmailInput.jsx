@@ -2,8 +2,8 @@
 import React, { useState } from "react";
 import TextField from '@mui/material/TextField';
 
-const FormEmailInput = ({ emailRef }) => {
-
+const FormEmailInput = () => {
+const [emailDesc, setEmailDest] = useState(false)
 
 
   return (
@@ -14,13 +14,12 @@ const FormEmailInput = ({ emailRef }) => {
         placeholder="Email"
         fullWidth
         name="email"
-        inputRef={emailRef}
         inputProps={{
           maxLength: 60
         }}
-
+        onChange={()=>{setEmailDest(true)}}
       />
-  {emailRef && <p>Email*: For authentication reasons, you will not be emailed.</p>}
+  {emailDesc && <p className='bodyCount'>Email*: For authentication reasons, you will not be emailed.</p>}
     </>);
 }
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import TextField from '@mui/material/TextField';
 
-const FormBodyInput = (props) => {
+const FormBodyInput = () => {
 
   const [bodyLength, setBodyLength] = useState(50);
 
@@ -20,15 +20,15 @@ const FormBodyInput = (props) => {
         multiline
         name='body'
         minRows={4}
-        inputRef={props.bodyRef}
         placeholder="Why did you like the product or not?"
         fullWidth
         inputProps={{
-          maxLength: 1000
+          maxLength: 1000,
+          minLength: 50,
         }}
         onChange={(e) => { handleBodyChange(e) }}
       />
-      <p>  {(bodyLength >= 0 ? `Minimum required characters left: ${bodyLength}` : 'Minimum reached.')}
+      <p className='bodyCount'>  {(bodyLength >= 0 ? `Minimum required characters left: ${bodyLength}` : 'Minimum reached.')}
       </p>
     </>);
 }

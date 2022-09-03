@@ -6,12 +6,14 @@ import useAxiosGet from "../CommonComponents/axiosRequest.jsx";
 import { styled, Container } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
+import "./review.css";
 
 const ReviewApp = ({ currentProd }) => {
   const [currentProduct, setCurrentProduct] = useState(currentProd);
   const [currentReviews, setCurrentReviews] = useState(null);
   const [reviewMetaData, setReviewMetaData] = useState(null);
-  // const [numReviews, setNumReviews] = useState(0);
+  const [starsToRender, setStarsToRender] = useState([]);
+
 
   const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -26,8 +28,21 @@ const ReviewApp = ({ currentProd }) => {
     for (var rating in reviewMetaData.ratings) {
       numReviews += parseInt(reviewMetaData.ratings[rating]);
     }
-    // var numReviews = parseInt(reviewMetaData.ratings[1]) + parseInt(reviewMetaData.ratings[2]) + parseInt(reviewMetaData.ratings[3]) + parseInt(reviewMetaData.ratings[4]) + parseInt(reviewMetaData.ratings[5]);
   }
+
+  const handleStarSort = (e, rating) => {
+    e.preventDefault()
+    var tempStars = starsToRender;
+    if (starsToRender.indexOf(rating) === -1) {
+      tempStars.push(rating)
+    } else {
+      var index = starsToRender.indexOf(rating)
+      tempStars.splice(index,1)
+    }
+    var tempStarsCopy = tempStars.slice()
+    setStarsToRender(tempStarsCopy)
+  }
+
 
   useEffect(() => {
     var options = {
@@ -50,8 +65,8 @@ const ReviewApp = ({ currentProd }) => {
   }, []);
 
   return (
-    <div>
-      {currentProduct && (
+    <div className='reviewAppRoot'>
+      {reviewMetaData && (
         <Grid
           container
           spacing={0.5}
@@ -67,6 +82,8 @@ const ReviewApp = ({ currentProd }) => {
                 metaData={reviewMetaData}
                 numReviews={numReviews}
                 style={{ height: "100%" }}
+                handleStarSort={handleStarSort}
+                starsToRender={starsToRender}
               />
             </Item>
           </Grid>
@@ -77,6 +94,7 @@ const ReviewApp = ({ currentProd }) => {
                 currentProd={currentProduct}
                 metaData={reviewMetaData}
                 style={{ height: "100%" }}
+                starsToRender={starsToRender}
               />
             </Item>
           </Grid>
