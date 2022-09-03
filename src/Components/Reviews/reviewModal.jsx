@@ -8,24 +8,17 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Modal from '@mui/material/Modal';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
-import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';
 import ReviewModalComponents from './reviewModalComponents.jsx';
 
 
-const ReviewModal = ({ product, metaData }) => {
-
+const ReviewModal = ({ product, metaData, handleClose }) => {
+  // const [validate, setValidate] = useState(null);
+  var validate;
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
 
   }));
-
-
-
-
-  const [validate, setValidate] = useState(null);
-
 
 
   const isValidEmail = (email) => {
@@ -45,92 +38,90 @@ const ReviewModal = ({ product, metaData }) => {
   const handleFormSubmit = (e) => {
 
     e.preventDefault()
+    var photoArray = e?.target?.photos?.value.split(',');
+    console.log(photoArray)
     var charInts = {}
     for (var characteristic in metaData.characteristics) {
-      charInts[metaData.characteristics[characteristic].id] = parseInt(e.target[characteristic].value)
+      charInts[metaData.characteristics[characteristic].id] = parseInt(e.target[characteristic]?.value)
     }
-    // var errorString = 'Please perform the following actions:';
-    // if (!!bodyRef.current.value || bodyRef.current.value.length < 50) {
-    //   errorString += ' increase length of review body to 50 character minimum,'
-    // }
-    // if (!!emailRef.current.value || !isValidEmail(emailRef.current.value)) {
-    //   errorString += ' change to valid email address,'
-    // }
-    // photos.forEach((photo, index) => {
-    //   if (!isValidUrl(photo)) {
-    //     errorString += ` photo number ${index + 1} is invalid,`
-    //   }
-    // })
-    // charArray.forEach(([characteristic, obj]) => {
-    //   if (!characteristics[obj.id]) {
-    //     errorString += ` fill in ${characteristic} rating,`
-    //   }
-    // })
-    // if (description || recommend === 'banana' || !!nicknameRef.current.value) {
-    //   errorString += ' complete all required fields,'
-    // }
-    // if (errorString.length > 38) {
-    //   errorString = errorString.slice(0, errorString.length - 1)
-    //   errorString += '.'
-    //   setValidate(errorString)
-    //   // console.log('error message')
-    // } else {
-    var sendData = {
-      product_id: product.id,
-      rating:  e?.target?.rating?.value,
-      summary: e?.target?.summary?.value,
-      body: e?.target?.body?.value,
-      recommend:  e?.target?.recommend?.value,
-      name: e?.target?.nickname?.value,
-      email: e?.target?.email?.value,
-      // photos: photosString,
-      characteristics: charInts,
+    var errorString = 'Please perform the following actions:';
+
+    if (!!e?.target?.email?.value || !isValidEmail(e.target.email.value)) {
+      errorString += ' change to valid email address,'
     }
-    console.log(sendData)
-    //   var options = {
-    //     url: "/reviews",
-    //     method: "post",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     data: sendData
-    //   };
-    //   console.log(options)
-    //   axios(options)
-    //     .then((results) => {
-    //       console.log('submitted')
-    //       handleClose
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //     });
-    // }
-  }
+    (photoArray).forEach((photo, index) => {
+      if (photo !== '' && !isValidUrl(photo)) {
+        errorString += ` photo number ${index + 1} is invalid,`
+      }
+    })
+    for (var characteristic in metaData.characteristics) {
+      if (!charInts[characteristic['id']]) {
+        errorString += ` fill in ${characteristic} rating,`
+      }
+    }
 
+    if (!!e.target.recommend.value || (e.target.recommend.value !== true && e.target.recommend.value !== false)) {
+      errorString += ' choose if you recommend the product,'
+    }
+    if (errorString.length > 38) {
+      console.log('error string', errorString)
+      errorString = errorString.slice(0, errorString.length - 1)
+      errorString += '.'
+      validate = errorString;
+      // console.log('error message')
+    } else {
+      console.log('send axios')
+      handleClose()
+      var sendData = {
+        product_id: product.id,
+        rating: e?.target?.rating?.value,
+        summary: e?.target?.summary?.value,
+        body: e?.target?.body?.value,
+        recommend: e?.target?.recommend?.value,
+        name: e?.target?.nickname?.value,
+        email: e?.target?.email?.value,
+        photos: photoArray,
+        characteristics: charInts,
+      }
+      console.log(sendData)
+        var options = {
+          url: "/reviews",
+          method: "post",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          data: [sendData]
+        };
 
+        axios(options)
+          .then((results) => {
+            console.log('submitted')
 
-
-
-
-
-  useEffect(() => {
-
-
-  }, [])
-
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    }
 
 
   return (
     <div data-testid='modal'>
 
       <Item>
-        <form onSubmit={(e)=>handleFormSubmit(e)}>
+
+        <form onSubmit={(e) => {
+          e.preventDefault()
+          handleFormSubmit(e)
+        }}>
           <ReviewModalComponents
             product={product}
             metaData={metaData}
-            />
+            validate={validate}
+          />
         </form>
       </Item>
+
     </div >
   )
 }

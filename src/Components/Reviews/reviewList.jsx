@@ -26,6 +26,7 @@ const Item = styled(Paper)(({ theme }) => ({
   // top: '50%',
   // left: '50%',
   // transform: 'translate(-50%, -50%)',
+
   // padding: theme.spacing(1),
   // margin: '8px',
   // textAlign: 'left',
@@ -200,7 +201,7 @@ useEffect(()=>{
           aria-describedby="modal-review-form"
         >
           <div>
-            <ReviewModal product={currentProduct} metaData={metaDataState} />
+            <ReviewModal product={currentProduct} metaData={metaDataState} handleClose={handleClose}/>
           </div>
         </Modal>
       </Item>

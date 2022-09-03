@@ -10,10 +10,11 @@ import FormPhotoModal from './formPhotoModal.jsx';
 const FormPhotoInput = ({ }) => {
   const [photos, setPhotos] = useState([]);
   const [photosString, setPhotosString] = useState([])
-  const [currentPhoto, setCurrentPhoto] = useState(null);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+const [dontShow, setDontShow] = useState(false)
 
   const handlePhotoUpload = (e) => {
     console.log('handling photo upload Input ', photos)
@@ -21,7 +22,6 @@ const FormPhotoInput = ({ }) => {
     var photoArrayString = photosString;
     photoArray.push(e?.target?.currentPhoto?.value,)
     photoArrayString.push(e?.target?.currentPhoto?.value, toString())
-    setCurrentPhoto(e?.target?.currentPhoto?.value)
     setPhotos([...photoArray])
     setPhotosString([...photoArrayString])
   }
@@ -34,6 +34,8 @@ const FormPhotoInput = ({ }) => {
     setPhotos([...photoArray])
     setPhotosString([...photoArrayString])
   }
+
+
 
 
   const Item = styled(Paper)(({ theme }) => ({
@@ -60,7 +62,8 @@ const FormPhotoInput = ({ }) => {
 
 
   return (
-    <div>
+    <>
+    <input name='photos' type='hidden' value={photos}></input>
       <Box sx={{ gridArea: 'upload' }}>
         {photos.length < 5 && <Button variant="outlined" component="span" onClick={() => {
           handleOpen()
@@ -72,12 +75,16 @@ const FormPhotoInput = ({ }) => {
           onClose={handleClose}
           aria-labelledby="add-a-photo"
           aria-describedby="modal-photo-form"
+
         >
+          <div>
           <FormPhotoModal
             handlePhotoUpload={handlePhotoUpload}
             handlePhotoDelete={handlePhotoDelete}
             photos={photos}
+            handleClose={handleClose}
           />
+          </div>
         </Modal >
       </Box>
       <Box sx={{ gridArea: 'photos' }}>
@@ -89,7 +96,7 @@ const FormPhotoInput = ({ }) => {
       </Box>
 
 
-    </div>
+    </>
   );
 }
 

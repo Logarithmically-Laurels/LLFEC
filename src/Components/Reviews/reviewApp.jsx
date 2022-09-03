@@ -57,7 +57,6 @@ const ReviewApp = ({ currentProd }) => {
     };
     axios(options)
       .then((results) => {
-        console.log('meta data', results.data)
         setReviewMetaData(results.data);
       })
       .catch((err) => {

@@ -1,5 +1,4 @@
 import React, { setState, useState, useEffect, useRef } from "react";
-import axios from "axios";
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -16,11 +15,13 @@ import FormEmailInput from './FormComponents/formEmailInput.jsx';
 import FormRatingInput from './FormComponents/formRatingInput.jsx';
 import FormCharInput from './FormComponents/formCharInput.jsx';
 import FormPhotoInput from './FormComponents/formPhotoInput.jsx';
+import FormValidate from './FormComponents/formValidate.jsx';
 import Stack from '@mui/material/Stack';
 
 
 
-const ReviewModalComponents = ({ product, metaData }) => {
+const ReviewModalComponents = ({ product, metaData, validate }) => {
+  const [charArray, setCharArray] = useState(null);
 
   const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -29,15 +30,6 @@ const ReviewModalComponents = ({ product, metaData }) => {
     textAlign: "center",
     color: theme.palette.text.secondary,
   }));
-
-
-  // const [photos, setPhotos] = useState([]);
-  // const [photosString, setPhotosString] = useState([])
-  // const [currentPhoto, setCurrentPhoto] = useState(null);
-  // const [characteristics, setCharacteristics] = useState({});
-  const [charArray, setCharArray] = useState(null);
-
-
 
   const style = {
     position: 'absolute',
@@ -115,21 +107,19 @@ const ReviewModalComponents = ({ product, metaData }) => {
         <Box sx={{ gridArea: 'body' }}>
           <FormBodyInput />
         </Box>
-
         <FormPhotoInput />
-
         <Box sx={{ gridArea: 'nickname' }}>
           <FormNicknameInput />
         </Box>
         <Box sx={{ gridArea: 'email' }}>
           <FormEmailInput />
         </Box>
-        {/* {validate && <Box sx={{ gridArea: 'error' }}>
-              <Alert severity="error">
-                <AlertTitle>Warning</AlertTitle>
-                {validate}
-              </Alert>
-            </Box>} */}
+        <Box sx={{ gridArea: 'error' }}>
+            <div>
+              {/* <FormValidate validate={validate} /> */}
+              <FormValidate />
+            </div>
+        </Box>
         <Box sx={{ gridArea: 'submit' }}>
           <Button variant="outlined"
             type="submit"

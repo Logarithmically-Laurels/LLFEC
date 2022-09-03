@@ -23,7 +23,8 @@ const FormBodyInput = () => {
         placeholder="Why did you like the product or not?"
         fullWidth
         inputProps={{
-          maxLength: 1000
+          maxLength: 1000,
+          minLength: 50,
         }}
         onChange={(e) => { handleBodyChange(e) }}
       />

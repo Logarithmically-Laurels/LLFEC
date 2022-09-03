@@ -6,12 +6,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
-const FormPhotoModal = ({ photos, handlePhotoUpload, handlePhotoDelete, }) => {
-
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
+const FormPhotoModal = ({ photos, handlePhotoUpload, handlePhotoDelete, handleClose }) => {
 
   const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -39,17 +34,20 @@ const FormPhotoModal = ({ photos, handlePhotoUpload, handlePhotoDelete, }) => {
 
   return (
 
+<>
 
+    <form
+      onSubmit={(e) => {
+        console.log('form submit')
+        handlePhotoUpload(e)
+        handleClose()
+      }}>
 
-    <form className='photoForm' onSubmit={(e) => {
-      handlePhotoUpload(e)
-      handleClose
-    }}>
       <Box
         sx={{
           ...style,
           display: 'grid',
-          alignContent: 'center',
+          alignItems: 'center',
           gridTemplateColumns: 'repeat(5, 1fr)',
           gap: 1,
           gridTemplateRows: 'auto',
@@ -66,9 +64,8 @@ const FormPhotoModal = ({ photos, handlePhotoUpload, handlePhotoDelete, }) => {
 
           />
         </Box>
-        <Box sx={{ gridArea: 'Button' }}>
-          <Button variant="outlined" component="span" type="submit"
-          >
+        <Box sx={{ gridArea: 'Button', alignItems: 'center' }}>
+          <Button variant="outlined" type="submit">
             Submit Photo
           </Button>
         </Box>
@@ -83,7 +80,7 @@ const FormPhotoModal = ({ photos, handlePhotoUpload, handlePhotoDelete, }) => {
     </form>
 
 
-
+    </>
   );
 }
 
