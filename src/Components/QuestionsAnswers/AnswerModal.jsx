@@ -17,7 +17,7 @@ const style = {
   p: 4,
 };
 
-const AnswerModal = ({onAnswerSubmit, onChangeNewAnswer, onChangeNewEmail, onChangeNewUsername, onChangePhotos, newPhotos, onURLChange}) => {
+const AnswerModal = ({onAnswerSubmit, onChangeNewAnswer, onChangeNewEmail, onChangeNewUsername, onChangePhotos, newPhotos, onURLChange, photoURL, onFileChange}) => {
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => {
@@ -35,7 +35,7 @@ const AnswerModal = ({onAnswerSubmit, onChangeNewAnswer, onChangeNewEmail, onCha
 
   return (
     <div>
-      <Button size="small" variant="text" onClick={handleOpen} sx={{color:"#5A5A5A", width:'150px', height:'29px'}} >Add answer +</Button>
+      <Button size="large" variant="text" onClick={handleOpen} sx={{color:"#5A5A5A", width:'150px', height:'50px'}} >Add answer +</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -43,7 +43,7 @@ const AnswerModal = ({onAnswerSubmit, onChangeNewAnswer, onChangeNewEmail, onCha
         aria-describedby="modal-modal-description"
       >
         <Box sx={style} textAlign="center">
-          <Typography id="modal-modal-title" variant="h5" component="h2">
+          <Typography color="#5A5A5A" id="modal-modal-title" variant="h5" component="h2">
             Write your answer
           </Typography>
           <form>
@@ -58,7 +58,10 @@ const AnswerModal = ({onAnswerSubmit, onChangeNewAnswer, onChangeNewEmail, onCha
                 <TextField required type='email' label='Email' placeholder="Maximum 60 characters..." size="small" style={{width: 396}} onChange={onChangeNewEmail} inputProps={{ maxLength: 60}}></TextField>
               </Grid>
               <Grid item xs={12}>
-                <AnswerModalPhotos onChangePhotos={onChangePhotos} newPhotos={newPhotos} onURLChange={onURLChange}/>
+                  {newPhotos.map((photo) => <span><img width={100} height={100} src={`${photo}`}/>&nbsp;&nbsp;</span>)}
+              </Grid>
+              <Grid item xs={12}>
+                <AnswerModalPhotos onChangePhotos={onChangePhotos} newPhotos={newPhotos} onURLChange={onURLChange} photoURL={photoURL} onFileChange={onFileChange}/>
               </Grid>
               <Grid item xs={12} textAlign="center">
                 <Button variant="outlined" onClick={twoFunctionsSubmit} style={{width:'800px', height:'50px'}}>Submit your answer</Button>

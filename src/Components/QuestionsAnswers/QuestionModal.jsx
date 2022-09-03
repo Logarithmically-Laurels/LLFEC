@@ -43,7 +43,7 @@ const QuestionModal = ({onQuestionChange, onAddQuestion, onEmailChange, onUserCh
         aria-describedby="modal-modal-description"
       >
         <Box sx={style} textAlign="center">
-          <Typography id="modal-modal-title" variant="h5" component="h2">
+          <Typography color="#5A5A5A" id="modal-modal-title" variant="h5" component="h2">
             Ask a question
           </Typography>
           <form>

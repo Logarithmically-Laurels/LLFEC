@@ -3,6 +3,7 @@ import axios from "axios";
 import { Button, Grid, TextField, ListItem, Typography, Paper, Box } from "@mui/material";
 import AnswerList from './AnswerList.jsx';
 import AnswerModal from "./AnswerModal.jsx";
+import AnswerModalText from "./AnswerModalText.jsx";
 
 const QuestionListItem = ({question, answers, question_date, question_helpfulness, onYes, question_id, asker_name, onReport}) => {
   const [newAnswers, setNewAnswers] = useState([]);
@@ -46,6 +47,10 @@ const QuestionListItem = ({question, answers, question_date, question_helpfulnes
             let temp2 = res.data.results.sort((a, b) => parseFloat(b.answer_id) - parseFloat(a.answer_id));
             setNewAnswers(temp);
             setRenderedAnswers([...renderedAnswers, temp2[0]]);
+            setNewAnswerBody('');
+            setNewUsername('');
+            setNewEmail('');
+            setNewPhotos([]);
           })
           .catch((err) => {
             console.log(err);
@@ -74,6 +79,13 @@ const QuestionListItem = ({question, answers, question_date, question_helpfulnes
 
   const onChangePhotos = (e) => {
     setNewPhotos([...newPhotos, photoURL])
+    setPhotoURL('');
+  }
+
+  const onFileChange = (e) => {
+    console.log(e.target.files);
+    let temp = e.target.files[0];
+    setPhotoURL(URL.createObjectURL(temp));
   }
 
   const onYesAnswer = (e) => {
@@ -150,17 +162,17 @@ const QuestionListItem = ({question, answers, question_date, question_helpfulnes
     return (
       <Box component="span" sx={{display:"flex", justifyContent:"center", alignItems:"center", width:'1200px', minWidth:'1200px'}}>
         <ListItem>
-          <Paper elevation={1}>
+          <Paper elevation={1} sx={{ width: "100%"}}>
           <Grid container spacing={0}>
             <Grid item xs={9}>
               <Typography color="#5A5A5A" variant="h6"><strong>Q: {question}</strong></Typography>
             </Grid>
             <Grid item xs ={1.5} textAlign="center">
-              <span><Typography color="#5A5A5A" variant="caption" id={question_id} onClick={onYes}>Helpful? | Yes ({question_helpfulness})</Typography></span>
+              <span><Typography color="#5A5A5A" variant="caption" id={question_id} onClick={onYes}>Helpful? | Yes ({question_helpfulness})&nbsp;&nbsp;&nbsp;&nbsp;|</Typography></span>
             </Grid>
             <Grid item xs={1.5}>
-                <AnswerModal onAnswerSubmit={onAnswerSubmit} onChangeNewAnswer={onChangeNewAnswer} onChangeNewEmail={onChangeNewEmail} onChangeNewUsername={onChangeNewUsername} onChangePhotos={onChangePhotos} newPhotos={newPhotos} onURLChange={onURLChange}/>
-              </Grid>
+                <AnswerModalText onAnswerSubmit={onAnswerSubmit} onChangeNewAnswer={onChangeNewAnswer} onChangeNewEmail={onChangeNewEmail} onChangeNewUsername={onChangeNewUsername} onChangePhotos={onChangePhotos} newPhotos={newPhotos} onURLChange={onURLChange} photoURL={photoURL} onFileChange={onFileChange}/>
+            </Grid>
             <Grid item xs={12}>
               <AnswerList answers={renderedAnswers} onChangeNewAnswer={onChangeNewAnswer} onChangeNewEmail={onChangeNewEmail} onChangeNewUsername={onChangeNewUsername} onClickAddAnswer={onClickAddAnswer} addAnswer={addAnswer} onAnswerSubmit={onAnswerSubmit} onClickShowMoreAnswers={onClickShowMoreAnswers} onClickHideMoreAnswers={onClickHideMoreAnswers} onYesAnswer={onYesAnswer} onAnswerReport={onAnswerReport} allAnswers={newAnswers}/>
             </Grid>
@@ -177,17 +189,20 @@ const QuestionListItem = ({question, answers, question_date, question_helpfulnes
       return (
         <Box component="span" sx={{display:"flex", justifyContent:"center", alignItems:"center", width:'1200px', minWidth:'1200px'}}>
           <ListItem>
-            <Paper elevation={1}>
+            <Paper elevation={1} sx={{ width: "100%"}}>
             <Grid container spacing={0}>
               <Grid item xs={9}>
                 <Typography color="#5A5A5A" variant="h6"><strong>Q: {question}</strong></Typography>
               </Grid>
-              <Grid item xs ={3} textAlign="center">
-                <Typography color="#5A5A5A" variant="caption" id={question_id} isClicked={false} onClick={onYes}>Helpful? | Yes ({question_helpfulness})</Typography>
+              <Grid item xs ={1.5} textAlign="center">
+                <span><Typography color="#5A5A5A" variant="caption" id={question_id} onClick={onYes}>Helpful? | Yes ({question_helpfulness})&nbsp;&nbsp;&nbsp;&nbsp;|</Typography></span>
+              </Grid>
+              <Grid item xs={1.5}>
+                  <AnswerModalText onAnswerSubmit={onAnswerSubmit} onChangeNewAnswer={onChangeNewAnswer} onChangeNewEmail={onChangeNewEmail} onChangeNewUsername={onChangeNewUsername} onChangePhotos={onChangePhotos} newPhotos={newPhotos} onURLChange={onURLChange} photoURL={photoURL} onFileChange={onFileChange}/>
               </Grid>
               <Grid item xs={12}>
                 <Paper elevation={0}>
-                  <AnswerModal onAnswerSubmit={onAnswerSubmit} onChangeNewAnswer={onChangeNewAnswer} onChangeNewEmail={onChangeNewEmail} onChangeNewUsername={onChangeNewUsername} onChangePhotos={onChangePhotos} newPhotos={newPhotos} onURLChange={onURLChange}/>
+                  <AnswerModal onAnswerSubmit={onAnswerSubmit} onChangeNewAnswer={onChangeNewAnswer} onChangeNewEmail={onChangeNewEmail} onChangeNewUsername={onChangeNewUsername} onChangePhotos={onChangePhotos} newPhotos={newPhotos} onURLChange={onURLChange} photoURL={photoURL} onFileChange={onFileChange}/>
                 </Paper>
               </Grid>
               <Grid item xs={12}>
