@@ -50,7 +50,7 @@ const StyleSelector = (props) => {
         {props.allStyles.results.map((style, index) => {
           return (
             <Avatar
-              onClick={() => props.setStyle(style.style_id)}
+              onClick={() => props.setStyle(style)}
               key={index}
               src={style.photos[0].thumbnail_url}
             />

@@ -5,7 +5,7 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import PhotoModal from "./PhotoModal.jsx";
 
 const ImgGallery = (props) => {
-  // console.log("CURRENT PROPS IN IMG GALLERY: ", props.stylesToDisplay);
+  console.log("CURRENT PROPS IN IMG GALLERY: ", props.stylesToDisplay);
   const getImgUrl = (i) => {
     let url = props.stylesToDisplay.photos[i].url;
     return `url(${url})`;
