@@ -17,7 +17,7 @@ const style = {
   p: 4,
 };
 
-const AnswerModal = ({onAnswerSubmit, onChangeNewAnswer, onChangeNewEmail, onChangeNewUsername, onChangePhotos, newPhotos, onURLChange, photoURL, onFileChange}) => {
+const AnswerModalText = ({onAnswerSubmit, onChangeNewAnswer, onChangeNewEmail, onChangeNewUsername, onChangePhotos, newPhotos, onURLChange, photoURL, onFileChange}) => {
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => {
@@ -35,7 +35,7 @@ const AnswerModal = ({onAnswerSubmit, onChangeNewAnswer, onChangeNewEmail, onCha
 
   return (
     <div>
-      <Button size="large" variant="text" onClick={handleOpen} sx={{color:"#5A5A5A", width:'150px', height:'50px'}} >Add answer +</Button>
+      <u><Typography color="#5A5A5A" variant="caption" onClick={handleOpen}>Add answer +</Typography></u>
       <Modal
         open={open}
         onClose={handleClose}
@@ -74,4 +74,4 @@ const AnswerModal = ({onAnswerSubmit, onChangeNewAnswer, onChangeNewEmail, onCha
   );
 }
 
-export default AnswerModal;
+export default AnswerModalText;

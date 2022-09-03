@@ -48,7 +48,7 @@ const Questions = ({ currentProd }) => {
             "Content-Type": "application/json",
           },
           params: {
-            product_id: currentProd[0].id,
+            product_id: currentProd.id,
           },
         };
         axios(options)
@@ -84,11 +84,8 @@ const Questions = ({ currentProd }) => {
         };
         axios(options)
           .then((res) => {
-            let temp = res.data.results.sort(
-              (a, b) =>
-                parseFloat(b.question_helpfulness) -
-                parseFloat(a.question_helpfulness)
-            );
+            let temp = res.data.results.sort((a, b) => parseFloat(b.question_helpfulness) - parseFloat(a.question_helpfulness));
+            // console.log(temp);
             setQuestions(temp);
             setRenderedQuestions(temp.slice(0, shownQuestions));
           })
@@ -101,7 +98,7 @@ const Questions = ({ currentProd }) => {
   const onAddQuestion = () => {
     axios
       .post(`/qa/questions`, {
-        product_id: currentProd[0].id,
+        product_id: currentProd.id,
         body: currentQuestion,
         name: username,
         email: email,
@@ -115,7 +112,7 @@ const Questions = ({ currentProd }) => {
             "Content-Type": "application/json",
           },
           params: {
-            product_id: currentProd[0].id,
+            product_id: currentProd.id,
           },
         };
         axios(options)
@@ -138,44 +135,7 @@ const Questions = ({ currentProd }) => {
   };
 
   const onSearchChange = (e) => {
-    let temp = [];
     setSearched(e.target.value);
-    console.log(searched);
-    if (searched.length > 3) {
-      for (let element of questions) {
-        if (
-          element.question_body.toLowerCase().includes(searched.toLowerCase())
-        ) {
-          temp.push(element);
-        }
-      }
-      setRenderedQuestions(temp);
-    } else {
-      var options = {
-        method: "GET",
-        url: "/qa/questions",
-        headers: {
-          Authorization: authtoken.authtoken,
-          "Content-Type": "application/json",
-        },
-        params: {
-          product_id: currentProd[0].id,
-        },
-      };
-      axios(options)
-        .then((res) => {
-          let temp = res.data.results.sort(
-            (a, b) =>
-              parseFloat(b.question_helpfulness) -
-              parseFloat(a.question_helpfulness)
-          );
-          setQuestions(temp);
-          setRenderedQuestions(temp.slice(0, shownQuestions));
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
   };
 
   const showMoreQuestions = () => {
@@ -206,7 +166,72 @@ const Questions = ({ currentProd }) => {
       .catch((err) => {
         console.log(err);
       });
+  }, []);
+
+  useEffect(() => {
+    var options = {
+      method: "GET",
+      url: "/qa/questions",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      params: {
+        product_id: currentProd.id,
+      },
+    };
+    axios(options)
+      .then((res) => {
+        let temp = res.data.results.sort(
+          (a, b) =>
+            parseFloat(b.question_helpfulness) -
+            parseFloat(a.question_helpfulness)
+        );
+        setQuestions(temp);
+        setRenderedQuestions(temp.slice(0, shownQuestions));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, [shownQuestions]);
+
+  useEffect(() => {
+    let temp = [];
+    if (searched.length >= 3) {
+      for (let element of questions) {
+        if (
+          element.question_body.toLowerCase().includes(searched.toLowerCase())
+        ) {
+          temp.push(element);
+        }
+      }
+      setRenderedQuestions(temp);
+    } else {
+      var options = {
+        method: "GET",
+        url: "/qa/questions",
+        headers: {
+          Authorization: authtoken.authtoken,
+          "Content-Type": "application/json",
+        },
+        params: {
+          product_id: currentProd.id,
+        },
+      };
+      axios(options)
+        .then((res) => {
+          let temp = res.data.results.sort(
+            (a, b) =>
+              parseFloat(b.question_helpfulness) -
+              parseFloat(a.question_helpfulness)
+          );
+          setQuestions(temp);
+          setRenderedQuestions(temp.slice(0, shownQuestions));
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [searched])
 
   return (
     <Typography textAlign="center">
