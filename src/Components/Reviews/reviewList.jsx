@@ -42,7 +42,7 @@ const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
   const [page, setPage] = useState(1);
   const [count, setCount] = useState(50);
   const [sort, setSort] = useState('relevant')
-  const [sortStars, setSortStars] = useState(starsToRender)
+  // const [sortStars, setSortStars] = useState(starsToRender)
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -87,15 +87,6 @@ useEffect(()=>{
     }
     axios(options)
       .then((results) => {
-        // var sortedReviews;
-        // if (sort === 'newest') {
-        //   sortedReviews = results.data.results.sort((a, b) => { b.date - a.date })
-        // } else if (sort === 'helpful') {
-        //   sortedReviews = results.data.results.sort((a, b) => { b.helpfulness - a.helpfulness })
-        // } else {
-        //   sortedReviews = results.data.results;
-        // }
-
         var sortedReviews = results.data.results;
 
         var starCurrentReviews = []

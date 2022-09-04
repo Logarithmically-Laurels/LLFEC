@@ -75,7 +75,7 @@ app.get("/reviews", (req, res) => {
     });
 });
 app.post("/reviews", (req, res) => {
-  console.log(req.body);
+  console.log(req.body[0]);
   var options = {
     method: "POST",
     url: "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews",
@@ -84,19 +84,20 @@ app.post("/reviews", (req, res) => {
       "content-type": "application/json",
     },
     data: {
-      rating: parseInt(req.body.rating),
-      summary: req.body.summary,
-      body: req.body.body,
-      recommend: Boolean(req.body.recommend),
-      name: req.body.name,
-      email: req.body.email,
-      photos: req.body.photos,
-      characteristics: req.body.characteristics,
-      product_id: parseInt(req.body.product_id),
+      rating: parseInt(req.body[0].rating),
+      summary: req.body[0].summary,
+      body: req.body[0].body,
+      recommend: Boolean(req.body[0].recommend),
+      name: req.body[0].name,
+      email: req.body[0].email,
+      photos: req.body[0].photos,
+      characteristics: req.body[0].characteristics,
+      product_id: parseInt(req.body[0].product_id),
     },
   };
   axios(options)
     .then((response) => {
+      console.log("success")
       res.sendStatus(200);
     })
     .catch((err) => {

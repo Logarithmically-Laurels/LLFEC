@@ -47,6 +47,11 @@ const ReviewModalComponents = ({ product, metaData, validate }) => {
 
   };
 
+  useEffect(()=> {
+    console.log(validate)
+    setValidateForm(validate)
+    console.log('reviewModal updating validate')
+  }, [validate])
 
   return (
     <Item>
@@ -117,7 +122,7 @@ const ReviewModalComponents = ({ product, metaData, validate }) => {
         </Box>
         <Box sx={{ gridArea: 'error' }}>
             <div>
-              <FormValidate validate={validate} />
+              <FormValidate validate={validateForm} />
               {/* <FormValidate /> */}
             </div>
         </Box>
