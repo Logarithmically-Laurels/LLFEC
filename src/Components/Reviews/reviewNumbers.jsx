@@ -93,7 +93,7 @@ const ReviewNumber = ({ product_id, numReviews, metaData, handleStarSort, starsT
           >
             {[5, 4, 3, 2, 1].map((rating, index) => (
               <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center" key={index}>
-                <button className='starLabels' onClick={(e) => {
+                <button className='starLabels underline' onClick={(e) => {
                   handleStarSort(e, rating)
                 }}>
                   {numbersStarsToRender.indexOf(rating) > -1 ? <span ><b>{rating} Stars</b></span> : <span >{rating} Stars</span>}
