@@ -15,7 +15,6 @@ import FormEmailInput from './FormComponents/formEmailInput.jsx';
 import FormRatingInput from './FormComponents/formRatingInput.jsx';
 import FormCharInput from './FormComponents/formCharInput.jsx';
 import FormPhotoInput from './FormComponents/formPhotoInput.jsx';
-import FormValidate from './FormComponents/formValidate.jsx';
 import Stack from '@mui/material/Stack';
 
 
@@ -121,10 +120,7 @@ const ReviewModalComponents = ({ product, metaData, validate }) => {
           <FormEmailInput />
         </Box>
         <Box sx={{ gridArea: 'error' }}>
-            <div>
-              <FormValidate validate={validateForm} />
-              {/* <FormValidate /> */}
-            </div>
+
         </Box>
         <Box sx={{ gridArea: 'submit' }}>
           <Button variant="outlined"
