@@ -38,8 +38,8 @@ const App = () => {
       {currentProduct && (
         <>
           <Navbar />
-          {/* <Overview currentProduct={currentProduct} />
-          <Questions currentProd={currentProduct} /> */}
+          <Overview currentProduct={currentProduct} />
+          <Questions currentProd={currentProduct} />
           <ReviewApp currentProd={currentProduct} />
         </>
       )}

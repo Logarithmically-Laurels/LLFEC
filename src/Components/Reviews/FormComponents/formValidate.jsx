@@ -16,10 +16,10 @@ const FormValidate = ({ validate }) => {
   return (
     <>
 
-       <Alert severity="error">
+       {validateMsg.length>0 && <Alert severity="error">
         <AlertTitle>Warning</AlertTitle>
         {validateMsg}
-      </Alert>
+      </Alert>}
     </>
   );
 

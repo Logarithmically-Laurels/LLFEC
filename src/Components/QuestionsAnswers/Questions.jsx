@@ -13,7 +13,7 @@ import {
   Paper,
   Box,
 } from "@mui/material";
-const authtoken = require("/config.js");
+
 
 const Questions = ({ currentProd }) => {
   const [questions, setQuestions] = useState([]);
@@ -111,7 +111,6 @@ const Questions = ({ currentProd }) => {
           method: "GET",
           url: "/qa/questions",
           headers: {
-            Authorization: authtoken.authtoken,
             "Content-Type": "application/json",
           },
           params: {
@@ -155,7 +154,7 @@ const Questions = ({ currentProd }) => {
         method: "GET",
         url: "/qa/questions",
         headers: {
-          Authorization: authtoken.authtoken,
+
           "Content-Type": "application/json",
         },
         params: {

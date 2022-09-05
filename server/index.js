@@ -75,7 +75,6 @@ app.get("/reviews", (req, res) => {
     });
 });
 app.post("/reviews", (req, res) => {
-  console.log(req.body[0]);
   var options = {
     method: "POST",
     url: "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews",
@@ -97,7 +96,6 @@ app.post("/reviews", (req, res) => {
   };
   axios(options)
     .then((response) => {
-      console.log("success")
       res.sendStatus(200);
     })
     .catch((err) => {

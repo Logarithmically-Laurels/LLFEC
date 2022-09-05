@@ -11,9 +11,9 @@ import Paper from '@mui/material/Paper';
 import ReviewModalComponents from './reviewModalComponents.jsx';
 
 
-const ReviewModal = ({ product, metaData, handleClose }) => {
-  // const [validate, setValidate] = useState(null);
-  var validate = null;
+const ReviewModal = ({ product, metaData, handleClose, handleValidate, validate }) => {
+
+  // var validate = null;
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
@@ -37,7 +37,7 @@ const ReviewModal = ({ product, metaData, handleClose }) => {
 
   const handleFormSubmit = (e) => {
 
-    e.preventDefault()
+    // e.preventDefault()
     var photoArray = e?.target?.photos?.value.split(',');
     var charInts = {}
     for (var characteristic in metaData.characteristics) {
@@ -79,11 +79,10 @@ const ReviewModal = ({ product, metaData, handleClose }) => {
       console.log('error string', errorString)
       var newErrorString = errorString.slice(0, errorString.length - 1)
       newErrorString += '.'
-      validate = newErrorString;
-      // setValidate(errorString)
-      // console.log('error message')
+
+      handleValidate(newErrorString)
     } else {
-      console.log('send axios')
+      // console.log('send axios')
       handleClose()
       sendData = {
         product_id: product.id,
@@ -117,13 +116,13 @@ const ReviewModal = ({ product, metaData, handleClose }) => {
     }
   }
 
-  useEffect(()=> {
-    console.log(validate)
-    if (validate) {
-      var newString = validate.slice()
-      validate = newString;
-    }
-  }, [validate])
+  // useEffect(()=> {
+  //   console.log(validate)
+  //   if (validate) {
+  //     var newString = validate.slice()
+  //     validate = newString;
+  //   }
+  // }, [validate])
 
 
   return (
@@ -131,22 +130,19 @@ const ReviewModal = ({ product, metaData, handleClose }) => {
 
       <Item>
 
-        <form onSubmit={(e) => {
+        <Box component="form"
+        onSubmit={(e) => {
           e.preventDefault()
           handleFormSubmit(e)
         }}>
-          {validate ?
+
           <ReviewModalComponents
             product={product}
             metaData={metaData}
             validate={validate}
-          /> : <ReviewModalComponents
-          product={product}
-          metaData={metaData}
-          validate={'original warning'}
-        />
-          }
-        </form>
+          />
+
+        </Box>
       </Item>
 
     </div >

@@ -46,6 +46,7 @@ const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [validate, setValidate] = useState([]);
 
 
 
@@ -64,6 +65,10 @@ const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
     } else {
       setPage(page + 1)
     }
+  }
+
+  const handleValidate = (string) => {
+    setValidate(string)
   }
 
 useEffect(()=>{
@@ -192,7 +197,7 @@ useEffect(()=>{
           aria-describedby="modal-review-form"
         >
           <div>
-            <ReviewModal product={currentProduct} metaData={metaDataState} handleClose={handleClose}/>
+            <ReviewModal product={currentProduct} metaData={metaDataState} handleClose={handleClose} handleValidate={handleValidate} validate={validate}/>
           </div>
         </Modal>
       </Item>
