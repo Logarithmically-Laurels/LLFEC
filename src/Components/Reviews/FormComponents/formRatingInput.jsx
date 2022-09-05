@@ -22,6 +22,7 @@ const ratingKey = {
      <Stack spacing={2} direction="row" container="true" padding="2%">
         <p className='recommendp rating'><b>Rating* </b></p>
       <Rating
+      required
           name="rating"
           value={rating}
           onChange={(event, newValue)=> {

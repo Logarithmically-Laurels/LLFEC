@@ -51,8 +51,8 @@ const FormPhotoModal = ({ photos, handlePhotoUpload, handlePhotoDelete, handleCl
           gridTemplateColumns: 'repeat(5, 1fr)',
           gap: 1,
           gridTemplateRows: 'auto',
-          gridTemplateAreas: `"Text Text Text Text Button"
-         "photo photo photo photo photo"`,
+          gridTemplateAreas: `"Text Text Text Button"
+         "photo photo photo photo"`,
         }} >
         <Box sx={{ gridArea: 'Text' }}>
           <TextField

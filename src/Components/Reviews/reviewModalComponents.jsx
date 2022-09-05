@@ -85,8 +85,8 @@ const ReviewModalComponents = ({ product, metaData, validate }) => {
               aria-labelledby="demo-row-radio-buttons-recommend"
               name="recommend"
             >
-              <FormControlLabel value={true} control={<Radio />} label="Yes" />
-              <FormControlLabel value={false} control={<Radio />} label="No" />
+              <FormControlLabel value={true} control={<Radio required/>} label="Yes" />
+              <FormControlLabel value={false} control={<Radio required/>} label="No" />
             </RadioGroup>
           </Stack>
         </Box>

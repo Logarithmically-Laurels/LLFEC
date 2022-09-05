@@ -10,6 +10,7 @@ const [emailDesc, setEmailDest] = useState(false)
     <>
       <TextField
         required
+        type="email"
         id="outlined-required"
         placeholder="Email"
         fullWidth

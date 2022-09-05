@@ -36,11 +36,11 @@ const FormCharInput = ({ metaData }) => {
               [characteristic]: charKey[characteristic][e.target.value]
             })}
           >
-            <FormControlLabel value={1} control={<Radio />} label={charKey[characteristic][1]} labelPlacement="bottom" size="small" />
-            <FormControlLabel value={2} control={<Radio />} label="" labelPlacement="bottom" />
-            <FormControlLabel value={3} control={<Radio />} label="" labelPlacement="bottom" />
-            <FormControlLabel value={4} control={<Radio />} label="" labelPlacement="bottom" />
-            <FormControlLabel value={5} control={<Radio />} label={charKey[characteristic][5]} labelPlacement="bottom" size="small" />
+            <FormControlLabel value={1} control={<Radio required/>} label={charKey[characteristic][1]} labelPlacement="bottom" size="small" />
+            <FormControlLabel value={2} control={<Radio required/>} label="" labelPlacement="bottom" />
+            <FormControlLabel value={3} control={<Radio required/>} label="" labelPlacement="bottom" />
+            <FormControlLabel value={4} control={<Radio required/>} label="" labelPlacement="bottom" />
+            <FormControlLabel value={5} control={<Radio required/>} label={charKey[characteristic][5]} labelPlacement="bottom" size="small" />
           </RadioGroup>
         </Stack>
       ))}
