@@ -20,8 +20,15 @@ const [dontShow, setDontShow] = useState(false)
     console.log('handling photo upload Input ', photos)
     var photoArray = photos.slice()
     var photoArrayString = photosString;
-    photoArray.push(e?.target?.currentPhoto?.value,)
-    photoArrayString.push(e?.target?.currentPhoto?.value, toString())
+    if (e?.target?.currentPhotoURL?.value) {
+      var url = e.target.currentPhotoURL.value
+      // let temp = e.target.currentPhotoFile;
+    } else {
+      var url = e;
+    }
+    console.log(url)
+    photoArray.push(url,);
+    photoArrayString.push(url, toString())
     setPhotos([...photoArray])
     setPhotosString([...photoArrayString])
   }
@@ -35,6 +42,11 @@ const [dontShow, setDontShow] = useState(false)
     setPhotosString([...photoArrayString])
   }
 
+  const onFileChange = (e) => {
+    console.log(e.target.files);
+    let temp = e.target.files[0];
+    handlePhotoUpload(URL.createObjectURL(temp));
+  }
 
 
 
@@ -83,6 +95,7 @@ const [dontShow, setDontShow] = useState(false)
             handlePhotoDelete={handlePhotoDelete}
             photos={photos}
             handleClose={handleClose}
+            onFileChange={onFileChange}
           />
           </div>
         </Modal >
