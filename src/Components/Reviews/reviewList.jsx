@@ -42,10 +42,11 @@ const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
   const [page, setPage] = useState(1);
   const [count, setCount] = useState(50);
   const [sort, setSort] = useState('relevant')
-  const [sortStars, setSortStars] = useState(starsToRender)
+  // const [sortStars, setSortStars] = useState(starsToRender)
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [validate, setValidate] = useState([]);
 
 
 
@@ -64,6 +65,10 @@ const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
     } else {
       setPage(page + 1)
     }
+  }
+
+  const handleValidate = (string) => {
+    setValidate(string)
   }
 
 useEffect(()=>{
@@ -195,7 +200,7 @@ useEffect(()=>{
           data-testid='reviewModal'
         >
           <div>
-            <ReviewModal product={currentProduct} metaData={metaDataState} handleClose={handleClose}/>
+            <ReviewModal product={currentProduct} metaData={metaDataState} handleClose={handleClose} handleValidate={handleValidate} validate={validate}/>
           </div>
         </Modal>
       </Item>

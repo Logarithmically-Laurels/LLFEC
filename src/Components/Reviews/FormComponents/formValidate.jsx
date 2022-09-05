@@ -1,16 +1,24 @@
 
-import React from "react";
+import React, {useState, useEffect} from "react";
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 
-const formValidate = ({ validate }) => {
+const FormValidate = ({ validate }) => {
 
+  const [validateMsg, setValidateMsg] = useState(validate)
+
+  useEffect(()=> {
+    console.log(validate)
+    setValidateMsg(validate)
+    console.log('formValidate updating validate')
+  }, [validate])
 
   return (
     <>
-      {validate && <Alert severity="error">
+
+       {validateMsg.length>0 && <Alert severity="error">
         <AlertTitle>Warning</AlertTitle>
-        {validate}
+        {validateMsg}
       </Alert>}
     </>
   );
@@ -18,5 +26,5 @@ const formValidate = ({ validate }) => {
 }
 
 
-export default formValidate;
+export default FormValidate;
 

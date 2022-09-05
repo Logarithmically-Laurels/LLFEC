@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import TextField from '@mui/material/TextField';
+import FormControl from '@mui/material/FormControl'
 
 const FormBodyInput = () => {
 
@@ -14,6 +15,7 @@ const FormBodyInput = () => {
 
   return (
     <>
+
       <TextField
         required
         id="outlined-multiline-static"
@@ -28,6 +30,7 @@ const FormBodyInput = () => {
         }}
         onChange={(e) => { handleBodyChange(e) }}
       />
+
       <p className='bodyCount'>  {(bodyLength >= 0 ? `Minimum required characters left: ${bodyLength}` : 'Minimum reached.')}
       </p>
     </>);

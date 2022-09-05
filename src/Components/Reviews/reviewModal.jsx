@@ -11,9 +11,9 @@ import Paper from '@mui/material/Paper';
 import ReviewModalComponents from './reviewModalComponents.jsx';
 
 
-const ReviewModal = ({ product, metaData, handleClose }) => {
-  // const [validate, setValidate] = useState(null);
-  var validate;
+const ReviewModal = ({ product, metaData, handleClose, handleValidate, validate }) => {
+
+  // var validate = null;
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
@@ -37,16 +37,27 @@ const ReviewModal = ({ product, metaData, handleClose }) => {
 
   const handleFormSubmit = (e) => {
 
-    e.preventDefault()
+    // e.preventDefault()
     var photoArray = e?.target?.photos?.value.split(',');
-    console.log(photoArray)
     var charInts = {}
     for (var characteristic in metaData.characteristics) {
       charInts[metaData.characteristics[characteristic].id] = parseInt(e.target[characteristic]?.value)
     }
+
+    var sendData = {
+      product_id: product.id,
+      rating: e?.target?.rating?.value,
+      summary: e?.target?.summary?.value,
+      body: e?.target?.body?.value,
+      recommend: e?.target?.recommend?.value,
+      name: e?.target?.nickname?.value,
+      email: e?.target?.email?.value,
+      photos: photoArray,
+      characteristics: charInts,
+    }
     var errorString = 'Please perform the following actions:';
 
-    if (!!e?.target?.email?.value || !isValidEmail(e.target.email.value)) {
+    if (!isValidEmail(e.target.email.value)) {
       errorString += ' change to valid email address,'
     }
     (photoArray).forEach((photo, index) => {
@@ -55,24 +66,25 @@ const ReviewModal = ({ product, metaData, handleClose }) => {
       }
     })
     for (var characteristic in metaData.characteristics) {
-      if (!charInts[characteristic['id']]) {
+      if (isNaN(charInts[metaData.characteristics[characteristic].id])) {
         errorString += ` fill in ${characteristic} rating,`
       }
     }
 
-    if (!!e.target.recommend.value || (e.target.recommend.value !== true && e.target.recommend.value !== false)) {
+    if ((e.target.recommend.value !== "true" && e.target.recommend.value !== "false")) {
       errorString += ' choose if you recommend the product,'
     }
+
     if (errorString.length > 38) {
       console.log('error string', errorString)
-      errorString = errorString.slice(0, errorString.length - 1)
-      errorString += '.'
-      validate = errorString;
-      // console.log('error message')
+      var newErrorString = errorString.slice(0, errorString.length - 1)
+      newErrorString += '.'
+
+      handleValidate(newErrorString)
     } else {
-      console.log('send axios')
+      // console.log('send axios')
       handleClose()
-      var sendData = {
+      sendData = {
         product_id: product.id,
         rating: e?.target?.rating?.value,
         summary: e?.target?.summary?.value,
@@ -84,25 +96,33 @@ const ReviewModal = ({ product, metaData, handleClose }) => {
         characteristics: charInts,
       }
       console.log(sendData)
-        var options = {
-          url: "/reviews",
-          method: "post",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          data: [sendData]
-        };
+      var options = {
+        url: "/reviews",
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: [sendData]
+      };
 
-        axios(options)
-          .then((results) => {
-            console.log('submitted')
+      axios(options)
+        .then((results) => {
+          console.log('submitted')
 
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
+  }
+
+  // useEffect(()=> {
+  //   console.log(validate)
+  //   if (validate) {
+  //     var newString = validate.slice()
+  //     validate = newString;
+  //   }
+  // }, [validate])
 
 
   return (
@@ -110,16 +130,19 @@ const ReviewModal = ({ product, metaData, handleClose }) => {
 
       <Item>
 
-        <form onSubmit={(e) => {
+        <Box component="form"
+        onSubmit={(e) => {
           e.preventDefault()
           handleFormSubmit(e)
         }}>
+
           <ReviewModalComponents
             product={product}
             metaData={metaData}
             validate={validate}
           />
-        </form>
+
+        </Box>
       </Item>
 
     </div >
