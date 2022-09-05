@@ -67,7 +67,8 @@ const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
   }
 
 useEffect(()=>{
-  setSort(window.sessionStorage.getItem('sort'))
+  window.sessionStorage.getItem('sort') ?
+  setSort(window.sessionStorage.getItem('sort')): 'relevant'
 }, [])
 
   useEffect(() => {
@@ -87,15 +88,6 @@ useEffect(()=>{
     }
     axios(options)
       .then((results) => {
-        // var sortedReviews;
-        // if (sort === 'newest') {
-        //   sortedReviews = results.data.results.sort((a, b) => { b.date - a.date })
-        // } else if (sort === 'helpful') {
-        //   sortedReviews = results.data.results.sort((a, b) => { b.helpfulness - a.helpfulness })
-        // } else {
-        //   sortedReviews = results.data.results;
-        // }
-
         var sortedReviews = results.data.results;
 
         var starCurrentReviews = []
@@ -141,7 +133,7 @@ useEffect(()=>{
 
 
   return (
-    <div>
+    <div data-testid="reviewListRoot">
       <Grid container
         direction="row"
         justifyContent="space-between"
@@ -151,7 +143,7 @@ useEffect(()=>{
       >
         <Grid
           justifyContent="flex-start">
-          <span><b>Total Reviews: {numReviews} </b></span>
+          <span data-testid='reviewListTotalReviews'><b >Total Reviews: {numReviews} </b></span>
         </Grid>
         <Grid
           justifyContent="flex-end">
@@ -163,6 +155,7 @@ useEffect(()=>{
               value={sort}
               label="Sort on"
               onChange={(e) => { handleSortChange(e) }}
+              data-testid='reviewListSortSelector'
             >
               <MenuItem value={'relevant'}>Relevant</MenuItem>
               <MenuItem value={'newest'}>Newest</MenuItem>
@@ -171,10 +164,10 @@ useEffect(()=>{
           </FormControl>
         </Grid>
       </Grid>
-      <div className='ReviewScroll'>
+      <div className='ReviewScroll' data-testid='reviewListTiles'>
         {(currentReviews && reviewsInView.length > 0) && <>
           {reviewsInView.map((review) => (
-            <ReviewTile key={review.review_id}
+            <ReviewTile key={review.review_id} data-testid={review.review_id.toString()}
               review={review}
               metaData={metaData}
               sort={sort}
@@ -189,7 +182,7 @@ useEffect(()=>{
         <Button variant="outlined"
           endIcon={<AddIcon />}
           onClick={handleOpen}
-          data-testid="reviewModal"
+          data-testid="reviewModalButton"
         >Add a Review </Button>
       </Stack>
 
@@ -199,6 +192,7 @@ useEffect(()=>{
           onClose={handleClose}
           aria-labelledby="add-a-review"
           aria-describedby="modal-review-form"
+          data-testid='reviewModal'
         >
           <div>
             <ReviewModal product={currentProduct} metaData={metaDataState} handleClose={handleClose}/>

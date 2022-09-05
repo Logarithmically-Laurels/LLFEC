@@ -1,6 +1,8 @@
 .reviewAppRoot {
   height: 85vh;
   margin-top: 3vh;
+  display:flex;
+  justify-content: center;
 }
 
 .link {
@@ -142,4 +144,5 @@
 
 .photoForm {
   width: 100%;
+
 }

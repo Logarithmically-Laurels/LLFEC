@@ -69,7 +69,7 @@ const clearStarFilter = (e) => {
   }, []);
 
   return (
-    <div className='reviewAppRoot'>
+    <div className='reviewAppRoot' data-testid='reviewAppRoot'>
       {reviewMetaData && (
         <Grid
           container
@@ -78,6 +78,7 @@ const clearStarFilter = (e) => {
           direction="row"
           justifyContent="space-around"
           alignItems="stretch"
+        maxWidth='1500px'
         >
           <Grid item xs={3}>
             <Item>
