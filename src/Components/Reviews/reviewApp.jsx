@@ -15,6 +15,7 @@ const ReviewApp = ({ currentProd }) => {
   const [starsToRender, setStarsToRender] = useState([]);
 
 
+
   const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
     // padding: theme.spacing(1),
@@ -29,7 +30,10 @@ const ReviewApp = ({ currentProd }) => {
       numReviews += parseInt(reviewMetaData.ratings[rating]);
     }
   }
-
+const clearStarFilter = (e) => {
+  e.preventDefault()
+  setStarsToRender([])
+}
   const handleStarSort = (e, rating) => {
     e.preventDefault()
     var tempStars = starsToRender;
@@ -84,6 +88,7 @@ const ReviewApp = ({ currentProd }) => {
                 style={{ height: "100%" }}
                 handleStarSort={handleStarSort}
                 starsToRender={starsToRender}
+                clearStarFilter={clearStarFilter}
               />
             </Item>
           </Grid>

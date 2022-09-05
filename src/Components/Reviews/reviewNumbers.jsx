@@ -11,7 +11,7 @@ import charKey from './reviewData.jsx';
 
 
 
-const ReviewNumber = ({ product_id, numReviews, metaData, handleStarSort, starsToRender }) => {
+const ReviewNumber = ({ product_id, numReviews, metaData, handleStarSort, starsToRender, clearStarFilter, clearFilterMsg }) => {
   const [prod_id, setProd_Id] = useState(product_id);
   const [background, setBackground] = useState(false);
   const [numbersStarsToRender, setNumbersStarsToRender] = useState(starsToRender)
@@ -88,6 +88,9 @@ const ReviewNumber = ({ product_id, numReviews, metaData, handleStarSort, starsT
       <div>
         <Stack spacing={0} direction="column" container="true" paddingTop="3%" width="100%">
           <span className='ratingTitle'>Rating Breakdown</span>
+         {numbersStarsToRender.length>0 && <button className="starLabels" onClick={(e)=> {
+            clearStarFilter(e)
+          }}>Clear Filters</button>}
           <Stack spacing={0} direction="column" container="true" margin="2%" paddingTop="3%" width='100%'
 
           >
