@@ -11,6 +11,7 @@ const Link = Scroll.Link;
 
 const ProductInfo = (props) => {
   const [numbOfReviews, setNumbOfReviews] = useState(0);
+  console.log("LOOK HERE: ", props);
 
   useEffect(() => {
     var options = {
@@ -79,7 +80,7 @@ const ProductInfo = (props) => {
           </Box>
         </Link>
       </Container>
-      <Typography variant="body2">CATEGORY</Typography>
+      <Typography variant="body2">{props.prodCat}</Typography>
       <Typography variant="h5" sx={{ fontsize: 20 }}>
         {props.prodInfo.name}
       </Typography>

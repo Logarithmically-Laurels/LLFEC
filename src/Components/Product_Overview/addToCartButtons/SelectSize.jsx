@@ -7,6 +7,7 @@ const SelectSizeButton = (props) => {
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+    console.log(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
@@ -68,9 +69,7 @@ const SelectSizeButton = (props) => {
           aria-expanded={open ? "true" : undefined}
           onClick={handleClick}
         >
-          <Element data-testid="selectSize" name="SSSS">
-            {props.currentSize.size}
-          </Element>
+          <Element data-testid="selectSize">{props.currentSize.size}</Element>
         </Button>
         <Menu
           id="basic-menu"

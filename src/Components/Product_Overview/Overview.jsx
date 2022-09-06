@@ -59,7 +59,11 @@ const Overview = (props) => {
             width: "40%",
           }}
         >
-          <ProductInfo prodId={currentProductId} prodInfo={currentStyle} />
+          <ProductInfo
+            prodCat={props.currentProduct.category}
+            prodId={currentProductId}
+            prodInfo={currentStyle}
+          />
           <StyleSelector
             prodId={currentProductId}
             currentStyle={currentStyle}

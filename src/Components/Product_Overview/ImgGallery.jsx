@@ -18,8 +18,8 @@ const ImgGallery = (props) => {
 
   var stylePhotosToDisplay = props.stylesToDisplay.photos;
 
-  if (props.stylesToDisplay.photos.length > 5) {
-    stylePhotosToDisplay = props.stylesToDisplay.photos.slice(0, 5);
+  if (props.stylesToDisplay.photos.length > 7) {
+    stylePhotosToDisplay = props.stylesToDisplay.photos.slice(0, 7);
   }
   const [stylePhotos, setStylePhotos] = useState(stylePhotosToDisplay);
 
@@ -67,6 +67,10 @@ const ImgGallery = (props) => {
   return (
     <Container
       disableGutters
+      onClick={() => {
+        //need to have modal show, might need to move modal state/functions into img gallery
+        //or if I figure out how to have dom click button for me
+      }}
       sx={{
         width: "100%",
         height: "100%",
@@ -76,6 +80,7 @@ const ImgGallery = (props) => {
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
         mr: "2%",
+        cursor: "zoom-in",
       }}
     >
       <Stack
@@ -87,6 +92,7 @@ const ImgGallery = (props) => {
           mt: "5%",
           mb: "30%",
           backgroundColor: "rgba(255, 255, 255, .15)",
+          cursor: "pointer",
         }}
       >
         <IconButton sx={{ p: "0", width: "100%" }}>
