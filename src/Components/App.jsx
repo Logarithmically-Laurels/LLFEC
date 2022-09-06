@@ -5,6 +5,7 @@ import ReviewApp from "./Reviews/reviewApp.jsx";
 import Questions from "./QuestionsAnswers/Questions.jsx";
 import Navbar from "./Navbar.jsx";
 import { Container } from "@mui/material";
+import { Element } from "react-scroll";
 
 const App = () => {
   //effect calling api get /products
@@ -19,8 +20,8 @@ const App = () => {
         "Content-Type": "application/json",
       },
       params: {
-        page: 2,
-        count: 20,
+        page: 1,
+        count: 5,
       },
     };
     axios(options)
@@ -35,16 +36,18 @@ const App = () => {
       });
   }, []);
   return (
-    <div>
+    <Container maxWidth={false}>
       {currentProduct && (
         <>
           <Navbar />
           <Overview currentProduct={currentProduct} />
           <Questions currentProd={currentProduct} />
-          <ReviewApp currentProd={currentProduct} />
+          <Element name="reviews">
+            <ReviewApp currentProd={currentProduct} />
+          </Element>
         </>
       )}
-    </div>
+    </Container>
   );
 };
 

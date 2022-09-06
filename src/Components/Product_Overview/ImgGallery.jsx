@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Container, Stack, IconButton } from "@mui/material";
+import { Container, Stack, IconButton, Box } from "@mui/material";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import PhotoModal from "./PhotoModal.jsx";
 
 const ImgGallery = (props) => {
@@ -14,10 +16,18 @@ const ImgGallery = (props) => {
   );
   const [currentImgIndex, setCurrentImgIndex] = useState(0);
 
+  var stylePhotosToDisplay = props.stylesToDisplay.photos;
+
+  if (props.stylesToDisplay.photos.length > 5) {
+    stylePhotosToDisplay = props.stylesToDisplay.photos.slice(0, 5);
+  }
+  const [stylePhotos, setStylePhotos] = useState(stylePhotosToDisplay);
+
   useEffect(() => {
     setMainImg(`url(${props.stylesToDisplay.photos[0].url})`);
   }, [props.stylesToDisplay]);
 
+  //TODO Add arrow functinality to img carosel
   const handleClick = (e) => {
     var tempImgIndex = currentImgIndex;
     if (Number(e) || e === "0") {
@@ -43,6 +53,14 @@ const ImgGallery = (props) => {
         setCurrentImgIndex(tempImgIndex);
         setMainImg(getImgUrl(tempImgIndex));
       }
+    } else if (e === "up") {
+      console.log("up");
+    } else if (e === "down") {
+      console.log("down");
+      //assuming the button would be disabled if at the end
+      //check what the index of first and last photo are
+      // console.log()
+      //setStylePhotos(props.stylesToDisplay.photos.slice(first index + 1, last index + 1))
     }
   };
 
@@ -61,23 +79,41 @@ const ImgGallery = (props) => {
       }}
     >
       <Stack
-        justifyContent="space-around"
+        justifyContent="space-between"
         alignItems="center"
-        sx={{ border: 1, width: "15%", mt: "2%", mb: "30%" }}
+        sx={{
+          borderRadius: 3,
+          width: "15%",
+          mt: "5%",
+          mb: "30%",
+          backgroundColor: "rgba(255, 255, 255, .15)",
+        }}
       >
-        {props.stylesToDisplay.photos.map((photo, index) => {
+        <IconButton sx={{ p: "0", width: "100%" }}>
+          <KeyboardArrowUpIcon onClick={() => handleClick("up")} />
+        </IconButton>
+        {stylePhotosToDisplay.map((photo, index) => {
           return (
-            <img
-              width="50px"
-              height="50px"
-              border={"2"}
-              src={photo.thumbnail_url}
-              name={index}
-              key={index}
-              onClick={(e) => handleClick(e.target.name)}
-            />
+            <Box
+              sx={{
+                width: 50,
+                height: 50,
+                backgroundSize: "contain",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
+                border: 1,
+                borderRadius: 1,
+                borderColor: "black",
+                backgroundImage: `url(${photo.thumbnail_url}`,
+                key: { index },
+              }}
+              onClick={() => handleClick(index)}
+            ></Box>
           );
         })}
+        <IconButton sx={{ p: "0", width: "100%" }}>
+          <KeyboardArrowDownIcon onClick={() => handleClick("down")} />
+        </IconButton>
       </Stack>
       <Stack
         direction="row"

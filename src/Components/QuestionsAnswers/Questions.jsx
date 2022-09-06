@@ -84,7 +84,11 @@ const Questions = ({ currentProd }) => {
         };
         axios(options)
           .then((res) => {
-            let temp = res.data.results.sort((a, b) => parseFloat(b.question_helpfulness) - parseFloat(a.question_helpfulness));
+            let temp = res.data.results.sort(
+              (a, b) =>
+                parseFloat(b.question_helpfulness) -
+                parseFloat(a.question_helpfulness)
+            );
             // console.log(temp);
             setQuestions(temp);
             setRenderedQuestions(temp.slice(0, shownQuestions));
@@ -231,7 +235,7 @@ const Questions = ({ currentProd }) => {
           console.log(err);
         });
     }
-  }, [searched])
+  }, [searched]);
 
   return (
     <Typography textAlign="center">

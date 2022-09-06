@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Container, Typography, Stack } from "@mui/material";
+import { Container, Typography, Stack, Box } from "@mui/material";
 import Stars from "../Reviews/stars.jsx";
-import Link from "@mui/material/Link";
 import IconButton from "@mui/material/IconButton";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import PinterestIcon from "@mui/icons-material/Pinterest";
 import FacebookIcon from "@mui/icons-material/Facebook";
+import Scroll from "react-scroll";
+const Link = Scroll.Link;
 
 const ProductInfo = (props) => {
   const [numbOfReviews, setNumbOfReviews] = useState(0);
@@ -53,14 +54,30 @@ const ProductInfo = (props) => {
   };
 
   //TODO center read all reviews
+  //create hover animation for link (underline)
   return (
     <Container
       disableGutters
-      sx={{ border: 1, height: "33%", width: "100%", mb: "2%" }}
+      sx={{ border: 4, height: "33%", width: "100%", mb: "2%" }}
     >
       <Container disableGutters sx={{ width: "100%", display: "flex" }}>
         <Stars product_id={props.prodId} />
-        <Link sx={{ color: "black" }}>{reviewText()}</Link>
+        <Link
+          onHover={() => {}}
+          activeClass="active"
+          to="reviews"
+          smooth={true}
+          offset={50}
+          duration={500}
+        >
+          <Box
+            sx={{
+              textDecoration: "underline",
+            }}
+          >
+            {reviewText()}
+          </Box>
+        </Link>
       </Container>
       <Typography variant="body2">CATEGORY</Typography>
       <Typography variant="h5" sx={{ fontsize: 20 }}>
