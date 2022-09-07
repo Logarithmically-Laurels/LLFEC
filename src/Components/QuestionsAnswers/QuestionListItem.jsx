@@ -16,9 +16,24 @@ const QuestionListItem = ({question, answers, question_date, question_helpfulnes
   const [numOfRenderedAnswers, setNumOfRenderedAnswers] = useState(2);
   const [counter, setCounter] = useState(0);
   const [newPhotos, setNewPhotos] = useState([]);
-  const [photoURL, setPhotoURL] = useState('');
+  const [photoURL, setPhotoURL] = useState(null);
+  const [helped, setHelped] = useState(false);
 
-  let newTime = question_date.slice(0,10);
+  console.log(renderedAnswers);
+  let newTime;
+
+  if (question_date) {
+    newTime = question_date.slice(0,10);
+  } else {
+    newTime = question_date;
+  }
+
+  const helpfulQuestion = (e) => {
+    if (helped === false) {
+      onYes(e);
+      setHelped(true);
+    }
+  }
 
   const onClickAddAnswer = () => {
     setAddAnswer(!addAnswer);
@@ -168,10 +183,10 @@ const QuestionListItem = ({question, answers, question_date, question_helpfulnes
               <Typography color="#5A5A5A" variant="h6"><strong>Q: {question}</strong></Typography>
             </Grid>
             <Grid item xs ={1.5} textAlign="center">
-              <span><Typography color="#5A5A5A" variant="caption" id={question_id} onClick={onYes}>Helpful? | Yes ({question_helpfulness})&nbsp;&nbsp;&nbsp;&nbsp;|</Typography></span>
+              <span><Typography color="#5A5A5A" variant="caption" id={question_id} onClick={helpfulQuestion}>Helpful? | Yes ({question_helpfulness})&nbsp;&nbsp;&nbsp;&nbsp;|</Typography></span>
             </Grid>
             <Grid item xs={1.5}>
-                <AnswerModalText onAnswerSubmit={onAnswerSubmit} onChangeNewAnswer={onChangeNewAnswer} onChangeNewEmail={onChangeNewEmail} onChangeNewUsername={onChangeNewUsername} onChangePhotos={onChangePhotos} newPhotos={newPhotos} onURLChange={onURLChange} photoURL={photoURL} onFileChange={onFileChange}/>
+                <AnswerModalText onAnswerSubmit={onAnswerSubmit} onChangeNewAnswer={onChangeNewAnswer} onChangeNewEmail={onChangeNewEmail} onChangeNewUsername={onChangeNewUsername} onChangePhotos={onChangePhotos} newPhotos={newPhotos} onURLChange={onURLChange} photoURL={photoURL} onFileChange={onFileChange} newAnswerBody={newAnswerBody} newEmail={newEmail} newUsername={newUsername}/>
             </Grid>
             <Grid item xs={12}>
               <AnswerList answers={renderedAnswers} onChangeNewAnswer={onChangeNewAnswer} onChangeNewEmail={onChangeNewEmail} onChangeNewUsername={onChangeNewUsername} onClickAddAnswer={onClickAddAnswer} addAnswer={addAnswer} onAnswerSubmit={onAnswerSubmit} onClickShowMoreAnswers={onClickShowMoreAnswers} onClickHideMoreAnswers={onClickHideMoreAnswers} onYesAnswer={onYesAnswer} onAnswerReport={onAnswerReport} allAnswers={newAnswers}/>
@@ -195,14 +210,14 @@ const QuestionListItem = ({question, answers, question_date, question_helpfulnes
                 <Typography color="#5A5A5A" variant="h6"><strong>Q: {question}</strong></Typography>
               </Grid>
               <Grid item xs ={1.5} textAlign="center">
-                <span><Typography color="#5A5A5A" variant="caption" id={question_id} onClick={onYes}>Helpful? | Yes ({question_helpfulness})&nbsp;&nbsp;&nbsp;&nbsp;|</Typography></span>
+                <span><Typography color="#5A5A5A" variant="caption" id={question_id} onClick={helpfulQuestion}>Helpful? | Yes ({question_helpfulness})&nbsp;&nbsp;&nbsp;&nbsp;|</Typography></span>
               </Grid>
               <Grid item xs={1.5}>
-                  <AnswerModalText onAnswerSubmit={onAnswerSubmit} onChangeNewAnswer={onChangeNewAnswer} onChangeNewEmail={onChangeNewEmail} onChangeNewUsername={onChangeNewUsername} onChangePhotos={onChangePhotos} newPhotos={newPhotos} onURLChange={onURLChange} photoURL={photoURL} onFileChange={onFileChange}/>
+                  <AnswerModalText onAnswerSubmit={onAnswerSubmit} onChangeNewAnswer={onChangeNewAnswer} onChangeNewEmail={onChangeNewEmail} onChangeNewUsername={onChangeNewUsername} onChangePhotos={onChangePhotos} newPhotos={newPhotos} onURLChange={onURLChange} photoURL={photoURL} onFileChange={onFileChange} newAnswerBody={newAnswerBody} newEmail={newEmail} newUsername={newUsername}/>
               </Grid>
               <Grid item xs={12}>
                 <Paper elevation={0}>
-                  <AnswerModal onAnswerSubmit={onAnswerSubmit} onChangeNewAnswer={onChangeNewAnswer} onChangeNewEmail={onChangeNewEmail} onChangeNewUsername={onChangeNewUsername} onChangePhotos={onChangePhotos} newPhotos={newPhotos} onURLChange={onURLChange} photoURL={photoURL} onFileChange={onFileChange}/>
+                  <AnswerModal onAnswerSubmit={onAnswerSubmit} onChangeNewAnswer={onChangeNewAnswer} onChangeNewEmail={onChangeNewEmail} onChangeNewUsername={onChangeNewUsername} onChangePhotos={onChangePhotos} newPhotos={newPhotos} onURLChange={onURLChange} photoURL={photoURL} onFileChange={onFileChange} newAnswerBody={newAnswerBody} newEmail={newEmail} newUsername={newUsername}/>
                 </Paper>
               </Grid>
               <Grid item xs={12}>

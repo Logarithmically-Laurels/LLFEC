@@ -28,14 +28,13 @@ const QuestionModal = ({onQuestionChange, onAddQuestion, onEmailChange, onUserCh
   }
 
   const twoFunctionsSubmit = () => {
-    console.log('hello');
     onAddQuestion();
     handleClose();
   }
 
   return (
     <div>
-      <Button size="large" variant="outlined" onClick={handleOpen} style={{width:'570px', height:'60px'}}>Ask a question +</Button>
+      <Button data-testid="questionModal" size="large" variant="outlined" onClick={handleOpen} style={{width:'570px', height:'60px'}}>Ask a question +</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -46,7 +45,7 @@ const QuestionModal = ({onQuestionChange, onAddQuestion, onEmailChange, onUserCh
           <Typography color="#5A5A5A" id="modal-modal-title" variant="h5" component="h2">
             Ask a question
           </Typography>
-          <form>
+          <form onSubmit={twoFunctionsSubmit}>
             <Grid container spacing={1}>
               <Grid item xs={12}>
                 <TextField required type='text' id="outlined-multiline-static" multiline label='Ask a question' rows={4} placeholder="Maximum 1000 characters..." onChange={onQuestionChange} size="medium" style={{width: 800}} inputProps={{ maxLength: 1000}}></TextField>
@@ -58,7 +57,7 @@ const QuestionModal = ({onQuestionChange, onAddQuestion, onEmailChange, onUserCh
                 <TextField required type='email' label='Email' placeholder="Maximum 60 characters..." onChange={onEmailChange} size="small" style={{width: 396}} inputProps={{ maxLength: 60}}></TextField>
               </Grid>
               <Grid item xs={12} textAlign="center">
-                <Button variant="outlined" onClick={twoFunctionsSubmit} style={{width:'800px', height:'50px'}}>Submit your question</Button>
+                <Button data-testid="questionSubmit" type="submit" variant="outlined" style={{width:'800px', height:'50px'}}>Submit your question</Button>
               </Grid>
             </Grid>
           </form>

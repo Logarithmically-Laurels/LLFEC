@@ -17,7 +17,7 @@ const style = {
   p: 4,
 };
 
-const AnswerModal = ({onAnswerSubmit, onChangeNewAnswer, onChangeNewEmail, onChangeNewUsername, onChangePhotos, newPhotos, onURLChange, photoURL, onFileChange}) => {
+const AnswerModal = ({onAnswerSubmit, onChangeNewAnswer, onChangeNewEmail, onChangeNewUsername, onChangePhotos, newPhotos, onURLChange, photoURL, onFileChange, newAnswerBody, newEmail, newUsername}) => {
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => {
@@ -28,14 +28,14 @@ const AnswerModal = ({onAnswerSubmit, onChangeNewAnswer, onChangeNewEmail, onCha
     setOpen(false);
   }
 
-  const twoFunctionsSubmit = () => {
+  const twoFunctionsSubmit = (e) => {
     onAnswerSubmit();
     handleClose();
   }
 
   return (
     <div>
-      <Button size="large" variant="text" onClick={handleOpen} sx={{color:"#5A5A5A", width:'150px', height:'50px'}} >Add answer +</Button>
+      <Button data-testid="answerModal" size="large" variant="text" onClick={handleOpen} sx={{color:"#5A5A5A", width:'150px', height:'50px'}} >Add answer +</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -46,16 +46,16 @@ const AnswerModal = ({onAnswerSubmit, onChangeNewAnswer, onChangeNewEmail, onCha
           <Typography color="#5A5A5A" id="modal-modal-title" variant="h5" component="h2">
             Write your answer
           </Typography>
-          <form>
+          <form onSubmit={twoFunctionsSubmit}>
             <Grid container spacing={1}>
               <Grid item xs={12}>
-                <TextField required type='text' id="outlined-multiline-static" multiline label='Answer the question' rows={4} placeholder="Maximum 1000 characters..." size="normal" style={{width: 800}} onChange={onChangeNewAnswer} inputProps={{ maxLength: 1000}}></TextField>
+                <TextField required type='text' id="outlined-multiline-static" multiline label='Answer the question' rows={4} placeholder="Maximum 1000 characters..." size="normal" style={{width: 800}} onChange={onChangeNewAnswer} inputProps={{ maxLength: 1000}} value={newAnswerBody}></TextField>
               </Grid>
               <Grid item xs={6}>
-                <TextField required type='text' label='Username' placeholder="Maximum 60 characters..." size="small" style={{width: 400}} onChange={onChangeNewUsername} inputProps={{ maxLength: 60}}></TextField>
+                <TextField required type='text' label='Username' placeholder="Maximum 60 characters..." size="small" style={{width: 400}} onChange={onChangeNewUsername} inputProps={{ maxLength: 60}} value={newUsername}></TextField>
               </Grid>
               <Grid item xs={6}>
-                <TextField required type='email' label='Email' placeholder="Maximum 60 characters..." size="small" style={{width: 396}} onChange={onChangeNewEmail} inputProps={{ maxLength: 60}}></TextField>
+                <TextField required type='email' label='Email' placeholder="Maximum 60 characters..." size="small" style={{width: 396}} onChange={onChangeNewEmail} inputProps={{ maxLength: 60}} value={newEmail}></TextField>
               </Grid>
               <Grid item xs={12}>
                   {newPhotos.map((photo) => <span><img width={100} height={100} src={`${photo}`}/>&nbsp;&nbsp;</span>)}
@@ -64,7 +64,7 @@ const AnswerModal = ({onAnswerSubmit, onChangeNewAnswer, onChangeNewEmail, onCha
                 <AnswerModalPhotos onChangePhotos={onChangePhotos} newPhotos={newPhotos} onURLChange={onURLChange} photoURL={photoURL} onFileChange={onFileChange}/>
               </Grid>
               <Grid item xs={12} textAlign="center">
-                <Button variant="outlined" onClick={twoFunctionsSubmit} style={{width:'800px', height:'50px'}}>Submit your answer</Button>
+                <Button data-testid="answerSubmit" type="submit" variant="outlined" style={{width:'800px', height:'50px'}}>Submit your answer</Button>
               </Grid>
             </Grid>
           </form>
