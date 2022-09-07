@@ -46,7 +46,7 @@ const ImgGallery = (props) => {
     var tempImgIndex = currentImgIndex;
     if (Number(e) || e == "0") {
       let imgUrl = getImgUrl(e);
-      console.log(imgUrl);
+      // console.log(imgUrl);
       setCurrentImgIndex(e);
       setMainImg(imgUrl);
     } else if (e === "left") {
@@ -71,7 +71,7 @@ const ImgGallery = (props) => {
     } else if (e === "up") {
       if (tempImgIndex > 0) {
         if (firstPhotoIndex > 0 && tempImgIndex === firstPhotoIndex) {
-          console.log("working");
+          // console.log("working");
         }
         tempImgIndex--;
         setCurrentImgIndex(tempImgIndex);
@@ -79,12 +79,12 @@ const ImgGallery = (props) => {
       }
     } else if (e === "down") {
       if (tempImgIndex < totalNumOfPhotos) {
-        console.log("TEMP IMG INDEX", tempImgIndex);
-        console.log("FIRST IMG INDEX: ", firstImgIndex);
-        console.log("LAST IMG INDEX: ", lastImgIndex);
-        console.log("all photos length: ", allPhotos.length);
+        // console.log("TEMP IMG INDEX", tempImgIndex);
+        // console.log("FIRST IMG INDEX: ", firstImgIndex);
+        // console.log("LAST IMG INDEX: ", lastImgIndex);
+        // console.log("all photos length: ", allPhotos.length);
         if (tempImgIndex === lastImgIndex && tempImgIndex < allPhotos.length) {
-          console.log("HERE HERE HERE");
+          // console.log("HERE HERE HERE");
           tempImgIndex++;
           var newSet = allPhotos.slice(firstImgIndex + 1, lastImgIndex + 2);
           setStylePhotos(newSet);
@@ -93,7 +93,7 @@ const ImgGallery = (props) => {
           setFirstImgIndex(firstImgIndex + 1);
           setLastImgIndex(lastImgIndex + 1);
         } else {
-          console.log("WRONGS SPOT");
+          // console.log("WRONGS SPOT");
           tempImgIndex++;
           setCurrentImgIndex(tempImgIndex);
           setMainImg(getImgUrl(tempImgIndex));
