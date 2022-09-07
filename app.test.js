@@ -4,7 +4,7 @@ import userEvent from "@testing-library/user-event";
 import { render, screen, waitFor } from "@testing-library/react";
 import App from "./src/Components/App.jsx";
 
-describe("JB First Jest Test", function () {
+xdescribe("JB First Jest Test", function () {
   const user = userEvent.setup();
 
   it(`should render next image`, () => {

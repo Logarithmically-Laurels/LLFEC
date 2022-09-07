@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">25% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>1/3</span>
+                <span class='fraction'>1/4</span>
             </div>
         
             
@@ -39,14 +39,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">25% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>1/3</span>
+                <span class='fraction'>1/4</span>
             </div>
         
             
@@ -109,23 +109,20 @@
 <a name='L44'></a><a href='#L44'>44</a>
 <a name='L45'></a><a href='#L45'>45</a>
 <a name='L46'></a><a href='#L46'>46</a>
-<a name='L47'></a><a href='#L47'>47</a>
-<a name='L48'></a><a href='#L48'>48</a>
-<a name='L49'></a><a href='#L49'>49</a>
-<a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a>
-<a name='L52'></a><a href='#L52'>52</a>
-<a name='L53'></a><a href='#L53'>53</a>
-<a name='L54'></a><a href='#L54'>54</a>
-<a name='L55'></a><a href='#L55'>55</a>
-<a name='L56'></a><a href='#L56'>56</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L47'></a><a href='#L47'>47</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -146,24 +143,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -181,29 +163,14 @@ import { Avatar } from "@mui/material";
 import axios from "axios";
 &nbsp;
 const StyleSelector = <span class="fstat-no" title="function not covered" >(p</span>rops) =&gt; {
-  // console.log(props.prodId);
-  // let options = {
-  //   url: "/styles",
-  //   method: "GET",
-  //   headers: { "Content-Type": "application/json", prodId: props.prodId },
-  // };
-&nbsp;
-  // useEffect(() =&gt; {
-  //   axios(options).then((result) =&gt; {
-  //     console.log(result.data);
-  //   });
-  // });
-&nbsp;
-  //current product Id will default to first style
-  //make api call to retrieve product styles.
-  // https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/`${props.currentProductId}`/styles
-  // setCurrentStyle(response from api call)
-&nbsp;
 <span class="cstat-no" title="statement not covered" >  return (</span>
-    &lt;Container disableGutters sx={{ border: 1, height: "35%" }}&gt;
-      &lt;Container disableGutters sx={{ display: "flex" }}&gt;
+    &lt;Container
+      disableGutters
+      sx={{ border: 1, height: "33%", width: "100%", height: "40%" }}
+    &gt;
+      &lt;Container disableGutters sx={{ display: "flex", height: "20%" }}&gt;
         &lt;Typography sx={{ fontWeight: "bold" }}&gt;{"Style &gt;   "} &lt;/Typography&gt;
-        &lt;Typography sx={{ ml: "1%" }}&gt; {props.currentStyle.name}&lt;/Typography&gt;
+        &lt;Typography sx={{ ml: "3%" }}&gt; {props.currentStyle.name}&lt;/Typography&gt;
       &lt;/Container&gt;
 &nbsp;
       &lt;Container
@@ -211,15 +178,21 @@ const StyleSelector = <span class="fstat-no" title="function not covered" >(p</s
         sx={{
           display: "grid",
           columnGap: 0,
-          rowGap: 1,
+          rowGap: 0,
           gridTemplateColumns: "repeat(4, 1fr)",
-          ml: "0%",
-          my: "2%",
+          ml: "2%",
+          my: "0%",
+          width: "100%",
+          height: "60%",
         }}
       &gt;
         {props.allStyles.results.map(<span class="fstat-no" title="function not covered" >(s</span>tyle, index) =&gt; {
 <span class="cstat-no" title="statement not covered" >          return (</span>
-            &lt;Avatar sx={{}} key={index} src={style.photos[0].thumbnail_url} /&gt;
+            &lt;Avatar
+              onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >props.setStyle(style)}</span>
+              key={index}
+              src={style.photos[0].thumbnail_url}
+            /&gt;
           );
         })}
       &lt;/Container&gt;
@@ -235,7 +208,7 @@ export default StyleSelector;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-08-31T02:01:28.737Z
+                at 2022-09-06T23:49:58.410Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

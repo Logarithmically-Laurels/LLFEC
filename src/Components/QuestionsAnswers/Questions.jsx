@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Search from "./Search.jsx";
-import AddQuestions from "./AddQuestions.jsx";
 import QuestionList from "./QuestionList.jsx";
 import QuestionModal from "./QuestionModal.jsx";
 import {
@@ -13,7 +12,7 @@ import {
   Paper,
   Box,
 } from "@mui/material";
-const authtoken = require("/config.js");
+// const authtoken = require("/config.js");
 
 const Questions = ({ currentProd }) => {
   const [questions, setQuestions] = useState([]);
@@ -108,7 +107,6 @@ const Questions = ({ currentProd }) => {
           method: "GET",
           url: "/qa/questions",
           headers: {
-            Authorization: authtoken.authtoken,
             "Content-Type": "application/json",
           },
           params: {
@@ -127,6 +125,9 @@ const Questions = ({ currentProd }) => {
             );
             setQuestions(temp);
             setRenderedQuestions([...renderedQuestions, temp2[0]]);
+            setCurrentQuestion('');
+            setUsername('');
+            setEmail('');
           })
           .catch((err) => {
             console.log(err);
@@ -155,32 +156,7 @@ const Questions = ({ currentProd }) => {
     };
     axios(options)
       .then((res) => {
-        let temp = res.data.results.sort(
-          (a, b) =>
-            parseFloat(b.question_helpfulness) -
-            parseFloat(a.question_helpfulness)
-        );
-        setQuestions(temp);
-        setRenderedQuestions(temp.slice(0, shownQuestions));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
-  useEffect(() => {
-    var options = {
-      method: "GET",
-      url: "/qa/questions",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      params: {
-        product_id: currentProd.id,
-      },
-    };
-    axios(options)
-      .then((res) => {
+        console.log(res);
         let temp = res.data.results.sort(
           (a, b) =>
             parseFloat(b.question_helpfulness) -
@@ -210,7 +186,6 @@ const Questions = ({ currentProd }) => {
         method: "GET",
         url: "/qa/questions",
         headers: {
-          Authorization: authtoken.authtoken,
           "Content-Type": "application/json",
         },
         params: {
