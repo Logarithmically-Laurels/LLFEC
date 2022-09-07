@@ -19,8 +19,8 @@ const App = () => {
         "Content-Type": "application/json",
       },
       params: {
-        page: 2,
-        count: 20,
+        page: 1,
+        count: 5,
       },
     };
     axios(options)

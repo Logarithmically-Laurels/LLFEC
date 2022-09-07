@@ -11,17 +11,22 @@ const FormPhotoInput = ({ }) => {
   const [photos, setPhotos] = useState([]);
   const [photosString, setPhotosString] = useState([])
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleInnerOpen = () => setOpen(true);
+  const handleInnerClose = () => setOpen(false);
 
-const [dontShow, setDontShow] = useState(false)
+  const [dontShow, setDontShow] = useState(false)
 
   const handlePhotoUpload = (e) => {
-    console.log('handling photo upload Input ', photos)
+    console.log('handlephotoUpload')
     var photoArray = photos.slice()
     var photoArrayString = photosString;
-    photoArray.push(e?.target?.currentPhoto?.value,)
-    photoArrayString.push(e?.target?.currentPhoto?.value, toString())
+    if (e?.target?.currentPhotoURL?.value) {
+      var url = e.target.currentPhotoURL.value
+    } else {
+      var url = e;
+    }
+    photoArray.push(url,);
+    photoArrayString.push(url, toString())
     setPhotos([...photoArray])
     setPhotosString([...photoArrayString])
   }
@@ -35,6 +40,10 @@ const [dontShow, setDontShow] = useState(false)
     setPhotosString([...photoArrayString])
   }
 
+  const onFileChange = (e) => {
+    let temp = e.target.files[0];
+    handlePhotoUpload(URL.createObjectURL(temp));
+  }
 
 
 
@@ -62,35 +71,35 @@ const [dontShow, setDontShow] = useState(false)
 
 
   return (
-    <>
-    <input name='photos' type='hidden' value={photos}></input>
-      <Box sx={{ gridArea: 'upload' }}>
-        {photos.length < 5 && <Button variant="outlined" component="span" onClick={() => {
-          handleOpen()
-        }}>
+    < >
+      <input name='photos' aria-label='photosInput' type='hidden' value={photos}></input>
+      <Box sx={{ gridArea: 'upload' }} data-testid="reviewsFormPhotoInputRoot">
+        {photos.length < 5 && <Button variant="outlined" component="span" onClick={handleInnerOpen} name="inputButton">
           Upload a Photo
         </Button>}
         <Modal
           open={open}
-          onClose={handleClose}
+          onClose={handleInnerClose}
           aria-labelledby="add-a-photo"
           aria-describedby="modal-photo-form"
+          className="innerModal"
 
         >
           <div>
-          <FormPhotoModal
-            handlePhotoUpload={handlePhotoUpload}
-            handlePhotoDelete={handlePhotoDelete}
-            photos={photos}
-            handleClose={handleClose}
-          />
+            <FormPhotoModal
+              handlePhotoUpload={handlePhotoUpload}
+              handlePhotoDelete={handlePhotoDelete}
+              photos={photos}
+              handleInnerClose={handleInnerClose}
+              onFileChange={onFileChange}
+            />
           </div>
         </Modal >
       </Box>
-      <Box sx={{ gridArea: 'photos' }}>
+      <Box sx={{ gridArea: 'photos' }} data-testid="reviewPhotoInputPhotos">
         {photos.length > 0 &&
           photos.map((photo, index) => (
-            <img src={photo} alt="reviewer photo" className='thumbnailModal' key={index} onClick={(index) => { handlePhotoDelete(index) }}></img>
+            <img src={photo} alt="reviewer photo" className='thumbnailModal' key={index} onClick={(index) => { handlePhotoDelete(index) }} ></img>
           ))
         }
       </Box>

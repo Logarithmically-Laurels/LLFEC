@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import TextField from '@mui/material/TextField';
 
-const FormNicknameInput = () => {
+const FormNicknameInput = ({}) => {
 const [nicknameDesc, setNicknameDesc] = useState(false)
 
 
@@ -14,9 +14,9 @@ const [nicknameDesc, setNicknameDesc] = useState(false)
         placeholder="Example: jackson11!"
         fullWidth
         name="nickname"
-
         inputProps={{
-          maxLength: 60
+          maxLength: 60,
+          'data-testid': 'reviewNicknameInputTextField'
         }}
         onChange={()=> {
           setNicknameDesc(true)

@@ -121,7 +121,7 @@ const ReviewTile = ({ review, product_id, metaData }) => {
 
 
   return (
-    <div>
+    <div data-testid='reviewTile'>
      {report && <Item>
         <Box
           sx={{
@@ -140,8 +140,10 @@ const ReviewTile = ({ review, product_id, metaData }) => {
           <Box sx={{ gridArea: 'stars' }}>
             <Rating size="small" name="read-only" value={review.rating} precision={0.25} readOnly />
           </Box>
-          <Box sx={{ gridArea: 'date' }} className='dateSize'>    {review.email && <CheckCircleOutlineIcon />}
+          <Box sx={{ gridArea: 'date' }} className='dateSize' data-testid='reviewTileDate'>
+          {review.email && <CheckCircleOutlineIcon />}
             {review.reviewer_name} on {format(new Date(review.date), 'PPP')}
+
           </Box>
           <Box sx={{ gridArea: 'summary' }} className='summarySize'>
             {showSummary && <><b>{showSummary}</b>

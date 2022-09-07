@@ -4,21 +4,23 @@ import NavSearch from "./NavbarSearch.jsx";
 
 const Navbar = () => {
   return (
-    <Container disableGutters align="center" sx={{ width: "100%", height: 80 }}>
+    <Container disableGutters align="center" maxWidth={false} sx={{ height: 80 }}>
       <Container
         disableGutters
         align="justify"
         justifyContent="space-between"
+        maxWidth={false}
         sx={{
           width: "100%",
           height: "60%",
-          backgroundColor: "gray",
+          backgroundColor: "#717171",
           border: 1,
           display: "flex",
         }}
       >
         <Container sx={{ mt: 0.3 }}>
           <svg
+            data-testid='navBarLogo'
             id="logo-53"
             width="169"
             height="42"

@@ -11,7 +11,7 @@ import charKey from './reviewData.jsx';
 
 
 
-const ReviewNumber = ({ product_id, numReviews, metaData, handleStarSort, starsToRender }) => {
+const ReviewNumber = ({ product_id, numReviews, metaData, handleStarSort, starsToRender, clearStarFilter, clearFilterMsg }) => {
   const [prod_id, setProd_Id] = useState(product_id);
   const [background, setBackground] = useState(false);
   const [numbersStarsToRender, setNumbersStarsToRender] = useState(starsToRender)
@@ -87,13 +87,16 @@ const ReviewNumber = ({ product_id, numReviews, metaData, handleStarSort, starsT
       </Stack>
       <div>
         <Stack spacing={0} direction="column" container="true" paddingTop="3%" width="100%">
-          <span className='ratingTitle'>Rating Breakdown</span>
-          <Stack spacing={0} direction="column" container="true" margin="2%" paddingTop="3%" width='100%'
+          <span className='ratingTitle' data-testid='reviewNumbersTitle'>Rating Breakdown</span>
+         {numbersStarsToRender.length>0 && <button className="starLabels" onClick={(e)=> {
+            clearStarFilter(e)
+          }}>Clear Filters</button>}
+          <Stack spacing={0} direction="column" container="true" margin="2%" paddingTop="3%" width='100%' data-testid='reviewNumbersRatingStack'
 
           >
             {[5, 4, 3, 2, 1].map((rating, index) => (
               <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center" key={index}>
-                <button className='starLabels' onClick={(e) => {
+                <button className='starLabels underline' onClick={(e) => {
                   handleStarSort(e, rating)
                 }}>
                   {numbersStarsToRender.indexOf(rating) > -1 ? <span ><b>{rating} Stars</b></span> : <span >{rating} Stars</span>}
@@ -104,7 +107,7 @@ const ReviewNumber = ({ product_id, numReviews, metaData, handleStarSort, starsT
                   max={100}
                   step={1}
                   aria-label="star slider"
-                  sx={{ color: green[500], width: '70%', display: 'flex', alignItems: 'center' }} />
+                  sx={{ color: green[500], width: '65%', display: 'flex', alignItems: 'center' }} />
                 <span className='starLabels'>{metaData.ratings[rating] ? metaData.ratings[rating] : 0}</span>
               </Stack>
             ))

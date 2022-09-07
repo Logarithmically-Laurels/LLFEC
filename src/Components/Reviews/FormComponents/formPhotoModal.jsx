@@ -5,8 +5,14 @@ import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import Divider from '@mui/material/Divider';
+import AddAPhotoOutlinedIcon from '@mui/icons-material/AddAPhotoOutlined';
+import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 
-const FormPhotoModal = ({ photos, handlePhotoUpload, handlePhotoDelete, handleClose }) => {
+
+const FormPhotoModal = ({ photos, handlePhotoUpload, handlePhotoDelete, handleInnerClose, onFileChange }) => {
 
   const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -20,7 +26,7 @@ const FormPhotoModal = ({ photos, handlePhotoUpload, handlePhotoDelete, handleCl
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: '70vw',
+    width: '50%',
     maxHeight: '70vh',
     bgcolor: 'background.paper',
     // bgcolor: 'white',
@@ -34,53 +40,57 @@ const FormPhotoModal = ({ photos, handlePhotoUpload, handlePhotoDelete, handleCl
 
   return (
 
-<>
+    < >
 
-    <form
-      onSubmit={(e) => {
-        console.log('form submit')
-        handlePhotoUpload(e)
-        handleClose()
-      }}>
+      <Box sx={style} textAlign="center" data-testid="reviewsPhotoModalRoot">
+        <Typography color="#5A5A5A" variant="h5" id="child-modal-title">Add Photos</Typography>
+        <form onSubmit={(e) => {
 
-      <Box
-        sx={{
-          ...style,
-          display: 'grid',
-          alignItems: 'center',
-          gridTemplateColumns: 'repeat(5, 1fr)',
-          gap: 1,
-          gridTemplateRows: 'auto',
-          gridTemplateAreas: `"Text Text Text Button"
-         "photo photo photo photo"`,
-        }} >
-        <Box sx={{ gridArea: 'Text' }}>
-          <TextField
-            required
-            id="outlined-required"
-            placeholder="Insert photo url here"
-            fullWidth
-            name="currentPhoto"
+          e.preventDefault()
+          handlePhotoUpload(e)
+          handleInnerClose()
+        }}>
 
-          />
-        </Box>
-        <Box sx={{ gridArea: 'Button', alignItems: 'center' }}>
-          <Button variant="outlined" type="submit">
-            Submit Photo
-          </Button>
-        </Box>
-        <Box sx={{ gridArea: 'photo' }}>
-          {photos.length > 0 &&
-            photos.map((photo, index) => (
-              <img src={photo} alt="reviewer photo" className='thumbnailModal' key={index} onClick={(index) => { handlePhotoDelete(index) }}></img>
-            ))
-          }
-        </Box>
-      </Box>
-    </form>
-
-
-    </>
+          <Grid container spacing={1}>
+            <Grid item xs={12}>
+              <TextField label='Paste Photo URL Here'
+              placeholder="Image URL"
+              size="normal"
+              style={{ width: '80%' }}
+              name="currentPhotoURL"
+              inputProps={{
+                'data-testid': "reviewPhotoModalURL",
+              }}></TextField>
+            </Grid>
+            <Grid item xs={12}>
+              <Divider>OR</Divider>
+            </Grid>
+            <Grid item xs={12}>
+              <Button variant="contained" component="label" size="large" endIcon={<AddAPhotoIcon />}>
+                UPLOAD PHOTO
+                <input hidden type='file' name="currentPhotoFile" onChange={onFileChange} onClick={e => (e.target.value = null)}></input>
+              </Button>
+            </Grid>
+            <Grid item xs={12} data-testid="reviewPhotoModalPhotos">
+              {photos.length > 0 &&
+                photos.map((photo, index) => (
+                  <img src={photo} alt="reviewer photo" className='thumbnailModal' key={index} onClick={(index) => { handlePhotoDelete(index) }} ></img>
+                ))
+              }
+            </Grid>
+            <Grid item xs={12}>
+              <Typography color="#5A5A5A">You can upload {5 - photos.length} more photos</Typography>
+            </Grid>
+            <Grid item xs={6} textAlign="center">
+              <Button type="submit" style={{ width: '300px', height: '50px' }}>Submit Photo</Button>
+            </Grid>
+            <Grid item xs={6} textAlign="center">
+              <Button onClick={handleInnerClose} style={{ width: '300px', height: '50px' }}>Close</Button>
+            </Grid>
+          </Grid>
+        </form>
+      </Box >
+    </ >
   );
 }
 

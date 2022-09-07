@@ -1,6 +1,8 @@
 .reviewAppRoot {
   height: 85vh;
   margin-top: 3vh;
+  display:flex;
+  justify-content: center;
 }
 
 .link {
@@ -85,10 +87,13 @@
 }
 .starLabels {
   font-size: .7em;
-  text-decoration: underline;
   background-color: transparent;
   border: none;
   transition-duration: 0.2s;
+}
+.underline{
+
+  text-decoration: underline;
 }
 .starLabels:hover {
   background-color: #e8e8e9;
@@ -142,4 +147,8 @@
 
 .photoForm {
   width: 100%;
+
 }
+/* .innerModal {
+  width: 80%;
+} */
