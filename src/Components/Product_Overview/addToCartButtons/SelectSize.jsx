@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { MenuItem, Menu, Button, IconButton, Container } from "@mui/material";
+import { Element } from "react-scroll";
 
 const SelectSizeButton = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+    console.log(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
@@ -16,11 +18,12 @@ const SelectSizeButton = (props) => {
     props.setQty(1);
     handleClose(null);
   };
+
   var sizes = Object.values(props.currentStyle);
 
   var outOfStock = () => {
     for (let i = 0; i < sizes.length; i++) {
-      if (sizes[i].quantity !== 0) {
+      if (sizes[i].quantity !== null) {
         return false;
       }
     }
@@ -32,6 +35,7 @@ const SelectSizeButton = (props) => {
     return (
       <Container disableGutters sx={{ width: "160%", ml: "0", mr: "10%" }}>
         <Button
+          //TODO disable or get rid of button animation
           sx={{
             border: 1,
             width: "100%",
@@ -66,7 +70,7 @@ const SelectSizeButton = (props) => {
           aria-expanded={open ? "true" : undefined}
           onClick={handleClick}
         >
-          {props.currentSize.size}
+          <Element data-testid="selectSize">{props.currentSize.size}</Element>
         </Button>
         <Menu
           id="basic-menu"

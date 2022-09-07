@@ -9,6 +9,7 @@ const AddToCart = (props) => {
   const [currentSize, setSize] = useState({ size: "Select Size" });
   const [currentQty, setQty] = useState("-");
   const [oosStatus, setOosStatus] = useState(false);
+
   return (
     <Container
       disableGutters
@@ -47,7 +48,7 @@ const AddToCart = (props) => {
           height: "35%",
         }}
       >
-        <AddToBag oosStatus={oosStatus} />
+        <AddToBag oosStatus={oosStatus} currentSize={currentSize} />
         <FavoriteButton />
       </Stack>
     </Container>

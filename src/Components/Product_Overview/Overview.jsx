@@ -10,7 +10,8 @@ import { Container, Paper } from "@mui/material";
 const dummyData = require("./dummydata.js").data;
 
 const Overview = (props) => {
-  var currentProductId = 37311; /*props.currentProduct.id*/
+  // var currentProductId = props.currentProduct.id;
+  var currentProductId = 37315;
   const [allStyles, setAllStyles] = useState(dummyData);
   const [currentStyle, setCurrentStyle] = useState(allStyles.results[0]);
 
@@ -26,15 +27,23 @@ const Overview = (props) => {
 
     axios(options)
       .then((response) => {
-        setAllStyles(response.data);
-        setCurrentStyle(response.data.results[0]);
+        if (response.data.results[0].photos[0].url !== null) {
+          setAllStyles(response.data);
+          setCurrentStyle(response.data.results[0]);
+        } else {
+          setAllStyles(response.data);
+          //TODO change bellow to a dummy data file with an object that will display oos images
+          // setCurrentStyle(allStyles.results[0]);
+          setCurrentStyle(response.data.results[0]);
+        }
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
+
   return (
-    <Container disableGutters sx={{ width: "100%", mb: "2.5%" }}>
+    <Container disableGutters maxWidth={false} sx={{ mb: "2.5%" }}>
       <Container
         sx={{
           border: 1,
@@ -50,7 +59,11 @@ const Overview = (props) => {
             width: "40%",
           }}
         >
-          <ProductInfo prodId={currentProductId} prodInfo={currentStyle} />
+          <ProductInfo
+            prodCat={props.currentProduct.category}
+            prodId={currentProductId}
+            prodInfo={currentStyle}
+          />
           <StyleSelector
             prodId={currentProductId}
             currentStyle={currentStyle}
