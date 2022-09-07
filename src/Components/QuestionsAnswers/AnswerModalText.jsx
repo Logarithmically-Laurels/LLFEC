@@ -29,6 +29,7 @@ const AnswerModalText = ({onAnswerSubmit, onChangeNewAnswer, onChangeNewEmail, o
   }
 
   const twoFunctionsSubmit = () => {
+    console.log('success');
     onAnswerSubmit();
     handleClose();
   }
