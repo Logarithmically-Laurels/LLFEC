@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">78.57% </span>
+                <span class="strong">7.14% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>11/14</span>
+                <span class='fraction'>1/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/3</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/4</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">78.57% </span>
+                <span class="strong">7.14% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>11/14</span>
+                <span class='fraction'>1/14</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -123,40 +123,40 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -176,12 +176,12 @@ import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
 import "./review.css";
 &nbsp;
-const Stars = ({ product_id, size='large' }) =&gt; {
-  const [rating, setRating] = React.useState(null);
+const Stars = <span class="fstat-no" title="function not covered" >({</span> product_id, size=<span class="branch-0 cbranch-no" title="branch not covered" >'large' </span>}) =&gt; {
+  const [rating, setRating] = <span class="cstat-no" title="statement not covered" >React.useState(null);</span>
 &nbsp;
 &nbsp;
-  React.useEffect(() =&gt; {
-    var options = {
+<span class="cstat-no" title="statement not covered" >  React.useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+    var options = <span class="cstat-no" title="statement not covered" >{</span>
       url: "/reviews/meta",
       method: 'get',
       headers: {
@@ -191,32 +191,32 @@ const Stars = ({ product_id, size='large' }) =&gt; {
         product_id: product_id,
       },
     }
-    axios(options)
-      .then((results) =&gt; {
+<span class="cstat-no" title="statement not covered" >    axios(options)</span>
+      .then(<span class="fstat-no" title="function not covered" >(r</span>esults) =&gt; {
         // console.log(results)
-        var totalRating = 0;
-        var totalReviews = 0;
-        for (var key in results.data.ratings) {
+        var totalRating = <span class="cstat-no" title="statement not covered" >0;</span>
+        var totalReviews = <span class="cstat-no" title="statement not covered" >0;</span>
+<span class="cstat-no" title="statement not covered" >        for (var key in results.data.ratings) {</span>
 <span class="cstat-no" title="statement not covered" >          totalRating += parseInt(key) * parseInt(results.data.ratings[key])</span>
 <span class="cstat-no" title="statement not covered" >          totalReviews += parseInt(results.data.ratings[key])</span>
         }
-        var avgRating = totalRating / totalReviews;
+        var avgRating = <span class="cstat-no" title="statement not covered" >totalRating / totalReviews;</span>
         // console.log(avgRating)
-        setRating(avgRating)
+<span class="cstat-no" title="statement not covered" >        setRating(avgRating)</span>
       })
       .catch(<span class="fstat-no" title="function not covered" >er</span>r =&gt; {
 <span class="cstat-no" title="statement not covered" >        console.log(err)</span>
       })
   }, [])
 &nbsp;
-  return (
+<span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;Box
       sx={{
         '&amp; &gt; legend': { mt: 2 },
       }}
     &gt;
       {rating &amp;&amp;
-<span class="branch-1 cbranch-no" title="branch not covered" >        &lt;Rating name="read-only" value={rating} precision={0.25} readOnly size={size}/&gt;}</span>
+        &lt;Rating name="read-only" value={rating} precision={0.25} readOnly size={size}/&gt;}
     &lt;/Box&gt;
   );
 }
@@ -229,7 +229,7 @@ export default Stars;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-09-06T20:03:57.747Z
+                at 2022-09-06T21:39:17.303Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

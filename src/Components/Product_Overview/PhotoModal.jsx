@@ -1,17 +1,24 @@
 import React, { useEffect, useState } from "react";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
+import {
+  Box,
+  Button,
+  Typography,
+  Modal,
+  IconButton,
+  Stack,
+} from "@mui/material";
 import CropFreeIcon from "@mui/icons-material/CropFree";
+import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import CloseIcon from "@mui/icons-material/Close";
 
 const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "80%",
-  height: "80%",
+  width: "100%",
+  height: "100%",
   backgroundImage: "background.paper",
   backgroundSize: "contain",
   backgroundRepeat: "no-repeat",
@@ -26,11 +33,14 @@ const PhotoModal = (props) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  style.backgroundImage = props.img;
+  style.backgroundImage = props.mainImg;
 
   return (
-    <div>
-      <Button onClick={handleOpen}>
+    <Box sx={{ height: "0" }}>
+      <Button
+        sx={{ position: "relative", justifyContent: "end" }}
+        onClick={handleOpen}
+      >
         <CropFreeIcon sx={{ color: "black" }} />
       </Button>
       <Modal
@@ -39,9 +49,56 @@ const PhotoModal = (props) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box onClick={() => handleClose()} sx={style}></Box>
+        <Box sx={style}>
+          <IconButton onClick={handleClose}>
+            <CloseIcon />
+          </IconButton>
+          <Stack
+            direction="row"
+            justifyContent="space-around"
+            sx={{ width: "90%", mx: "auto", mt: "43%" }}
+          >
+            <IconButton onClick={() => props.handleClick("left")}>
+              <KeyboardArrowLeftIcon
+                sx={{
+                  backgroundColor: "rgba(255, 255, 255, .3)",
+                }}
+              />
+            </IconButton>
+            <Stack direction="row">
+              {props.allPhotos.map((photo, index) => {
+                return (
+                  <Box
+                    sx={{
+                      width: 50,
+                      height: 50,
+                      m: "2%",
+                      backgroundSize: "contain",
+                      backgroundRepeat: "no-repeat",
+                      backgroundPosition: "center",
+                      border: 1,
+                      borderRadius: 1,
+                      borderColor: "black",
+                      backgroundImage: `url(${photo.thumbnail_url}`,
+                      key: { index },
+                    }}
+                    onClick={() => props.handleClick(index)}
+                  ></Box>
+                );
+              })}
+            </Stack>
+
+            <IconButton onClick={() => props.handleClick("right")}>
+              <KeyboardArrowRightIcon
+                sx={{
+                  backgroundColor: "rgba(255, 255, 255, .3)",
+                }}
+              />
+            </IconButton>
+          </Stack>
+        </Box>
       </Modal>
-    </div>
+    </Box>
   );
 };
 

@@ -11,7 +11,6 @@ const Link = Scroll.Link;
 
 const ProductInfo = (props) => {
   const [numbOfReviews, setNumbOfReviews] = useState(0);
-  console.log("LOOK HERE: ", props);
 
   useEffect(() => {
     var options = {
@@ -57,14 +56,10 @@ const ProductInfo = (props) => {
   //TODO center read all reviews
   //create hover animation for link (underline)
   return (
-    <Container
-      disableGutters
-      sx={{ border: 4, height: "33%", width: "100%", mb: "2%" }}
-    >
+    <Container disableGutters sx={{ border: 4, height: "33%", width: "100%" }}>
       <Container disableGutters sx={{ width: "100%", display: "flex" }}>
         <Stars product_id={props.prodId} />
         <Link
-          onHover={() => {}}
           activeClass="active"
           to="reviews"
           smooth={true}

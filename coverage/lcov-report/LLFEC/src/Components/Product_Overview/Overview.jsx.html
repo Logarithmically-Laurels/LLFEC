@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">73.33% </span>
+                <span class="strong">13.33% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>11/15</span>
+                <span class='fraction'>2/15</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">73.33% </span>
+                <span class="strong">13.33% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>11/15</span>
+                <span class='fraction'>2/15</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -155,27 +155,27 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -186,11 +186,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -240,14 +240,14 @@ import { Container, Paper } from "@mui/material";
 &nbsp;
 const dummyData = require("./dummydata.js").data;
 &nbsp;
-const Overview = (props) =&gt; {
+const Overview = <span class="fstat-no" title="function not covered" >(p</span>rops) =&gt; {
   // var currentProductId = props.currentProduct.id;
-  var currentProductId = 37315;
-  const [allStyles, setAllStyles] = useState(dummyData);
-  const [currentStyle, setCurrentStyle] = useState(allStyles.results[0]);
+  var currentProductId = <span class="cstat-no" title="statement not covered" >37315;</span>
+  const [allStyles, setAllStyles] = <span class="cstat-no" title="statement not covered" >useState(dummyData);</span>
+  const [currentStyle, setCurrentStyle] = <span class="cstat-no" title="statement not covered" >useState(allStyles.results[0]);</span>
 &nbsp;
-  useEffect(() =&gt; {
-    let options = {
+<span class="cstat-no" title="statement not covered" >  useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+    let options = <span class="cstat-no" title="statement not covered" >{</span>
       url: "/styles",
       method: "GET",
       headers: {
@@ -256,9 +256,9 @@ const Overview = (props) =&gt; {
       params: { prodId: currentProductId },
     };
 &nbsp;
-    axios(options)
-      .then((response) =&gt; {
-        if (response.data.results[0].photos[0].url !== null) {
+<span class="cstat-no" title="statement not covered" >    axios(options)</span>
+      .then(<span class="fstat-no" title="function not covered" >(r</span>esponse) =&gt; {
+<span class="cstat-no" title="statement not covered" >        if (response.data.results[0].photos[0].url !== null) {</span>
 <span class="cstat-no" title="statement not covered" >          setAllStyles(response.data);</span>
 <span class="cstat-no" title="statement not covered" >          setCurrentStyle(response.data.results[0]);</span>
         } else {
@@ -268,12 +268,12 @@ const Overview = (props) =&gt; {
 <span class="cstat-no" title="statement not covered" >          setCurrentStyle(response.data.results[0]);</span>
         }
       })
-      .catch((err) =&gt; {
-        console.log(err);
+      .catch(<span class="fstat-no" title="function not covered" >(e</span>rr) =&gt; {
+<span class="cstat-no" title="statement not covered" >        console.log(err);</span>
       });
   }, []);
 &nbsp;
-  return (
+<span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;Container disableGutters maxWidth={false} sx={{ mb: "2.5%" }}&gt;
       &lt;Container
         sx={{
@@ -319,7 +319,7 @@ export default Overview;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-09-06T20:03:57.747Z
+                at 2022-09-06T21:39:17.303Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

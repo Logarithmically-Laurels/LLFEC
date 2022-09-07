@@ -9,8 +9,6 @@ const AddToCart = (props) => {
   const [currentSize, setSize] = useState({ size: "Select Size" });
   const [currentQty, setQty] = useState("-");
   const [oosStatus, setOosStatus] = useState(false);
-  console.log("LOOK HERE: ", currentSize);
-  console.log("also: here ", props.currentStyle.skus);
 
   return (
     <Container

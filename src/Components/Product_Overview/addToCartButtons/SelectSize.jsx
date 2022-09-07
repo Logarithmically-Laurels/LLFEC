@@ -18,6 +18,7 @@ const SelectSizeButton = (props) => {
     props.setQty(1);
     handleClose(null);
   };
+
   var sizes = Object.values(props.currentStyle);
 
   var outOfStock = () => {

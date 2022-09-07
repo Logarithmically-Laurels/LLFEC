@@ -1,12 +1,12 @@
-import React from 'react';
-import '@testing-library/react/dont-cleanup-after-each';
-import '@testing-library/jest-dom';
-import userEvent from '@testing-library/user-event';
-import { render, screen, waitFor } from '@testing-library/react';
-import App from '../Components/App.jsx';
-import axios from 'axios';
+import React from "react";
+import "@testing-library/react/dont-cleanup-after-each";
+import "@testing-library/jest-dom";
+import userEvent from "@testing-library/user-event";
+import { render, screen, waitFor } from "@testing-library/react";
+import App from "../Components/App.jsx";
+import axios from "axios";
 
-axios.defaults.baseURL = 'http://localhost:3000';
+axios.defaults.baseURL = "http://localhost:3000";
 
 jest.mock("axios");
 
@@ -26,21 +26,22 @@ const firstProduct = [
 ];
 // setup(options?: Options): UserEvent
 
-describe('Evaluate initial loading page ', () => {
-  it('should render the initial page', () => {
-
+describe("Evaluate initial loading page ", () => {
+  it("should render the initial page", () => {
     axios.mockResolvedValue({ data: firstProduct });
-    render(<App />)
+    render(<App />);
 
-    return waitFor(() => expect(screen.queryByText("Nav Bar")).toBeInTheDocument());
-  })
+    return waitFor(() =>
+      expect(screen.queryByText("Nav Bar")).toBeInTheDocument()
+    );
+  });
 
   // it('should click a button', () => {
   //   const user = userEvent.setup();
   //   return user.click(screen.getByTestId('reviewModal'))
   //     // .then(() => {
-      //   expect(screen.getByTestId('modal').toHaveTextContent('Write Your Review'))
-      // })
+  //   expect(screen.getByTestId('modal').toHaveTextContent('Write Your Review'))
+  // })
 
   // });
-})
+});
