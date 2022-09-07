@@ -16,7 +16,8 @@ const [emailDesc, setEmailDest] = useState(false)
         fullWidth
         name="email"
         inputProps={{
-          maxLength: 60
+          maxLength: 60,
+          "data-testid": 'formEmailInputTextField',
         }}
         onChange={()=>{setEmailDest(true)}}
       />

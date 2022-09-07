@@ -3,13 +3,13 @@ import '@testing-library/react/dont-cleanup-after-each';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import { cleanup, render, screen, waitFor, afterEach } from '@testing-library/react';
-import App from '../Components/App.jsx';
-import ReviewApp from '../Components/Reviews/reviewApp.jsx'
-import ReviewList from '../Components/Reviews/reviewList.jsx'
-import ReviewModal from '../Components/Reviews/reviewModal.jsx'
+import App from '../../Components/App.jsx';
+import ReviewApp from '../../Components/Reviews/reviewApp.jsx'
+import ReviewList from '../../Components/Reviews/reviewList.jsx'
+import ReviewModal from '../../Components/Reviews/reviewModal.jsx'
 import axios from 'axios';
 import { shallow } from 'enzyme';
-const data = require('../../MockDataReviews.js');
+const data = require('../../../MockDataReviews.js');
 
 axios.defaults.baseURL = 'http://localhost:3000';
 

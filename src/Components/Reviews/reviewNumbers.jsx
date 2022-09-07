@@ -87,11 +87,11 @@ const ReviewNumber = ({ product_id, numReviews, metaData, handleStarSort, starsT
       </Stack>
       <div>
         <Stack spacing={0} direction="column" container="true" paddingTop="3%" width="100%">
-          <span className='ratingTitle'>Rating Breakdown</span>
+          <span className='ratingTitle' data-testid='reviewNumbersTitle'>Rating Breakdown</span>
          {numbersStarsToRender.length>0 && <button className="starLabels" onClick={(e)=> {
             clearStarFilter(e)
           }}>Clear Filters</button>}
-          <Stack spacing={0} direction="column" container="true" margin="2%" paddingTop="3%" width='100%'
+          <Stack spacing={0} direction="column" container="true" margin="2%" paddingTop="3%" width='100%' data-testId='reviewNumbersRatingStack'
 
           >
             {[5, 4, 3, 2, 1].map((rating, index) => (

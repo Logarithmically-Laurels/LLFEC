@@ -23,6 +23,7 @@ const ratingKey = {
         <p className='recommendp rating'><b>Rating* </b></p>
       <Rating
       required
+          label='rating'
           name="rating"
           value={rating}
           onChange={(event, newValue)=> {

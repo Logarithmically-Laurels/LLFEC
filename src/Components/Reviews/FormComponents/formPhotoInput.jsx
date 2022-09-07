@@ -17,16 +17,13 @@ const FormPhotoInput = ({ }) => {
 const [dontShow, setDontShow] = useState(false)
 
   const handlePhotoUpload = (e) => {
-    console.log('handling photo upload Input ', photos)
     var photoArray = photos.slice()
     var photoArrayString = photosString;
     if (e?.target?.currentPhotoURL?.value) {
       var url = e.target.currentPhotoURL.value
-      // let temp = e.target.currentPhotoFile;
     } else {
       var url = e;
     }
-    console.log(url)
     photoArray.push(url,);
     photoArrayString.push(url, toString())
     setPhotos([...photoArray])
@@ -74,12 +71,10 @@ const [dontShow, setDontShow] = useState(false)
 
 
   return (
-    <>
-    <input name='photos' type='hidden' value={photos}></input>
+    <div data-testid="reviewsFormPhotoInputRoot">
+    <input name='photos' aria-label='photos' type='hidden' value={photos}></input>
       <Box sx={{ gridArea: 'upload' }}>
-        {photos.length < 5 && <Button variant="outlined" component="span" onClick={() => {
-          handleOpen()
-        }}>
+        {photos.length < 5 && <Button variant="outlined" component="span" onClick={handleOpen} name="inputButton">
           Upload a Photo
         </Button>}
         <Modal
@@ -100,16 +95,16 @@ const [dontShow, setDontShow] = useState(false)
           </div>
         </Modal >
       </Box>
-      <Box sx={{ gridArea: 'photos' }}>
+      <Box sx={{ gridArea: 'photos' }} data-testid="reviewPhotoInputPhotos">
         {photos.length > 0 &&
           photos.map((photo, index) => (
-            <img src={photo} alt="reviewer photo" className='thumbnailModal' key={index} onClick={(index) => { handlePhotoDelete(index) }}></img>
+            <img src={photo} alt="reviewer photo" className='thumbnailModal' key={index} onClick={(index) => { handlePhotoDelete(index) }} ></img>
           ))
         }
       </Box>
 
 
-    </>
+    </div>
   );
 }
 

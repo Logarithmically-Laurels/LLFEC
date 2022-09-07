@@ -40,7 +40,7 @@ const FormPhotoModal = ({ photos, handlePhotoUpload, handlePhotoDelete, handleCl
 
   return (
 
-    <div>
+    <div data-testid="reviewsPhotoModalRoot">
 
       <Box sx={style} textAlign="center">
         <Typography color="#5A5A5A" variant="h5" id="child-modal-title">Add Photos</Typography>
@@ -52,7 +52,14 @@ const FormPhotoModal = ({ photos, handlePhotoUpload, handlePhotoDelete, handleCl
 
           <Grid container spacing={1}>
             <Grid item xs={12}>
-              <TextField label='Paste Photo URL Here' placeholder="Image URL" size="normal" style={{ width: 600 }} name="currentPhotoURL"></TextField>
+              <TextField label='Paste Photo URL Here'
+              placeholder="Image URL"
+              size="normal"
+              style={{ width: 600 }}
+              name="currentPhotoURL"
+              inputProps={{
+                'data-testid': "reviewPhotoModalURL",
+              }}></TextField>
             </Grid>
             <Grid item xs={12}>
               <Divider>OR</Divider>
@@ -63,10 +70,10 @@ const FormPhotoModal = ({ photos, handlePhotoUpload, handlePhotoDelete, handleCl
                 <input hidden type='file' name="currentPhotoFile" onChange={onFileChange} onClick={e => (e.target.value = null)}></input>
               </Button>
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} data-testid="reviewPhotoModalPhotos">
               {photos.length > 0 &&
                 photos.map((photo, index) => (
-                  <img src={photo} alt="reviewer photo" className='thumbnailModal' key={index} onClick={(index) => { handlePhotoDelete(index) }}></img>
+                  <img src={photo} alt="reviewer photo" className='thumbnailModal' key={index} onClick={(index) => { handlePhotoDelete(index) }} ></img>
                 ))
               }
             </Grid>

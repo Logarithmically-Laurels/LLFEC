@@ -19,13 +19,11 @@ import Stack from '@mui/material/Stack';
 
 
 
-const ReviewModalComponents = ({ product, metaData, validate }) => {
+const ReviewModalComponents = ({ product, metaData }) => {
   const [charArray, setCharArray] = useState(null);
-  const [validateForm, setValidateForm] = useState(validate);
 
   const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
-    // padding: theme.spacing(1),
     height: "100%",
     textAlign: "center",
     color: theme.palette.text.secondary,
@@ -39,21 +37,14 @@ const ReviewModalComponents = ({ product, metaData, validate }) => {
     width: '70vw',
     maxHeight: '70vh',
     bgcolor: 'background.paper',
-    // bgcolor: 'white',
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
 
   };
 
-  useEffect(()=> {
-    console.log(validate)
-    setValidateForm(validate)
-    console.log('reviewModal updating validate')
-  }, [validate])
-
   return (
-    <Item>
+    <Item data-testid='reviewModalComponentsRoot'>
       <Box
         sx={{
           ...style,
@@ -105,7 +96,8 @@ const ReviewModalComponents = ({ product, metaData, validate }) => {
             placeholder="Why did you like the product or not?"
             fullWidth
             inputProps={{
-              maxLength: 60
+              maxLength: 60,
+              "data-testid": 'reviewModalComponentsSummary',
             }}
           />
         </Box>
@@ -123,7 +115,7 @@ const ReviewModalComponents = ({ product, metaData, validate }) => {
 
         </Box>
         <Box sx={{ gridArea: 'submit' }}>
-          <Button variant="outlined"
+          <Button variant="outlined" data-testid='modalSubmit'
             type="submit"
           > Submit</Button>
         </Box>

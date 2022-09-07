@@ -15,7 +15,8 @@ const [nicknameDesc, setNicknameDesc] = useState(false)
         fullWidth
         name="nickname"
         inputProps={{
-          maxLength: 60
+          maxLength: 60,
+          'data-testid': 'reviewNicknameInputTextField'
         }}
         onChange={()=> {
           setNicknameDesc(true)
