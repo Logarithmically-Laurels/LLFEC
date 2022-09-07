@@ -1,7 +1,7 @@
+require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const axios = require("axios");
-const authToken = require("../config.js");
 
 const app = express();
 const port = 3000;
@@ -15,7 +15,7 @@ app.get("/products", (req, res) => {
     method: "GET",
     url: "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products",
     headers: {
-      Authorization: authToken.authtoken,
+      Authorization: process.env.AUTHTOKEN,
       "content-type": "application/json",
     },
     params: {
@@ -36,7 +36,7 @@ app.get("/reviews/meta", (req, res) => {
     method: "GET",
     url: "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta",
     headers: {
-      Authorization: authToken.authtoken,
+      Authorization: process.env.AUTHTOKEN,
       "content-type": "application/json",
     },
     params: {
@@ -56,7 +56,7 @@ app.get("/reviews", (req, res) => {
     method: "GET",
     url: "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews",
     headers: {
-      Authorization: authToken.authtoken,
+      Authorization: process.env.AUTHTOKEN,
       "content-type": "application/json",
     },
     params: {
@@ -80,7 +80,7 @@ app.post("/reviews", (req, res) => {
     method: "POST",
     url: "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews",
     headers: {
-      Authorization: authToken.authtoken,
+      Authorization: process.env.AUTHTOKEN,
       "content-type": "application/json",
     },
     data: {
@@ -109,7 +109,7 @@ app.put("/reviews/helpful", (req, res) => {
     method: "put",
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/${req.query.product_id}/helpful`,
     headers: {
-      Authorization: authToken.authtoken,
+      Authorization: process.env.AUTHTOKEN,
       "content-type": "application/json",
     },
     params: {
@@ -129,7 +129,7 @@ app.put("/reviews/report", (req, res) => {
     method: "put",
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/${req.query.product_id}/report`,
     headers: {
-      Authorization: authToken.authtoken,
+      Authorization: process.env.AUTHTOKEN,
       "content-type": "application/json",
     },
     params: {
@@ -150,7 +150,7 @@ app.get("/qa/questions", (req, res) => {
     method: "GET",
     url: "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions",
     headers: {
-      Authorization: authToken.authtoken,
+      Authorization: process.env.AUTHTOKEN,
       "content-type": "application/json",
     },
     params: {
@@ -174,7 +174,7 @@ app.get("/qa/questions/:question_id/answers", (req, res) => {
     method: "GET",
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${req.params.question_id}/answers`,
     headers: {
-      Authorization: authToken.authtoken,
+      Authorization: process.env.AUTHTOKEN,
       "content-type": "application/json",
     },
     params: {
@@ -196,7 +196,7 @@ app.post("/qa/questions/:question_id/answers", (req, res) => {
     method: "POST",
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${req.body.question_id}/answers`,
     headers: {
-      Authorization: authToken.authtoken,
+      Authorization: process.env.AUTHTOKEN,
       "content-type": "application/json",
     },
     data: {
@@ -220,7 +220,7 @@ app.post("/qa/questions", (req, res) => {
     method: "POST",
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions`,
     headers: {
-      Authorization: authToken.authtoken,
+      Authorization: process.env.AUTHTOKEN,
       "content-type": "application/json",
     },
     data: {
@@ -244,7 +244,7 @@ app.put("/qa/questions/:question_id/helpful", (req, res) => {
     method: "PUT",
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${req.body.question_id}/helpful`,
     headers: {
-      Authorization: authToken.authtoken,
+      Authorization: process.env.AUTHTOKEN,
       "content-type": "application/json",
     },
     data: {
@@ -265,7 +265,7 @@ app.put("/qa/answers/:answer_id/helpful", (req, res) => {
     method: "PUT",
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/answers/${req.body.answer_id}/helpful`,
     headers: {
-      Authorization: authToken.authtoken,
+      Authorization: process.env.AUTHTOKEN,
       "content-type": "application/json",
     },
     data: {
@@ -286,7 +286,7 @@ app.put("/qa/answers/:answer_id/report", (req, res) => {
     method: "PUT",
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/answers/${req.body.answer_id}/report`,
     headers: {
-      Authorization: authToken.authtoken,
+      Authorization: process.env.AUTHTOKEN,
       "content-type": "application/json",
     },
     data: {
@@ -307,7 +307,7 @@ app.put("/qa/questions/:question_id/report", (req, res) => {
     method: "PUT",
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${req.body.question_id}/report`,
     headers: {
-      Authorization: authToken.authtoken,
+      Authorization: process.env.AUTHTOKEN,
       "content-type": "application/json",
     },
     data: {
@@ -329,7 +329,7 @@ app.get("/styles", (req, res) => {
     method: "GET",
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${prodId}/styles`,
     headers: {
-      Authorization: authToken.authtoken,
+      Authorization: process.env.AUTHTOKEN,
       "content-type": "application/json",
     },
   };

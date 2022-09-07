@@ -12,7 +12,6 @@ import {
   Paper,
   Box,
 } from "@mui/material";
-// const authtoken = require("/config.js");
 
 const Questions = ({ currentProd }) => {
   const [questions, setQuestions] = useState([]);

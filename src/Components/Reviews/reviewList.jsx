@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ReviewTile from './reviewTile.jsx';
 import useAxiosGet from '../CommonComponents/axiosRequest.jsx'
-import authtoken from './../../../config.js'
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 // import IconButton from '@material-ui/core/IconButton';
