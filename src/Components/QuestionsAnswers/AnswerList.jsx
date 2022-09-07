@@ -2,10 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Button, Grid, TextField, ListItem, List, Typography, Paper } from "@mui/material";
 import AnswerListItem from './AnswerListItem.jsx';
-import AddAnswer from './AddAnswer.jsx';
 import AnswerModal from "./AnswerModal.jsx";
 
-const AnswerList = ({answers, id, onChangeNewAnswer, onChangeNewEmail, onChangeNewUsername, onClickAddAnswer, addAnswer, onAnswerSubmit, onClickShowMoreAnswers, onClickHideMoreAnswers, onYesAnswer, onAnswerReport, allAnswers}) => {
+const AnswerList = ({answers, onChangeNewAnswer, onChangeNewEmail, onChangeNewUsername, onClickAddAnswer, addAnswer, onAnswerSubmit, onClickShowMoreAnswers, onClickHideMoreAnswers, onYesAnswer, onAnswerReport, allAnswers}) => {
 
 if (allAnswers.length > answers.length) {
     return (

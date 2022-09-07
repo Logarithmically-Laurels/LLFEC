@@ -71,7 +71,7 @@ const AnswerModalPhotos = ({ onChangePhotos, newPhotos, onURLChange, photoURL, o
             <form>
               <Grid container spacing={1}>
                 <Grid item xs={12}>
-                  <TextField type='text' label='Paste Photo URL Here' placeholder="Image URL" size="normal" style={{width: 600}} onChange={onURLChange} value={photoURL}></TextField>
+                  <TextField required type='text' label='Paste Photo URL Here' placeholder="Image URL" size="normal" style={{width: 600}} onChange={onURLChange} value={photoURL}></TextField>
                 </Grid>
                 <Grid item xs={12}>
                   <Divider>OR</Divider>
@@ -116,7 +116,7 @@ const AnswerModalPhotos = ({ onChangePhotos, newPhotos, onURLChange, photoURL, o
             <form>
               <Grid container spacing={1}>
                 <Grid item xs={12}>
-                  <TextField required type='text' label='Paste Photo URL Here' placeholder="Image URL" size="normal" style={{width: 600}} onChange={onURLChange} value={photoURL}></TextField>
+                  <TextField required type='text' placeholder='Paste Photo URL Here' size="normal" style={{width: 600}} onChange={onURLChange} value={photoURL}></TextField>
                 </Grid>
                 <Grid item xs={12}>
                   <Divider>OR</Divider>
