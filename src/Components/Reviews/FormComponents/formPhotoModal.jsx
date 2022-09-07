@@ -12,7 +12,7 @@ import AddAPhotoOutlinedIcon from '@mui/icons-material/AddAPhotoOutlined';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 
 
-const FormPhotoModal = ({ photos, handlePhotoUpload, handlePhotoDelete, handleClose, onFileChange }) => {
+const FormPhotoModal = ({ photos, handlePhotoUpload, handlePhotoDelete, handleInnerClose, onFileChange }) => {
 
   const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -26,7 +26,7 @@ const FormPhotoModal = ({ photos, handlePhotoUpload, handlePhotoDelete, handleCl
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: '70vw',
+    width: '50%',
     maxHeight: '70vh',
     bgcolor: 'background.paper',
     // bgcolor: 'white',
@@ -40,14 +40,15 @@ const FormPhotoModal = ({ photos, handlePhotoUpload, handlePhotoDelete, handleCl
 
   return (
 
-    <div data-testid="reviewsPhotoModalRoot">
+    < >
 
-      <Box sx={style} textAlign="center">
+      <Box sx={style} textAlign="center" data-testid="reviewsPhotoModalRoot">
         <Typography color="#5A5A5A" variant="h5" id="child-modal-title">Add Photos</Typography>
         <form onSubmit={(e) => {
+
           e.preventDefault()
-          // handlePhotoUpload(e)
-          handleClose()
+          handlePhotoUpload(e)
+          handleInnerClose()
         }}>
 
           <Grid container spacing={1}>
@@ -55,7 +56,7 @@ const FormPhotoModal = ({ photos, handlePhotoUpload, handlePhotoDelete, handleCl
               <TextField label='Paste Photo URL Here'
               placeholder="Image URL"
               size="normal"
-              style={{ width: 600 }}
+              style={{ width: '80%' }}
               name="currentPhotoURL"
               inputProps={{
                 'data-testid': "reviewPhotoModalURL",
@@ -84,12 +85,12 @@ const FormPhotoModal = ({ photos, handlePhotoUpload, handlePhotoDelete, handleCl
               <Button type="submit" style={{ width: '300px', height: '50px' }}>Submit Photo</Button>
             </Grid>
             <Grid item xs={6} textAlign="center">
-              <Button onClick={handleClose} style={{ width: '300px', height: '50px' }}>Close</Button>
+              <Button onClick={handleInnerClose} style={{ width: '300px', height: '50px' }}>Close</Button>
             </Grid>
           </Grid>
         </form>
       </Box >
-    </div >
+    </ >
   );
 }
 

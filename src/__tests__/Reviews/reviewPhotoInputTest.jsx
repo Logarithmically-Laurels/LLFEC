@@ -47,18 +47,7 @@ describe('Evaluate the Add a Photo Modal ', () => {
   });
 
 
-  // it('should close the modal on submit', () => {
-  //   const buttonSim = render(
-  //    <Button variant="outlined" component="span" onClick={props.handleOpen} name="inputButton">
-  //     Upload a Photo
-  //   </Button>)
 
-  //   const submitButton = buttonSim.getAllByRole('button', {name: 'inputButton'})
-  //   const user = userEvent.setup();
-  //   return user.click(submitButton).then(() => {
-  //     expect(props.handleOpen).toBeCalled()
-  //   })
-  // })
 
 
     it('should render the initial panel', () => {

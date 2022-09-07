@@ -17,7 +17,7 @@ const props = {
 
 jest.mock("axios", () => {
   return {
-    then: jest.fn(() => Promise.resolve())
+    post: jest.fn(() => Promise.resolve())
   }
 });
 
@@ -30,11 +30,6 @@ describe('Evaluate the Review Modal', () => {
     return waitFor(() => expect(wrapper.getByTestId('reviewModalRoot')).toBeInTheDocument());
   })
 
-
-
-
-
-  // describe('Evaluate the Add a Review Modal ', () => {
 
   it('should render the initial panel', () => {
 
@@ -67,30 +62,26 @@ describe('Evaluate the Review Modal', () => {
   it('should run handleFormSubmit on submit', () => {
     const submitButton = wrapper.getByText(/Submit/i)
     const user = userEvent.setup();
-    // const rating = wrapper.getByLabelText('rating')
-    // fireEvent.change(rating, {target: {value: 4}})
     const secondRadio = wrapper.getByLabelText('Yes');
     fireEvent.click(secondRadio)
     const summary = wrapper.getByTestId('reviewModalComponentsSummary')
     fireEvent.change(summary, { target: { value: 'Summary' } })
     const body = wrapper.getByTestId("FormBodyInputTextField")
     fireEvent.change(body, { target: { value: 'I need a paragraph that is at least 50 characters long for testing.' } })
+    expect(body.value).toBe('I need a paragraph that is at least 50 characters long for testing.')
     const email = wrapper.getByTestId("formEmailInputTextField")
     fireEvent.change(email, { target: { value: 'hi@gmail.com' } })
-    const photos = wrapper.getByLabelText('photos')
+    expect(email.value).toBe('hi@gmail.com')
+    const photos = wrapper.getByLabelText('photosInput')
     fireEvent.change(photos, { target: { value: [] } })
     const char = wrapper.getByLabelText('Runs tight')
     fireEvent.click(char)
     return user.click(submitButton).then(() => {
-      var results = jest.fn();
-      axios.mockResolvedValue({ data: 'success' })
-
-      expect(props.handleClose).toHaveBeenCalled();
+          expect(props.handleClose).toHaveBeenCalled();
 
     })
   })
 
-  // })
 })
 
 

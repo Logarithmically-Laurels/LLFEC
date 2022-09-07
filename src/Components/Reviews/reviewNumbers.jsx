@@ -91,7 +91,7 @@ const ReviewNumber = ({ product_id, numReviews, metaData, handleStarSort, starsT
          {numbersStarsToRender.length>0 && <button className="starLabels" onClick={(e)=> {
             clearStarFilter(e)
           }}>Clear Filters</button>}
-          <Stack spacing={0} direction="column" container="true" margin="2%" paddingTop="3%" width='100%' data-testId='reviewNumbersRatingStack'
+          <Stack spacing={0} direction="column" container="true" margin="2%" paddingTop="3%" width='100%' data-testid='reviewNumbersRatingStack'
 
           >
             {[5, 4, 3, 2, 1].map((rating, index) => (
@@ -107,7 +107,7 @@ const ReviewNumber = ({ product_id, numReviews, metaData, handleStarSort, starsT
                   max={100}
                   step={1}
                   aria-label="star slider"
-                  sx={{ color: green[500], width: '70%', display: 'flex', alignItems: 'center' }} />
+                  sx={{ color: green[500], width: '65%', display: 'flex', alignItems: 'center' }} />
                 <span className='starLabels'>{metaData.ratings[rating] ? metaData.ratings[rating] : 0}</span>
               </Stack>
             ))

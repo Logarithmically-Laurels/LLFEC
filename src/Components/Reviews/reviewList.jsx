@@ -46,7 +46,7 @@ const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [validate, setValidate] = useState([]);
+
 
 
 
@@ -67,9 +67,7 @@ const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
     }
   }
 
-  const handleValidate = (string) => {
-    setValidate(string)
-  }
+
 
 useEffect(()=>{
   window.sessionStorage.getItem('sort') ?
@@ -200,7 +198,7 @@ useEffect(()=>{
           data-testid='reviewModal'
         >
           <div>
-            <ReviewModal product={currentProduct} metaData={metaDataState} handleClose={handleClose} handleValidate={handleValidate} validate={validate}/>
+            <ReviewModal product={currentProduct} metaData={metaDataState} handleClose={handleClose} />
           </div>
         </Modal>
       </Item>

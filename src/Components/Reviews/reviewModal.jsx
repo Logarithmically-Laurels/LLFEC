@@ -11,7 +11,7 @@ import Paper from '@mui/material/Paper';
 import ReviewModalComponents from './reviewModalComponents.jsx';
 
 
-const ReviewModal = ({ product, metaData, handleClose, handleValidate, validate }) => {
+const ReviewModal = ({ product, metaData, handleClose }) => {
 
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -27,36 +27,33 @@ const ReviewModal = ({ product, metaData, handleClose, handleValidate, validate 
       charInts[metaData.characteristics[characteristic].id] = parseInt(e.target[characteristic]?.value)
     }
 
-      handleClose()
-      let sendData = {
-        product_id: product.id,
-        rating: e?.target?.rating?.value,
-        summary: e?.target?.summary?.value,
-        body: e?.target?.body?.value,
-        recommend: e?.target?.recommend?.value,
-        name: e?.target?.nickname?.value,
-        email: e?.target?.email?.value,
-        photos: photoArray,
-        characteristics: charInts,
-      }
+    handleClose()
+    let sendData = {
+      product_id: product.id,
+      rating: e?.target?.rating?.value,
+      summary: e?.target?.summary?.value,
+      body: e?.target?.body?.value,
+      recommend: e?.target?.recommend?.value,
+      name: e?.target?.nickname?.value,
+      email: e?.target?.email?.value,
+      photos: photoArray,
+      characteristics: charInts,
+    }
+    if (e?.target?.body?.value && e?.target?.nickname?.value && e?.target?.recommend?.value && e?.target?.email?.value) {
       var options = {
-        url: "/reviews",
-        method: "post",
         headers: {
           "Content-Type": "application/json",
         },
-        data: [sendData]
       };
 
-      axios(options)
+      axios.post("/reviews", [sendData], options)
         .then((results) => {
           console.log('submitted')
-
         })
         .catch((err) => {
           console.log(err);
         });
-
+    }
   }
 
 
@@ -67,10 +64,14 @@ const ReviewModal = ({ product, metaData, handleClose, handleValidate, validate 
       <Item>
 
         <Box component="form"
-        onSubmit={(e) => {
-          e.preventDefault()
-          handleFormSubmit(e)
-        }}>
+          onSubmit={(e) => {
+            console.log('on outer submit review modal')
+            e.preventDefault()
+            if (e?.target?.body?.value && e?.target?.email?.value) {
+              console.log('making it into handleFormSubmit call')
+              handleFormSubmit(e)
+            }
+          }}>
 
           <ReviewModalComponents
             product={product}
