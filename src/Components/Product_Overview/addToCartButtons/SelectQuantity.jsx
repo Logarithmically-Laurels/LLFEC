@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { MenuItem, Menu, Button, Container } from "@mui/material";
+import { Element } from "react-scroll";
 
 const SelectQuantityButton = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -46,7 +47,7 @@ const SelectQuantityButton = (props) => {
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
-        -
+        <Element data-testid="selectQuantity"> - </Element>
       </Button>
     );
   } else {
