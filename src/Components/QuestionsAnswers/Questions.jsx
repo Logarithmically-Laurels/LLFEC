@@ -128,9 +128,9 @@ const Questions = ({ currentProd }) => {
             );
             setQuestions(temp);
             setRenderedQuestions([...renderedQuestions, temp2[0]]);
-            setCurrentQuestion('');
-            setUsername('');
-            setEmail('');
+            setCurrentQuestion("");
+            setUsername("");
+            setEmail("");
           })
           .catch((err) => {
             console.log(err);
@@ -159,7 +159,7 @@ const Questions = ({ currentProd }) => {
     };
     axios(options)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         let temp = res.data.results.sort(
           (a, b) =>
             parseFloat(b.question_helpfulness) -

@@ -10,6 +10,10 @@ const AddToCart = (props) => {
   const [currentQty, setQty] = useState("-");
   const [oosStatus, setOosStatus] = useState(false);
 
+  const simulateClick = (e) => {
+    e.click();
+  };
+
   return (
     <Container
       disableGutters
