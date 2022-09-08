@@ -120,7 +120,7 @@ const Navbar = () => {
         </Toolbar>
       </AppBar>
       <Container sx={{ mt: 0.7, height: "30px", justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
-        <Typography variant="caption" style={{ backgroundColor: "FBEEC1" }}>
+        <Typography variant="caption" style={{ backgroundColor: "FBEEC1", color: "#FFFFFF" }}>
           SITE-WIDE ANNOUNCEMENT MESSAGE! -- SALE / DISCOUNT OFFER -- NEW
           PRODUCT HIGHLIGHT
         </Typography>

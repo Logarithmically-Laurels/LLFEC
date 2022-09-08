@@ -2,7 +2,12 @@ import React, {useState, useEffect} from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { Button, Grid, TextField } from "@mui/material";
+import {
+  Button,
+  Grid,
+  TextField,
+  styled
+ } from "@mui/material";
 
 const style = {
   position: 'absolute',
@@ -15,6 +20,29 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
+
+const CssTextField = styled(TextField, {
+  shouldForwardProp: (props) => props !== "focusColor"
+})((p) => ({
+  // input label when focused
+  "& label.Mui-focused": {
+    color: p.focusColor
+  },
+  // focused color for input with variant='standard'
+  "& .MuiInput-underline:after": {
+    borderBottomColor: p.focusColor
+  },
+  // focused color for input with variant='filled'
+  "& .MuiFilledInput-underline:after": {
+    borderBottomColor: p.focusColor
+  },
+  // focused color for input with variant='outlined'
+  "& .MuiOutlinedInput-root": {
+    "&.Mui-focused fieldset": {
+      borderColor: p.focusColor
+    }
+  }
+}));
 
 const QuestionModal = ({onQuestionChange, onAddQuestion, onEmailChange, onUserChange, product_id}) => {
   const [open, setOpen] = React.useState(false);
@@ -34,7 +62,7 @@ const QuestionModal = ({onQuestionChange, onAddQuestion, onEmailChange, onUserCh
 
   return (
     <div>
-      <Button data-testid="questionModal" size="large" variant="outlined" onClick={handleOpen} style={{width:'570px', height:'60px', color: '#000000', borderColor: '#000000'}}>Ask a question +</Button>
+      <Button data-testid="questionModal" size="large" variant="text" onClick={handleOpen} style={{width:'700px', height:'70px', color: '#000000', borderColor: '#000000'}}>Ask a question +</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -48,13 +76,13 @@ const QuestionModal = ({onQuestionChange, onAddQuestion, onEmailChange, onUserCh
           <form onSubmit={twoFunctionsSubmit}>
             <Grid container spacing={1}>
               <Grid item xs={12}>
-                <TextField required type='text' id="outlined-multiline-static" multiline label='Ask a question' rows={4} placeholder="Maximum 1000 characters..." onChange={onQuestionChange} size="medium" style={{width: 800}} inputProps={{ maxLength: 1000}}></TextField>
+                <CssTextField focusColor="black" variant="outlined" required type='text' id="outlined-multiline-static" multiline label='Ask a question' rows={4} placeholder="Maximum 1000 characters..." onChange={onQuestionChange} size="medium" style={{width: 800}} inputProps={{ maxLength: 1000}}></CssTextField>
               </Grid>
               <Grid item xs={6}>
-                <TextField required type='text' label='Username' placeholder="Maximum 60 characters..." onChange={onUserChange} size="small" style={{width: 400}} inputProps={{ maxLength: 60}}></TextField>
+                <CssTextField focusColor="black" variant="outlined" required type='text' label='Username' placeholder="Maximum 60 characters..." onChange={onUserChange} size="small" style={{width: 400}} inputProps={{ maxLength: 60}}></CssTextField>
               </Grid>
               <Grid item xs={6}>
-                <TextField required type='email' label='Email' placeholder="Maximum 60 characters..." onChange={onEmailChange} size="small" style={{width: 396}} inputProps={{ maxLength: 60}}></TextField>
+                <CssTextField focusColor="black" variant="outlined" required type='email' label='Email' placeholder="Maximum 60 characters..." onChange={onEmailChange} size="small" style={{width: 396}} inputProps={{ maxLength: 60}}></CssTextField>
               </Grid>
               <Grid item xs={12} textAlign="center">
                 <Button data-testid="questionSubmit" type="submit" variant="outlined" style={{width:'800px', height:'50px', color: '#000000', borderColor: '#000000'}}>Submit your question</Button>

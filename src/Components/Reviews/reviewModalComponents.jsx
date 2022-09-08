@@ -17,6 +17,28 @@ import FormCharInput from './FormComponents/formCharInput.jsx';
 import FormPhotoInput from './FormComponents/formPhotoInput.jsx';
 import Stack from '@mui/material/Stack';
 
+const CssTextField = styled(TextField, {
+  shouldForwardProp: (props) => props !== "focusColor"
+})((p) => ({
+  // input label when focused
+  "& label.Mui-focused": {
+    color: p.focusColor
+  },
+  // focused color for input with variant='standard'
+  "& .MuiInput-underline:after": {
+    borderBottomColor: p.focusColor
+  },
+  // focused color for input with variant='filled'
+  "& .MuiFilledInput-underline:after": {
+    borderBottomColor: p.focusColor
+  },
+  // focused color for input with variant='outlined'
+  "& .MuiOutlinedInput-root": {
+    "&.Mui-focused fieldset": {
+      borderColor: p.focusColor
+    }
+  }
+}));
 
 
 const ReviewModalComponents = ({ product, metaData }) => {
@@ -89,7 +111,9 @@ const ReviewModalComponents = ({ product, metaData }) => {
           <FormCharInput metaData={metaData} />
         </Box>
         <Box sx={{ gridArea: 'summary' }}>
-          <TextField
+          <CssTextField
+            focusColor="black"
+            variant="outlined"
             id="outlined-multiline-static"
             multiline
             name='summary'
