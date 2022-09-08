@@ -11,6 +11,29 @@ import Divider from '@mui/material/Divider';
 import AddAPhotoOutlinedIcon from '@mui/icons-material/AddAPhotoOutlined';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 
+const CssTextField = styled(TextField, {
+  shouldForwardProp: (props) => props !== "focusColor"
+})((p) => ({
+  // input label when focused
+  "& label.Mui-focused": {
+    color: p.focusColor
+  },
+  // focused color for input with variant='standard'
+  "& .MuiInput-underline:after": {
+    borderBottomColor: p.focusColor
+  },
+  // focused color for input with variant='filled'
+  "& .MuiFilledInput-underline:after": {
+    borderBottomColor: p.focusColor
+  },
+  // focused color for input with variant='outlined'
+  "& .MuiOutlinedInput-root": {
+    "&.Mui-focused fieldset": {
+      borderColor: p.focusColor
+    }
+  }
+}));
+
 
 const FormPhotoModal = ({ photos, handlePhotoUpload, handlePhotoDelete, handleInnerClose, onFileChange }) => {
 
@@ -53,7 +76,10 @@ const FormPhotoModal = ({ photos, handlePhotoUpload, handlePhotoDelete, handleIn
 
           <Grid container spacing={1}>
             <Grid item xs={12}>
-              <TextField label='Paste Photo URL Here'
+            <CssTextField
+              focusColor="black"
+              variant="outlined"
+              label='Paste Photo URL Here'
               placeholder="Image URL"
               size="normal"
               style={{ width: '80%', borderColor: '#000000' }}
@@ -61,7 +87,7 @@ const FormPhotoModal = ({ photos, handlePhotoUpload, handlePhotoDelete, handleIn
 
               inputProps={{
                 'data-testid': "reviewPhotoModalURL",
-              }}></TextField>
+              }}></CssTextField>
             </Grid>
             <Grid item xs={12}>
               <Divider>OR</Divider>

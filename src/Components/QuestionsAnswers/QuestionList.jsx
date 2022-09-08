@@ -19,6 +19,7 @@ const QuestionList = ({
   // console.log(renderedQuestions)
   return (
     <div>
+    <div style={{ height: "80vh", overflow: "scroll"}}>
       <List>
         {renderedQuestions.map((question) => (
           <QuestionListItem
@@ -34,15 +35,17 @@ const QuestionList = ({
           />
         ))}
       </List>
+    </div>
+    <div>
       <Grid container spacing={0} textAlign="center">
         <Grid xs={6}>
           <Button
-            size="small"
-            variant="outlined"
+            size="large"
+            variant="text"
             onClick={showMoreQuestions}
-            style={{ width: "570px", height: "60px", color: '#000000', borderColor: '#000000' }}
+            style={{ width: "700px", height: "70px", color: '#000000', borderColor: '#000000' }}
           >
-            Show more questions...
+            MORE QUESTIONS...
           </Button>
         </Grid>
         <Grid xs={6}>
@@ -55,6 +58,7 @@ const QuestionList = ({
           />
         </Grid>
       </Grid>
+    </div>
     </div>
   );
 };

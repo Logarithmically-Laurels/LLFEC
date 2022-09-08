@@ -2,9 +2,32 @@ import React, {useState, useEffect} from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { Button, Grid, TextField, Divider, InputAdornment, Input, InputLabel } from "@mui/material";
+import { Button, Grid, TextField, Divider, InputAdornment, Input, InputLabel, styled } from "@mui/material";
 import AddAPhotoOutlinedIcon from '@mui/icons-material/AddAPhotoOutlined';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
+
+const CssTextField = styled(TextField, {
+  shouldForwardProp: (props) => props !== "focusColor"
+})((p) => ({
+  // input label when focused
+  "& label.Mui-focused": {
+    color: p.focusColor
+  },
+  // focused color for input with variant='standard'
+  "& .MuiInput-underline:after": {
+    borderBottomColor: p.focusColor
+  },
+  // focused color for input with variant='filled'
+  "& .MuiFilledInput-underline:after": {
+    borderBottomColor: p.focusColor
+  },
+  // focused color for input with variant='outlined'
+  "& .MuiOutlinedInput-root": {
+    "&.Mui-focused fieldset": {
+      borderColor: p.focusColor
+    }
+  }
+}));
 
 const style = {
   position: 'absolute',
@@ -71,7 +94,7 @@ const AnswerModalPhotos = ({ onChangePhotos, newPhotos, onURLChange, photoURL, o
             <form>
               <Grid container spacing={1}>
                 <Grid item xs={12}>
-                  <TextField required type='text' label='Paste Photo URL Here' placeholder="Image URL" size="normal" style={{width: 600}} onChange={onURLChange} value={photoURL}></TextField>
+                  <CssTextField focusColor="black" variant="outlined" required type='text' label='Paste Photo URL Here' placeholder="Image URL" size="normal" style={{width: 600}} onChange={onURLChange} value={photoURL}></CssTextField>
                 </Grid>
                 <Grid item xs={12}>
                   <Divider>OR</Divider>
@@ -116,7 +139,7 @@ const AnswerModalPhotos = ({ onChangePhotos, newPhotos, onURLChange, photoURL, o
             <form>
               <Grid container spacing={1}>
                 <Grid item xs={12}>
-                  <TextField required type='text' placeholder='Paste Photo URL Here' size="normal" style={{width: 600}} onChange={onURLChange} value={photoURL}></TextField>
+                  <CssTextField focusColor="black" variant="outlined" required type='text' placeholder='Paste Photo URL Here' size="normal" style={{width: 600}} onChange={onURLChange} value={photoURL}></CssTextField>
                 </Grid>
                 <Grid item xs={12}>
                   <Divider>OR</Divider>
