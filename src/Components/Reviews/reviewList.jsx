@@ -19,17 +19,7 @@ import Paper from '@mui/material/Paper';
 
 
 const Item = styled(Paper)(({ theme }) => ({
-  // backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  // ...theme.typography.body2,
-  // position: 'absolute',
-  // top: '50%',
-  // left: '50%',
-  // transform: 'translate(-50%, -50%)',
 
-  // padding: theme.spacing(1),
-  // margin: '8px',
-  // textAlign: 'left',
-  // color: theme.palette.text.secondary,
 }));
 
 
@@ -39,7 +29,7 @@ const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
   const [currentProduct, setCurrentProduct] = useState(currentProd);
   const [metaDataState, setMetaDataState] = useState(metaData)
   const [page, setPage] = useState(1);
-  const [count, setCount] = useState(50);
+  const [count, setCount] = useState(20);
   const [sort, setSort] = useState('relevant')
   // const [sortStars, setSortStars] = useState(starsToRender)
   const [open, setOpen] = useState(false);
@@ -58,15 +48,16 @@ const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
   };
 
   const handleMoreReviews = (e) => {
-    e.preventDefault()
+  e.preventDefault()
     if (reviewsInView.length < currentReviews.length) {
       setReviewsInView(currentReviews.slice(0, reviewsInView.length + 2))
     } else {
       setPage(page + 1)
     }
+
   }
 
-
+}
 
   useEffect(() => {
     window.sessionStorage.getItem('sort') ?
@@ -129,7 +120,7 @@ const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
         console.log(err);
       });
 
-  }, [sort, starsToRender]);
+  }, [sort, page, starsToRender]);
 
 
 
