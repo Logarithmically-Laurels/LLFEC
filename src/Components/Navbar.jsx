@@ -4,9 +4,19 @@ import NavSearch from "./NavbarSearch.jsx";
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import './Reviews/review.css';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
 const Navbar = () => {
+
+  const logoTheme = createTheme({
+    typography: {
+      fontFamily: [
+        '"Mukta"',
+        'sans-serif',
+      ].join(','),
+    }
+  });
 
   return (
 
