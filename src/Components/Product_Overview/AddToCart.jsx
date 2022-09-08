@@ -9,6 +9,7 @@ const AddToCart = (props) => {
   const [currentSize, setSize] = useState({ size: "Select Size" });
   const [currentQty, setQty] = useState("-");
   const [oosStatus, setOosStatus] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const simulateClick = (e) => {
     e.click();
@@ -17,7 +18,7 @@ const AddToCart = (props) => {
   return (
     <Container
       disableGutters
-      sx={{ border: 1, height: "30%", borderColor: "green", p: 0 }}
+      sx={{ height: "30%", borderColor: "green", p: 0 }}
     >
       <Stack
         direction="row"
@@ -35,6 +36,8 @@ const AddToCart = (props) => {
           currentStyle={props.currentStyle.skus}
           setQty={setQty}
           setOosStatus={setOosStatus}
+          anchorEl={anchorEl}
+          setAnchorEl={setAnchorEl}
         />
         <SelectQuantityButton
           currentSize={currentSize}
@@ -52,7 +55,12 @@ const AddToCart = (props) => {
           height: "35%",
         }}
       >
-        <AddToBag oosStatus={oosStatus} currentSize={currentSize} />
+        <AddToBag
+          oosStatus={oosStatus}
+          currentSize={currentSize}
+          anchorEl={anchorEl}
+          setAnchorEl={setAnchorEl}
+        />
         <FavoriteButton />
       </Stack>
     </Container>
