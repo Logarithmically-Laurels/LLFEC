@@ -1,3 +1,16 @@
+/* monoton-regular - latin */
+@font-face {
+  font-family: 'Monoton';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../../fonts/monoton-v15-latin/monoton-v15-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('../../fonts/monoton-v15-latin/monoton-v15-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../../fonts/monoton-v15-latin/monoton-v15-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../../fonts/monoton-v15-latin/monoton-v15-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('../../fonts/monoton-v15-latin/monoton-v15-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../../fonts/monoton-v15-latin/monoton-v15-latin-regular.svg#Monoton') format('svg'); /* Legacy iOS */
+}
 
 html {
   background-color: #8D8741;
@@ -160,6 +173,6 @@ html {
   width: 80%;
 } */
 .mainLogo {
-  font-family: 'Mukta', sans-serif;
+  font-family: 'Monoton', sans-serif;
   font-size: 75px;
 }

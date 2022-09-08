@@ -115,7 +115,7 @@ const ReviewModalComponents = ({ product, metaData }) => {
 
         </Box>
         <Box sx={{ gridArea: 'submit' }}>
-          <Button variant="outlined" data-testid='modalSubmit'
+          <Button variant="outlined" data-testid='modalSubmit'  style={{color: '#000000', borderColor: '#000000'}}
             type="submit"
           > Submit</Button>
         </Box>

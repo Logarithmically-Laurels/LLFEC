@@ -34,7 +34,7 @@ const QuestionModal = ({onQuestionChange, onAddQuestion, onEmailChange, onUserCh
 
   return (
     <div>
-      <Button data-testid="questionModal" size="large" variant="outlined" onClick={handleOpen} style={{width:'570px', height:'60px'}}>Ask a question +</Button>
+      <Button data-testid="questionModal" size="large" variant="outlined" onClick={handleOpen} style={{width:'570px', height:'60px', color: '#000000', borderColor: '#000000'}}>Ask a question +</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -57,7 +57,7 @@ const QuestionModal = ({onQuestionChange, onAddQuestion, onEmailChange, onUserCh
                 <TextField required type='email' label='Email' placeholder="Maximum 60 characters..." onChange={onEmailChange} size="small" style={{width: 396}} inputProps={{ maxLength: 60}}></TextField>
               </Grid>
               <Grid item xs={12} textAlign="center">
-                <Button data-testid="questionSubmit" type="submit" variant="outlined" style={{width:'800px', height:'50px'}}>Submit your question</Button>
+                <Button data-testid="questionSubmit" type="submit" variant="outlined" style={{width:'800px', height:'50px', color: '#000000', borderColor: '#000000'}}>Submit your question</Button>
               </Grid>
             </Grid>
           </form>

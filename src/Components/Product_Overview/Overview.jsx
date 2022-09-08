@@ -21,13 +21,14 @@ const Overview = (props) => {
     // padding: theme.spacing(1),
     display: 'flex',
     maxWidth: "1500px",
-    height: "100%",
+    height: "100vh",
     margin: 'auto',
     // justifyContent: "center",
     // alignItems: 'center',
     color: theme.palette.text.secondary,
     marginBottom: '10px',
     marginTop: '10px',
+    paddingTop: '15px',
 
   }));
 
