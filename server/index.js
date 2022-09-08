@@ -342,7 +342,6 @@ app.get("/styles", (req, res) => {
 });
 
 app.post("/interactions", (req, res) => {
-  // console.log(req.body.element);
   let options = {
     method: "POST",
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/interactions`,
