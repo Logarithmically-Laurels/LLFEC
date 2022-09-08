@@ -6,6 +6,7 @@ import Questions from "./QuestionsAnswers/Questions.jsx";
 import Navbar from "./Navbar.jsx";
 import { Container } from "@mui/material";
 import { Element } from "react-scroll";
+import ClickTracker from "./ClickTracker.jsx";
 
 const App = () => {
   //effect calling api get /products
@@ -39,12 +40,28 @@ const App = () => {
     <div style={{width:'100vw', height: '100%', padding:'0px', backgroundColor:"#8D8741"}} >
       {currentProduct && (
         <>
-          <Navbar />
-          <Overview currentProduct={currentProduct} />
-          <Questions currentProd={currentProduct} />
-          <Element name="reviews">
-            <ReviewApp currentProd={currentProduct} />
-          </Element>
+          <div id="Navbar">
+            <ClickTracker widget={"Navbar"} render={(onClickHandler) => (
+              <Navbar />
+            )} />
+          </div>
+          <div id="Overview">
+            <ClickTracker widget={"Overview"} render={(onClickHandler) => (
+              <Overview currentProduct={currentProduct} />
+            )} />
+          </div>
+          <div id="Questions">
+            <ClickTracker widget={"Questions"} render={(onClickHandler) => (
+              <Questions currentProd={currentProduct} />
+            )} />
+          </div>
+          <div id="Reviews">
+            <ClickTracker widget={"Reviews"} render={(onClickHandler) => (
+              <Element name="reviews">
+                <ReviewApp currentProd={currentProduct} />
+              </Element>
+            )} />
+          </div>
         </>
       )}
     </div>
