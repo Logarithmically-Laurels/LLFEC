@@ -5,14 +5,21 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 const DownArrow = (props) => {
   if (props.info.total === props.info.current) {
     return (
-      <IconButton disabled sx={{ p: "0", width: "100%" }}>
-        <KeyboardArrowDownIcon onClick={() => props.handleClick("down")} />
+      <IconButton
+        disableRipple
+        sx={{ p: "0", width: "100%", color: "rgba(255, 255, 255, 0)" }}
+      >
+        <KeyboardArrowDownIcon
+          onClick={(event) => props.handleClick(event, "down")}
+        />
       </IconButton>
     );
   } else {
     return (
       <IconButton disableRipple sx={{ p: "0", width: "100%" }}>
-        <KeyboardArrowDownIcon onClick={() => props.handleClick("down")} />
+        <KeyboardArrowDownIcon
+          onClick={(event) => props.handleClick(event, "down")}
+        />
       </IconButton>
     );
   }
