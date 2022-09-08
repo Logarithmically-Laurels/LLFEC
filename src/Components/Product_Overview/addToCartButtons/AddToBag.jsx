@@ -4,18 +4,17 @@ import { Element } from "react-scroll";
 
 //TODO alert user in a way other than alert
 const AddToBag = (props) => {
-  var handleClick = () => {
+  var handleClick = (e) => {
     if (props.currentSize.size === "Select Size") {
       alert("Please select a size");
-
-      //send to select size drop down
+      props.setAnchorEl(e.currentTarget);
     }
   };
 
   if (!props.oosStatus) {
     return (
       <Button
-        onClick={() => handleClick()}
+        onClick={(e) => handleClick(e)}
         sx={{
           borderRadius: "0",
           width: "70%",
