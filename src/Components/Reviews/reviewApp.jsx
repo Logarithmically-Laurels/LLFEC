@@ -29,10 +29,10 @@ const ReviewApp = ({ currentProd }) => {
       numReviews += parseInt(reviewMetaData.ratings[rating]);
     }
   }
-const clearStarFilter = (e) => {
-  e.preventDefault()
-  setStarsToRender([])
-}
+  const clearStarFilter = (e) => {
+    e.preventDefault()
+    setStarsToRender([])
+  }
   const handleStarSort = (e, rating) => {
     e.preventDefault()
     var tempStars = starsToRender;
@@ -40,7 +40,7 @@ const clearStarFilter = (e) => {
       tempStars.push(rating)
     } else {
       var index = starsToRender.indexOf(rating)
-      tempStars.splice(index,1)
+      tempStars.splice(index, 1)
     }
     var tempStarsCopy = tempStars.slice()
     setStarsToRender(tempStarsCopy)
@@ -77,7 +77,7 @@ const clearStarFilter = (e) => {
           direction="row"
           justifyContent="space-around"
           alignItems="stretch"
-        maxWidth='1500px'
+          maxWidth='1500px'
         >
           <Grid item xs={3}>
             <Item>
