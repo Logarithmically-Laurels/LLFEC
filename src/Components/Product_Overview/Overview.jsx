@@ -12,24 +12,23 @@ const dummyData = require("./dummydata.js").data;
 
 const Overview = (props) => {
   // var currentProductId = props.currentProduct.id;
-  var currentProductId = 37314;
+  var currentProductId = 37315;
   const [allStyles, setAllStyles] = useState(dummyData);
   const [currentStyle, setCurrentStyle] = useState(allStyles.results[0]);
 
   const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
     // padding: theme.spacing(1),
-    display: 'flex',
+    display: "flex",
     maxWidth: "1500px",
-    height: "100vh",
-    margin: 'auto',
+    height: "100%",
+    margin: "auto",
     // justifyContent: "center",
     // alignItems: 'center',
     color: theme.palette.text.secondary,
-    marginBottom: '10px',
-    marginTop: '10px',
-    paddingTop: '15px',
-
+    marginBottom: "10px",
+    marginTop: "10px",
+    paddingTop: "15px",
   }));
 
   useEffect(() => {
@@ -61,39 +60,39 @@ const Overview = (props) => {
 
   return (
     <Item disableGutters>
-    <Container disableGutters maxWidth={false} sx={{ mb: "2.5%" }}>
-      <Container
-        sx={{
-          display: "flex",
-        }}
-      >
-        <ImgGallery stylesToDisplay={currentStyle} />
+      <Container disableGutters maxWidth={false} sx={{ mb: "2.5%" }}>
         <Container
-          disableGutters
-          justifycontent="space-between"
           sx={{
-            my: "4%",
-            width: "40%",
+            display: "flex",
           }}
         >
-          <ProductInfo
-            prodCat={props.currentProduct.category}
-            prodId={currentProductId}
-            prodInfo={currentStyle}
-          />
-          <StyleSelector
-            prodId={currentProductId}
-            currentStyle={currentStyle}
-            allStyles={allStyles}
-            setStyle={setCurrentStyle}
-          />
-          <AddToCart currentStyle={currentStyle} />
+          <ImgGallery stylesToDisplay={currentStyle} />
+          <Container
+            disableGutters
+            justifycontent="space-between"
+            sx={{
+              my: "4%",
+              width: "40%",
+            }}
+          >
+            <ProductInfo
+              prodCat={props.currentProduct.category}
+              prodId={currentProductId}
+              prodInfo={currentStyle}
+            />
+            <StyleSelector
+              prodId={currentProductId}
+              currentStyle={currentStyle}
+              allStyles={allStyles}
+              setStyle={setCurrentStyle}
+            />
+            <AddToCart currentStyle={currentStyle} />
+          </Container>
+        </Container>
+        <Container>
+          <ProductDescription prodInfo={props.currentProduct} />
         </Container>
       </Container>
-      <Container>
-        <ProductDescription prodInfo={props.currentProduct} />
-      </Container>
-    </Container>
     </Item>
   );
 };

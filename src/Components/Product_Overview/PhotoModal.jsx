@@ -59,8 +59,12 @@ const PhotoModal = (props) => {
             justifyContent="space-around"
             sx={{ width: "90%", mx: "auto", mt: "43%" }}
           >
-            <IconButton onClick={(event) => props.handleClick(event, "left")}>
+            <IconButton
+              disableRipple
+              onClick={(event) => props.handleClick(event, "left")}
+            >
               <KeyboardArrowLeftIcon
+                disableRipple
                 sx={{
                   backgroundColor: "rgba(255, 255, 255, .3)",
                 }}
@@ -68,29 +72,54 @@ const PhotoModal = (props) => {
             </IconButton>
             <Stack direction="row">
               {props.allPhotos.map((photo, index) => {
-                return (
-                  <Box
-                    sx={{
-                      width: 50,
-                      height: 50,
-                      m: "2%",
-                      backgroundSize: "contain",
-                      backgroundRepeat: "no-repeat",
-                      backgroundPosition: "center",
-                      border: 1,
-                      borderRadius: 1,
-                      borderColor: "black",
-                      backgroundImage: `url(${photo.thumbnail_url}`,
-                      key: { index },
-                    }}
-                    onClick={() => props.handleClick(index)}
-                  ></Box>
-                );
+                if (props.currentIndex === photo.index) {
+                  return (
+                    <Box
+                      sx={{
+                        width: 50,
+                        height: 50,
+                        m: "2%",
+                        backgroundSize: "contain",
+                        backgroundRepeat: "no-repeat",
+                        backgroundPosition: "center",
+                        border: 3,
+                        borderRadius: 1,
+                        borderColor: "white",
+                        backgroundImage: `url(${photo.thumbnail_url}`,
+                        key: { index },
+                      }}
+                      onClick={() => props.handleClick(index)}
+                    ></Box>
+                  );
+                } else {
+                  return (
+                    <Box
+                      sx={{
+                        width: 50,
+                        height: 50,
+                        m: "2%",
+                        backgroundSize: "contain",
+                        backgroundRepeat: "no-repeat",
+                        backgroundPosition: "center",
+                        border: 1,
+                        borderRadius: 1,
+                        borderColor: "black",
+                        backgroundImage: `url(${photo.thumbnail_url}`,
+                        key: { index },
+                      }}
+                      onClick={() => props.handleClick(index)}
+                    ></Box>
+                  );
+                }
               })}
             </Stack>
 
-            <IconButton onClick={(event) => props.handleClick(event, "right")}>
+            <IconButton
+              disableRipple
+              onClick={(event) => props.handleClick(event, "right")}
+            >
               <KeyboardArrowRightIcon
+                disableRipple
                 sx={{
                   backgroundColor: "rgba(255, 255, 255, .3)",
                 }}
