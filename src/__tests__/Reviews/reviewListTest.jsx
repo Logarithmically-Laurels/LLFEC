@@ -7,6 +7,7 @@ import App from '../../Components/App.jsx';
 import ReviewApp from '../../Components/Reviews/reviewApp.jsx'
 import ReviewList from '../../Components/Reviews/reviewList.jsx'
 import ReviewModal from '../../Components/Reviews/reviewModal.jsx'
+import ReviewTile from '../../Components/Reviews/reviewTile.jsx'
 import axios from 'axios';
 import { shallow } from 'enzyme';
 const data = require('../../../MockDataReviews.js');
@@ -18,7 +19,7 @@ jest.mock("axios");
 // console.log(data.reviewsMock)
 
 describe('evaluate reviewList page ', () => {
-  const currentProd = 37311;
+  const currentProd = data.firstProduct;
   const metaData = data.reviewsMetaMock;
   const numReviews = 426;
   const starsToRender = [];
@@ -35,6 +36,11 @@ describe('evaluate reviewList page ', () => {
     axios.mockResolvedValue({ data: data.reviewsMock })
     expect(screen.getByTestId('reviewListTotalReviews').textContent).toEqual('Total Reviews: 426 ')
   });
+
+  it('should render a review tile ', () => {
+render(<ReviewTile review={data.reviewsMock.results[0]} product_id={37311} metaData={data.reviewsMetaMock} />)
+    return waitFor(()=> expect(screen.getByTestId('reviewTile')).toBeInTheDocument());
+  })
 
     it('should click a button', () =>{
     const user = userEvent.setup();

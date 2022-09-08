@@ -59,28 +59,28 @@ describe('Evaluate the Review Modal', () => {
     expect(textField.value).toBe('Nickname')
 
   })
-  it('should run handleFormSubmit on submit', () => {
-    const submitButton = wrapper.getByText(/Submit/i)
-    const user = userEvent.setup();
-    const secondRadio = wrapper.getByLabelText('Yes');
-    fireEvent.click(secondRadio)
-    const summary = wrapper.getByTestId('reviewModalComponentsSummary')
-    fireEvent.change(summary, { target: { value: 'Summary' } })
-    const body = wrapper.getByTestId("FormBodyInputTextField")
-    fireEvent.change(body, { target: { value: 'I need a paragraph that is at least 50 characters long for testing.' } })
-    expect(body.value).toBe('I need a paragraph that is at least 50 characters long for testing.')
-    const email = wrapper.getByTestId("formEmailInputTextField")
-    fireEvent.change(email, { target: { value: 'hi@gmail.com' } })
-    expect(email.value).toBe('hi@gmail.com')
-    const photos = wrapper.getByLabelText('photosInput')
-    fireEvent.change(photos, { target: { value: [] } })
-    const char = wrapper.getByLabelText('Runs tight')
-    fireEvent.click(char)
-    return user.click(submitButton).then(() => {
-          expect(props.handleClose).toHaveBeenCalled();
+  // it('should run handleFormSubmit on submit', () => {
+  //   const submitButton = wrapper.getByText(/Submit/i)
+  //   const user = userEvent.setup();
+  //   const secondRadio = wrapper.getByLabelText('Yes');
+  //   fireEvent.click(secondRadio)
+  //   const summary = wrapper.getByTestId('reviewModalComponentsSummary')
+  //   fireEvent.change(summary, { target: { value: 'Summary' } })
+  //   const body = wrapper.getByTestId("FormBodyInputTextField")
+  //   fireEvent.change(body, { target: { value: 'I need a paragraph that is at least 50 characters long for testing.' } })
+  //   expect(body.value).toBe('I need a paragraph that is at least 50 characters long for testing.')
+  //   const email = wrapper.getByTestId("formEmailInputTextField")
+  //   fireEvent.change(email, { target: { value: 'hi@gmail.com' } })
+  //   expect(email.value).toBe('hi@gmail.com')
+  //   const photos = wrapper.getByLabelText('photosInput')
+  //   fireEvent.change(photos, { target: { value: [] } })
+  //   const char = wrapper.getByLabelText('Runs tight')
+  //   fireEvent.click(char)
+  //   return user.click(submitButton).then(() => {
+  //         expect(props.handleClose).toHaveBeenCalled();
 
-    })
-  })
+  //   })
+  // })
 
 })
 
