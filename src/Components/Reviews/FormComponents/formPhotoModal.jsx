@@ -56,8 +56,9 @@ const FormPhotoModal = ({ photos, handlePhotoUpload, handlePhotoDelete, handleIn
               <TextField label='Paste Photo URL Here'
               placeholder="Image URL"
               size="normal"
-              style={{ width: '80%' }}
+              style={{ width: '80%', borderColor: '#000000' }}
               name="currentPhotoURL"
+
               inputProps={{
                 'data-testid': "reviewPhotoModalURL",
               }}></TextField>
