@@ -36,7 +36,9 @@ const ImgGallery = (props) => {
   );
   const [currentImgIndex, setCurrentImgIndex] = useState(0);
   const [firstImgIndex, setFirstImgIndex] = useState(0);
-  const [lastImgIndex, setLastImgIndex] = useState(stylePhotosToDisplay.length);
+  const [lastImgIndex, setLastImgIndex] = useState(
+    stylePhotosToDisplay.length - 1
+  );
   const [stylePhotos, setStylePhotos] = useState(stylePhotosToDisplay);
 
   //states to manage modal
@@ -67,23 +69,34 @@ const ImgGallery = (props) => {
       setCurrentImgIndex(e);
       setMainImg(imgUrl);
     } else if (e === "left") {
-      if (currentImgIndex > 0) {
+      if (firstImgIndex > 0 && tempImgIndex === firstImgIndex) {
+        tempImgIndex--;
+        var newSet = allPhotos.slice(firstImgIndex - 1, lastImgIndex);
+        setStylePhotos(newSet);
+        setCurrentImgIndex(tempImgIndex);
+        setMainImg(getImgUrl(tempImgIndex));
+        setFirstImgIndex(firstImgIndex - 1);
+        setLastImgIndex(lastImgIndex - 1);
+      } else if (firstImgIndex !== 0) {
         tempImgIndex--;
         setCurrentImgIndex(tempImgIndex);
         setMainImg(getImgUrl(tempImgIndex));
-      } else {
-        var index = props.stylesToDisplay.photos.length - 1;
-        setCurrentImgIndex(index);
-        setMainImg(getImgUrl(index));
       }
     } else if (e === "right") {
-      if (currentImgIndex == props.stylesToDisplay.photos.length - 1) {
-        setCurrentImgIndex(0);
-        setMainImg(getImgUrl(0));
-      } else {
-        tempImgIndex++;
-        setCurrentImgIndex(tempImgIndex);
-        setMainImg(getImgUrl(tempImgIndex));
+      if (currentImgIndex !== props.stylesToDisplay.photos.length - 1) {
+        if (tempImgIndex === lastImgIndex && tempImgIndex < allPhotos.length) {
+          tempImgIndex++;
+          var newSet = allPhotos.slice(firstImgIndex + 1, lastImgIndex + 2);
+          setStylePhotos(newSet);
+          setCurrentImgIndex(tempImgIndex);
+          setMainImg(getImgUrl(tempImgIndex));
+          setFirstImgIndex(firstImgIndex + 1);
+          setLastImgIndex(lastImgIndex + 1);
+        } else {
+          tempImgIndex++;
+          setCurrentImgIndex(tempImgIndex);
+          setMainImg(getImgUrl(tempImgIndex));
+        }
       }
     } else if (e === "up") {
       if (tempImgIndex > 0) {
@@ -160,9 +173,9 @@ const ImgGallery = (props) => {
                   backgroundSize: "contain",
                   backgroundRepeat: "no-repeat",
                   backgroundPosition: "center",
-                  border: 2,
+                  border: 3,
                   borderRadius: 1,
-                  borderColor: "blue",
+                  borderColor: "black",
                   backgroundImage: `url(${photo.thumbnail_url}`,
                   key: photo.index,
                 }}

@@ -32,12 +32,11 @@ const ProductDescription = (props) => {
   );
   return (
     <Grid
+      disableGutters
       container
       direction="row"
-      marginTop="0px"
       wrap="nowrap"
-      sx={{ my: "3%", pl: "10%", marginTop: '0px' }}
-      style={{marginTop: '0px'}}
+      sx={{ my: "3%", pl: "10%" }}
     >
       <Grid item xs={8} sx={{ mr: "3%" }}>
         {content1}
