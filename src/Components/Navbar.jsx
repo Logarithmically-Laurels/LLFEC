@@ -110,7 +110,7 @@ const Navbar = () => {
     //   </Container>
     // </AppBar >
     <>
-      <AppBar position="static" maxWidth={false} sx={{ height: '110px', backgroundColor: 'black', display: 'grid', justifyContent: 'center', alignItems: 'center' }}>
+      <AppBar position="static" maxWidth={false} sx={{ height: '110px', backgroundColor: 'black', display: 'grid', justifyContent: 'center', alignItems: 'center' }} data-testid="navBarLogo">
 
         <Toolbar style={{ display: 'flex', justifyContent: 'space-between', maxWidth: '2000px', minWidth: '90vw' }}>
           <ThemeProvider theme={logoTheme}>

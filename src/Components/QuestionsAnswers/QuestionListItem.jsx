@@ -36,7 +36,6 @@ const QuestionListItem = ({
   const [photoURL, setPhotoURL] = useState(null);
   const [helped, setHelped] = useState(false);
 
-  // console.log(renderedAnswers);
   let newTime;
 
   if (question_date) {
@@ -87,9 +86,9 @@ const QuestionListItem = ({
             setNewEmail("");
             setNewPhotos([]);
           })
-          .catch((err) => {
-            console.log(err);
-          });
+          // .catch((err) => {
+          //   console.log(err);
+          // });
       })
       .catch((err) => {
         console.log("error", err);
@@ -118,7 +117,6 @@ const QuestionListItem = ({
   };
 
   const onFileChange = (e) => {
-    console.log(e.target.files);
     let temp = e.target.files[0];
     setPhotoURL(URL.createObjectURL(temp));
   };

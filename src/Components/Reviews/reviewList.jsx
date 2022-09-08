@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ReviewTile from './reviewTile.jsx';
-import useAxiosGet from '../CommonComponents/axiosRequest.jsx'
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-// import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@mui/icons-material/Add';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -57,7 +55,6 @@ const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
 
   }
 
-}
 
   useEffect(() => {
     window.sessionStorage.getItem('sort') ?

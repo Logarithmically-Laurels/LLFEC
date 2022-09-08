@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ReviewNumber from "./reviewNumbers.jsx";
 import ReviewList from "./reviewList.jsx";
-import useAxiosGet from "../CommonComponents/axiosRequest.jsx";
 import { styled, Container } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
