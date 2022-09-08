@@ -69,6 +69,9 @@ const ImgGallery = (props) => {
       setCurrentImgIndex(e);
       setMainImg(imgUrl);
     } else if (e === "left") {
+      console.log("first img index: ", firstImgIndex);
+      console.log("tempImgIndex: ", tempImgIndex);
+      console.log("first img index: ", firstImgIndex);
       if (firstImgIndex > 0 && tempImgIndex === firstImgIndex) {
         tempImgIndex--;
         var newSet = allPhotos.slice(firstImgIndex - 1, lastImgIndex);
@@ -77,7 +80,7 @@ const ImgGallery = (props) => {
         setMainImg(getImgUrl(tempImgIndex));
         setFirstImgIndex(firstImgIndex - 1);
         setLastImgIndex(lastImgIndex - 1);
-      } else if (firstImgIndex !== 0) {
+      } else if (tempImgIndex !== 0) {
         tempImgIndex--;
         setCurrentImgIndex(tempImgIndex);
         setMainImg(getImgUrl(tempImgIndex));
