@@ -20,13 +20,13 @@ const ProductDescription = (props) => {
         <CheckIcon /> GMO and Pesticide-free
       </Typography>
       <Typography>
-        <CheckIcon /> Made with 100% Gentetic Modification
+        <CheckIcon /> Made with 100% Love
       </Typography>
       <Typography>
-        <CheckIcon /> This is made up
+        <CheckIcon /> Sustainably Sourced
       </Typography>
       <Typography>
-        <CheckIcon /> It doesn't matter
+        <CheckIcon /> Where's Waldo?
       </Typography>
     </div>
   );

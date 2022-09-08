@@ -1,4 +1,8 @@
 node_modules
 coverage/
 .env
+<<<<<<< Updated upstream
 bundle.js
+=======
+bundle.js
+>>>>>>> Stashed changes

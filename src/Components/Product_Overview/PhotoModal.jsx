@@ -88,7 +88,7 @@ const PhotoModal = (props) => {
                         backgroundImage: `url(${photo.thumbnail_url}`,
                         key: { index },
                       }}
-                      onClick={() => props.handleClick(index)}
+                      onClick={(event) => props.handleClick(event, index)}
                     ></Box>
                   );
                 } else {
@@ -107,7 +107,7 @@ const PhotoModal = (props) => {
                         backgroundImage: `url(${photo.thumbnail_url}`,
                         key: { index },
                       }}
-                      onClick={() => props.handleClick(index)}
+                      onClick={(event) => props.handleClick(event, index)}
                     ></Box>
                   );
                 }
