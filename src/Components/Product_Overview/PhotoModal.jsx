@@ -30,35 +30,36 @@ const style = {
 };
 
 const PhotoModal = (props) => {
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
   style.backgroundImage = props.mainImg;
 
   return (
     <Box sx={{ height: "0" }}>
       <Button
         sx={{ position: "relative", justifyContent: "end" }}
-        onClick={handleOpen}
+        onClick={props.handleOpen}
       >
         <CropFreeIcon sx={{ color: "black" }} />
       </Button>
       <Modal
-        open={open}
-        onClose={handleClose}
+        open={props.open}
+        onClose={props.handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <IconButton onClick={handleClose}>
-            <CloseIcon />
+          <IconButton>
+            <CloseIcon
+              onClick={(e) => {
+                props.handleClose(e);
+              }}
+            />
           </IconButton>
           <Stack
             direction="row"
             justifyContent="space-around"
             sx={{ width: "90%", mx: "auto", mt: "43%" }}
           >
-            <IconButton onClick={() => props.handleClick("left")}>
+            <IconButton onClick={(event) => props.handleClick(event, "left")}>
               <KeyboardArrowLeftIcon
                 sx={{
                   backgroundColor: "rgba(255, 255, 255, .3)",
@@ -88,7 +89,7 @@ const PhotoModal = (props) => {
               })}
             </Stack>
 
-            <IconButton onClick={() => props.handleClick("right")}>
+            <IconButton onClick={(event) => props.handleClick(event, "right")}>
               <KeyboardArrowRightIcon
                 sx={{
                   backgroundColor: "rgba(255, 255, 255, .3)",

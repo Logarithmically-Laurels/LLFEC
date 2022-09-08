@@ -7,20 +7,14 @@ import Divider from "@mui/material/Divider";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
-var addIndex = function (array) {
-  for (var i = 0; i < array.length; i++) {
-    array[i].index = i;
-  }
-
-  return array;
-};
-
 const ImgGallery = (props) => {
-  const getImgUrl = (i) => {
-    let url = allPhotos[i].url;
-    return `url(${url})`;
-  };
+  var addIndex = function (array) {
+    for (var i = 0; i < array.length; i++) {
+      array[i].index = i;
+    }
 
+    return array;
+  };
   //all photos for current style
   var allPhotos = addIndex(props.stylesToDisplay.photos);
 
@@ -36,6 +30,7 @@ const ImgGallery = (props) => {
   //Total Number of thumbails for conditional rendering
   var totalNumOfPhotos = props.stylesToDisplay.photos.length - 1;
 
+  //states to manage img gallery
   const [mainImg, setMainImg] = useState(
     `url(${props.stylesToDisplay.photos[0].url}`
   );
@@ -44,12 +39,28 @@ const ImgGallery = (props) => {
   const [lastImgIndex, setLastImgIndex] = useState(stylePhotosToDisplay.length);
   const [stylePhotos, setStylePhotos] = useState(stylePhotosToDisplay);
 
+  //states to manage modal
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = (e) => {
+    e.stopPropagation();
+    setOpen(false);
+  };
+
   useEffect(() => {
     setMainImg(`url(${props.stylesToDisplay.photos[0].url})`);
     setStylePhotos(stylePhotosToDisplay);
   }, [props.stylesToDisplay]);
 
-  const handleClick = (e) => {
+  const getImgUrl = (i) => {
+    let url = allPhotos[i].url;
+    return `url(${url})`;
+  };
+
+  const handleClick = (event, e) => {
+    event.stopPropagation();
     var tempImgIndex = currentImgIndex;
     if (Number(e) || e == "0") {
       let imgUrl = getImgUrl(e);
@@ -112,10 +123,7 @@ const ImgGallery = (props) => {
   return (
     <Container
       disableGutters
-      onClick={() => {
-        //need to have modal show, might need to move modal state/functions into img gallery
-        //or if I figure out how to have dom click button for me // checking on href options
-      }}
+      onClick={handleOpen}
       sx={{
         width: "100%",
         height: "100%",
@@ -141,7 +149,6 @@ const ImgGallery = (props) => {
         }}
       >
         <UpArrow info={currentImgIndex} handleClick={handleClick} />
-        {console.log(stylePhotos)}
         {stylePhotos.map((photo) => {
           if (currentImgIndex === photo.index) {
             return (
@@ -159,7 +166,7 @@ const ImgGallery = (props) => {
                   backgroundImage: `url(${photo.thumbnail_url}`,
                   key: photo.index,
                 }}
-                onClick={() => handleClick(photo.index)}
+                onClick={(event) => handleClick(event, photo.index)}
               ></Box>
             );
           } else {
@@ -178,7 +185,7 @@ const ImgGallery = (props) => {
                   backgroundImage: `url(${photo.thumbnail_url}`,
                   key: photo.index,
                 }}
-                onClick={() => handleClick(photo.index)}
+                onClick={(event) => handleClick(event, photo.index)}
               ></Box>
             );
           }
@@ -193,14 +200,20 @@ const ImgGallery = (props) => {
         justifyContent="space-between"
         sx={{ width: "120%", my: "40%", mx: "1%" }}
       >
-        <IconButton disableRipple onClick={(e) => handleClick("left")}>
+        <IconButton
+          disableRipple
+          onClick={(event) => handleClick(event, "left")}
+        >
           <KeyboardArrowLeftIcon
             sx={{
               backgroundColor: "rgba(255, 255, 255, .3)",
             }}
           />
         </IconButton>
-        <IconButton disableRipple onClick={(e) => handleClick("right")}>
+        <IconButton
+          disableRipple
+          onClick={(event) => handleClick(event, "right")}
+        >
           <KeyboardArrowRightIcon
             sx={{
               backgroundColor: "rgba(255, 255, 255, .3)",
@@ -213,6 +226,10 @@ const ImgGallery = (props) => {
         currentIndex={currentImgIndex}
         mainImg={mainImg}
         handleClick={handleClick}
+        open={open}
+        setOpen={setOpen}
+        handleOpen={handleOpen}
+        handleClose={handleClose}
       />
     </Container>
   );
