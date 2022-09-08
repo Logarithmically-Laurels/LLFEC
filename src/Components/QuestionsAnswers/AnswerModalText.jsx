@@ -65,7 +65,7 @@ const AnswerModalText = ({onAnswerSubmit, onChangeNewAnswer, onChangeNewEmail, o
                 <AnswerModalPhotos onChangePhotos={onChangePhotos} newPhotos={newPhotos} onURLChange={onURLChange} photoURL={photoURL} onFileChange={onFileChange}/>
               </Grid>
               <Grid item xs={12} textAlign="center">
-                <Button data-testid="answerSubmit" type="submit" variant="outlined" style={{width:'800px', height:'50px'}}>Submit your answer</Button>
+                <Button data-testid="answerSubmit" type="submit" variant="outlined" style={{width:'800px', height:'50px', color: '#000000', borderColor: '#000000'}}>Submit your answer</Button>
               </Grid>
             </Grid>
           </form>

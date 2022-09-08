@@ -6,10 +6,11 @@
   "scripts": {
     "test": "jest",
     "start": "webpack --mode=development",
-    "build": "webpack --mode=production",
+    "build": "webpack --mode=production && node server/index.js",
     "dev": "webpack serve --open",
     "server-dev": "npx nodemon --watch server server/index.js",
-    "client-dev": "npx webpack --watch"
+    "client-dev": "npx webpack --watch",
+    "server-prod": "node server/index.js"
   },
   "repository": {
     "type": "git",

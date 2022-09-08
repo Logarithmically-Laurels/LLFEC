@@ -30,7 +30,7 @@ const AnswerModalPhotos = ({ onChangePhotos, newPhotos, onURLChange, photoURL, o
   if (newPhotos.length >= 5) {
     return (
       <div>
-        <Button variant="outlined" onClick={handleOpen} style={{width:'800px', height:'50px'}}>Add Photos</Button>
+        <Button variant="outlined" onClick={handleOpen} style={{width:'800px', height:'50px', color: '#000000', borderColor: '#000000'}}>Add Photos</Button>
         <Modal
           hideBackdrop
           open={open}
@@ -47,7 +47,7 @@ const AnswerModalPhotos = ({ onChangePhotos, newPhotos, onURLChange, photoURL, o
                   {newPhotos.map((photo) => <span><img width={100} height={100} src={`${photo}`}/>&nbsp;&nbsp;</span>)}
                 </Grid>
                 <Grid item xs={12} textAlign="center">
-                  <Button onClick={handleClose} style={{width:'600px', height:'50px'}}>Close</Button>
+                  <Button onClick={handleClose} variant="outlined" style={{width:'600px', height:'50px', color: '#000000', borderColor: '#000000'}}>Close</Button>
                 </Grid>
               </Grid>
             </form>
@@ -58,7 +58,7 @@ const AnswerModalPhotos = ({ onChangePhotos, newPhotos, onURLChange, photoURL, o
   } else if (newPhotos.length > 0) {
     return (
       <div>
-        <Button variant="outlined" onClick={handleOpen} style={{width:'800px', height:'50px'}}>Add Photos</Button>
+        <Button variant="outlined" onClick={handleOpen} style={{width:'800px', height:'50px', color: '#000000', borderColor: '#000000'}}>Add Photos</Button>
         <Modal
           hideBackdrop
           open={open}
@@ -77,7 +77,7 @@ const AnswerModalPhotos = ({ onChangePhotos, newPhotos, onURLChange, photoURL, o
                   <Divider>OR</Divider>
                 </Grid>
                 <Grid item xs={12}>
-                  <Button variant="contained" component="label" size="large" endIcon={<AddAPhotoIcon/>}>
+                  <Button variant="contained" component="label" size="large" style={{color: '#000000', backgroundColor: '#8D8741'}} endIcon={<AddAPhotoIcon/>}>
                     UPLOAD PHOTO
                   <input hidden type='file' onChange={onFileChange} onClick={e => (e.target.value = null)}></input>
                   </Button>
@@ -89,10 +89,10 @@ const AnswerModalPhotos = ({ onChangePhotos, newPhotos, onURLChange, photoURL, o
                   <Typography color="#5A5A5A">You can upload {5 - newPhotos.length} more photos</Typography>
                 </Grid>
                 <Grid item xs={6} textAlign="center">
-                  <Button onClick={onChangePhotos} style={{width:'300px', height:'50px'}}>Submit Photo</Button>
+                  <Button onClick={onChangePhotos} variant="outlined" style={{width:'300px', height:'50px', color: '#000000', borderColor: '#000000'}}>Submit Photo</Button>
                 </Grid>
                 <Grid item xs={6} textAlign="center">
-                  <Button onClick={handleClose} style={{width:'300px', height:'50px'}}>Close</Button>
+                  <Button onClick={handleClose} variant="outlined" style={{width:'300px', height:'50px', color: '#000000', borderColor: '#000000'}}>Close</Button>
                 </Grid>
               </Grid>
             </form>
@@ -103,7 +103,7 @@ const AnswerModalPhotos = ({ onChangePhotos, newPhotos, onURLChange, photoURL, o
   } else {
     return (
       <div>
-        <Button variant="outlined" onClick={handleOpen} style={{width:'800px', height:'50px'}}>Add Photos</Button>
+        <Button variant="outlined" onClick={handleOpen} style={{width:'800px', height:'50px', color: '#000000', borderColor: '#000000'}}>Add Photos</Button>
         <Modal
           hideBackdrop
           open={open}
@@ -122,7 +122,7 @@ const AnswerModalPhotos = ({ onChangePhotos, newPhotos, onURLChange, photoURL, o
                   <Divider>OR</Divider>
                 </Grid>
                 <Grid item xs={12}>
-                  <Button variant="contained" component="label" size="large" endIcon={<AddAPhotoIcon/>}>
+                  <Button variant="contained" component="label" size="large" style={{color: '#000000', backgroundColor: '#8D8741'}} endIcon={<AddAPhotoIcon/>}>
                     UPLOAD PHOTO
                   <input hidden type='file' onChange={onFileChange} onClick={e => (e.target.value = null)}></input>
                   </Button>
@@ -131,10 +131,10 @@ const AnswerModalPhotos = ({ onChangePhotos, newPhotos, onURLChange, photoURL, o
                   <Typography color="#5A5A5A">You can upload 5 more photos</Typography>
                 </Grid>
                 <Grid item xs={6} textAlign="center">
-                  <Button onClick={onChangePhotos} style={{width:'300px', height:'50px'}}>Submit Photo</Button>
+                  <Button onClick={onChangePhotos} variant="outlined" style={{width:'300px', height:'50px', color: '#000000', borderColor: '#000000'}}>Submit Photo</Button>
                 </Grid>
                 <Grid item xs={6} textAlign="center">
-                  <Button onClick={handleClose} style={{width:'300px', height:'50px'}}>Close</Button>
+                  <Button onClick={handleClose} variant="outlined" style={{width:'300px', height:'50px', color: '#000000', borderColor: '#000000'}}>Close</Button>
                 </Grid>
               </Grid>
             </form>

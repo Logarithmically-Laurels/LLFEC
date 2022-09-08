@@ -37,7 +37,7 @@ const App = () => {
       });
   }, []);
   return (
-    <Container maxWidth={false}>
+    <div style={{width:'100vw', height: '100%', padding:'0px', backgroundColor:"#8D8741"}} >
       {currentProduct && (
         <>
           <div id="Navbar">
@@ -64,7 +64,7 @@ const App = () => {
           </div>
         </>
       )}
-    </Container>
+    </div>
   );
 };
 

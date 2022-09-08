@@ -56,9 +56,9 @@ const ProductInfo = (props) => {
   //TODO center read all reviews
   //create hover animation for link (underline)
   return (
-    <Container disableGutters sx={{ border: 4, height: "33%", width: "100%" }}>
+    <Container disableGutters sx={{ height: "33%", width: "100%" }}>
       <Container disableGutters sx={{ width: "100%", display: "flex" }}>
-        <Stars product_id={props.prodId} />
+        <Stars sx={{ height: "15%" }} product_id={props.prodId} />
         <Link
           activeClass="active"
           to="reviews"
@@ -79,11 +79,11 @@ const ProductInfo = (props) => {
       <Typography variant="h5" sx={{ fontsize: 20 }}>
         {props.prodInfo.name}
       </Typography>
-      <Typography sx={{ my: "5%" }}>{priceText()}</Typography>
+      <Typography>{priceText()}</Typography>
       <Stack
         disableGutters
         direction="row"
-        sx={{ width: "100%", height: "25%", mb: "2%" }}
+        sx={{ width: "100%", height: "25%" }}
       >
         <IconButton sx={{ pl: 0 }}>
           <FacebookIcon />

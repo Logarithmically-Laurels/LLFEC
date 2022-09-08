@@ -68,10 +68,10 @@ const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
 
 
 
-useEffect(()=>{
-  window.sessionStorage.getItem('sort') ?
-  setSort(window.sessionStorage.getItem('sort')): 'relevant'
-}, [])
+  useEffect(() => {
+    window.sessionStorage.getItem('sort') ?
+      setSort(window.sessionStorage.getItem('sort')) : 'relevant'
+  }, [])
 
   useEffect(() => {
     window.sessionStorage.setItem('sort', sort)
@@ -179,12 +179,14 @@ useEffect(()=>{
       </div>
       <Stack spacing={2} direction="row" container="true" padding="2%">
         {(currentReviews && reviewsInView.length > 0) &&
-          <Button variant="outlined"
+          <Button variant="outlined"  style={{color: '#000000', borderColor: '#000000'}}
             onClick={(e) => { handleMoreReviews(e) }}> More Reviews</Button>}
         <Button variant="outlined"
+        style={{color: '#000000', borderColor: '#000000'}}
           endIcon={<AddIcon />}
           onClick={handleOpen}
           data-testid="reviewModalButton"
+
         >Add a Review </Button>
       </Stack>
 

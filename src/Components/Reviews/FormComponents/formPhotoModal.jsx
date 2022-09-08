@@ -56,8 +56,9 @@ const FormPhotoModal = ({ photos, handlePhotoUpload, handlePhotoDelete, handleIn
               <TextField label='Paste Photo URL Here'
               placeholder="Image URL"
               size="normal"
-              style={{ width: '80%' }}
+              style={{ width: '80%', borderColor: '#000000' }}
               name="currentPhotoURL"
+
               inputProps={{
                 'data-testid': "reviewPhotoModalURL",
               }}></TextField>
@@ -66,7 +67,7 @@ const FormPhotoModal = ({ photos, handlePhotoUpload, handlePhotoDelete, handleIn
               <Divider>OR</Divider>
             </Grid>
             <Grid item xs={12}>
-              <Button variant="contained" component="label" size="large" endIcon={<AddAPhotoIcon />}>
+              <Button variant="contained" component="label" size="large"  style={{color: '#000000', backgroundColor: '#8D8741'}} endIcon={<AddAPhotoIcon />}>
                 UPLOAD PHOTO
                 <input hidden type='file' name="currentPhotoFile" onChange={onFileChange} onClick={e => (e.target.value = null)}></input>
               </Button>
@@ -82,10 +83,10 @@ const FormPhotoModal = ({ photos, handlePhotoUpload, handlePhotoDelete, handleIn
               <Typography color="#5A5A5A">You can upload {5 - photos.length} more photos</Typography>
             </Grid>
             <Grid item xs={6} textAlign="center">
-              <Button type="submit" style={{ width: '300px', height: '50px' }}>Submit Photo</Button>
+              <Button type="submit" variant="outlined" style={{ width: '300px', height: '50px', color: '#000000', borderColor: '#000000' }}>Submit Photo</Button>
             </Grid>
             <Grid item xs={6} textAlign="center">
-              <Button onClick={handleInnerClose} style={{ width: '300px', height: '50px' }}>Close</Button>
+              <Button onClick={handleInnerClose} variant="outlined" style={{ width: '300px', height: '50px', color: '#000000', borderColor: '#000000' }}>Close</Button>
             </Grid>
           </Grid>
         </form>

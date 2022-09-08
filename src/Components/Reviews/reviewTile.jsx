@@ -12,7 +12,7 @@ import DoneIcon from '@mui/icons-material/Done';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import Modal from '@mui/material/Modal';
-import { green } from '@mui/material/colors';
+
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -152,7 +152,7 @@ const ReviewTile = ({ review, product_id, metaData }) => {
             {!showSummary && <b>{review.summary}</b>}
           </Box>
           <Box sx={{ gridArea: 'recommend' }} className='recommend'>
-            {review.recommend && <><DoneIcon fontSize="small" sx={{color: green[500]}} /> I recommend this product</>}
+            {review.recommend && <><DoneIcon fontSize="small" sx={{color: '#659DBD'}} /> I recommend this product</>}
           </Box>
           <Box sx={{ gridArea: 'body' }} className='body'>
             {showBody && <>{showBody}

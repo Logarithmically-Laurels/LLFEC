@@ -5,9 +5,7 @@ import { styled, Container } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import Stack from '@mui/material/Stack';
 import Slider, { SliderThumb, SliderValueLabelProps } from '@mui/material/Slider';
-import { green } from '@mui/material/colors';
 import charKey from './reviewData.jsx';
-// import greenTriangle from '../Green_equilateral_triangle_point_down.svg'
 
 
 
@@ -36,9 +34,7 @@ const ReviewNumber = ({ product_id, numReviews, metaData, handleStarSort, starsT
   const CharSlider = styled(Slider)(({ theme }) => ({
     '& .MuiSlider-thumb': {
       width: 2,
-      height: 2,
-      //backgroundImage: `url('data:image/svg+xml;utf8,${greenTriangle}')`,
-      //backgroundColor: '#fff'
+      height: 16,
     },
     '& .MuiSlider-track': {
       width: '70%',
@@ -107,7 +103,7 @@ const ReviewNumber = ({ product_id, numReviews, metaData, handleStarSort, starsT
                   max={100}
                   step={1}
                   aria-label="star slider"
-                  sx={{ color: green[500], width: '65%', display: 'flex', alignItems: 'center' }} />
+                  sx={{ color: '#464320', width: '65%', display: 'flex', alignItems: 'center' }} />
                 <span className='starLabels'>{metaData.ratings[rating] ? metaData.ratings[rating] : 0}</span>
               </Stack>
             ))
@@ -125,7 +121,7 @@ const ReviewNumber = ({ product_id, numReviews, metaData, handleStarSort, starsT
                   max={5}
                   step={1}
                   marks
-                  sx={{ color: green[500], width: '85%', display: 'flex', alignItems: 'center' }} />
+                  sx={{ color: '#464320', width: '85%', display: 'flex', alignItems: 'center' }} />
                 <div className='characteristicLabels'>
                   <span>{charKey[characteristic][1]}</span>
                   <span> {charKey[characteristic][5]}</span>

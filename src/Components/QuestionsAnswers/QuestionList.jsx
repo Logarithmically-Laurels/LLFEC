@@ -37,10 +37,10 @@ const QuestionList = ({
       <Grid container spacing={0} textAlign="center">
         <Grid xs={6}>
           <Button
-            size="large"
+            size="small"
             variant="outlined"
             onClick={showMoreQuestions}
-            style={{ width: "570px", height: "60px" }}
+            style={{ width: "570px", height: "60px", color: '#000000', borderColor: '#000000' }}
           >
             Show more questions...
           </Button>

@@ -6,14 +6,31 @@ import AddToCart from "./AddToCart.jsx";
 import ProductDescription from "./ProductDescription.jsx";
 import axios from "axios";
 import { Container, Paper } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 const dummyData = require("./dummydata.js").data;
 
 const Overview = (props) => {
-  var currentProductId = props.currentProduct.id;
-  // var currentProductId = 37315;
+  // var currentProductId = props.currentProduct.id;
+  var currentProductId = 37314;
   const [allStyles, setAllStyles] = useState(dummyData);
   const [currentStyle, setCurrentStyle] = useState(allStyles.results[0]);
+
+  const Item = styled(Paper)(({ theme }) => ({
+    ...theme.typography.body2,
+    // padding: theme.spacing(1),
+    display: 'flex',
+    maxWidth: "1500px",
+    height: "100vh",
+    margin: 'auto',
+    // justifyContent: "center",
+    // alignItems: 'center',
+    color: theme.palette.text.secondary,
+    marginBottom: '10px',
+    marginTop: '10px',
+    paddingTop: '15px',
+
+  }));
 
   useEffect(() => {
     let options = {
@@ -43,10 +60,10 @@ const Overview = (props) => {
   }, []);
 
   return (
+    <Item disableGutters>
     <Container disableGutters maxWidth={false} sx={{ mb: "2.5%" }}>
       <Container
         sx={{
-          border: 1,
           display: "flex",
         }}
       >
@@ -77,6 +94,7 @@ const Overview = (props) => {
         <ProductDescription prodInfo={props.currentProduct} />
       </Container>
     </Container>
+    </Item>
   );
 };
 

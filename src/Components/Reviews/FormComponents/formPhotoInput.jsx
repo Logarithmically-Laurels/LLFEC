@@ -74,7 +74,7 @@ const FormPhotoInput = ({ }) => {
     < >
       <input name='photos' aria-label='photosInput' type='hidden' value={photos}></input>
       <Box sx={{ gridArea: 'upload' }} data-testid="reviewsFormPhotoInputRoot">
-        {photos.length < 5 && <Button variant="outlined" component="span" onClick={handleInnerOpen} name="inputButton">
+        {photos.length < 5 && <Button variant="outlined" component="span" onClick={handleInnerOpen}  style={{color: '#000000', borderColor: '#000000'}} name="inputButton">
           Upload a Photo
         </Button>}
         <Modal

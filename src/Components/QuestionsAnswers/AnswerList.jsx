@@ -14,7 +14,7 @@ if (allAnswers.length > answers.length) {
         </List>
         <Grid container spacing={0} textAlign="center">
           <Grid xs={2}>
-            <Button size="small" variant="text" onClick={onClickShowMoreAnswers} sx={{color:"#5A5A5A"}}>
+            <Button size="small" variant="text" onClick={onClickShowMoreAnswers}  style={{color: '#000000', borderColor: '#000000'}}>
               Load more answers...
             </Button>
           </Grid>
