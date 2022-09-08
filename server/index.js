@@ -341,6 +341,30 @@ app.get("/styles", (req, res) => {
     });
 });
 
+app.post("/interactions", (req, res) => {
+  console.log(req.body.element);
+  let options = {
+    method: "POST",
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/interactions`,
+    headers: {
+      Authorization: process.env.AUTHTOKEN,
+      "content-type": "application/json",
+    },
+    data: {
+      element: req.body.element,
+      widget: req.body.widget,
+      time: req.body.time
+    },
+  };
+  axios(options)
+    .then((response) => {
+      res.json(response.data);
+    })
+    .catch((err) => {
+      res.json(err.response.data);
+    });
+})
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
