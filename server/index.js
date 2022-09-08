@@ -352,7 +352,7 @@ app.post("/interactions", (req, res) => {
     data: {
       element: req.body.element,
       widget: req.body.widget,
-      time: req.body.time
+      time: req.body.time,
     },
   };
   axios(options)
@@ -362,7 +362,7 @@ app.post("/interactions", (req, res) => {
     .catch((err) => {
       res.json(err.response.data);
     });
-})
+});
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

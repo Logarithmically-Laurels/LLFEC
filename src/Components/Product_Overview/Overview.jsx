@@ -11,10 +11,11 @@ import { styled } from "@mui/material/styles";
 const dummyData = require("./dummydata.js").data;
 
 const Overview = (props) => {
-  // var currentProductId = props.currentProduct.id;
-  var currentProductId = 37315;
+  var currentProductId = props.currentProduct.id;
+  // var currentProductId = 37312;
   const [allStyles, setAllStyles] = useState(dummyData);
   const [currentStyle, setCurrentStyle] = useState(allStyles.results[0]);
+  const [oosStatus, setOosStatus] = useState(false);
 
   const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -43,15 +44,11 @@ const Overview = (props) => {
 
     axios(options)
       .then((response) => {
-        if (response.data.results[0].photos[0].url !== null) {
-          setAllStyles(response.data);
-          setCurrentStyle(response.data.results[0]);
-        } else {
-          setAllStyles(response.data);
-          //TODO change bellow to a dummy data file with an object that will display oos images
-          // setCurrentStyle(allStyles.results[0]);
-          setCurrentStyle(response.data.results[0]);
+        if (response.data.results[0].photos[0].url === null) {
+          setOosStatus(true);
         }
+        setAllStyles(response.data);
+        setCurrentStyle(response.data.results[0]);
       })
       .catch((err) => {
         console.log(err);
@@ -66,7 +63,7 @@ const Overview = (props) => {
             display: "flex",
           }}
         >
-          <ImgGallery stylesToDisplay={currentStyle} />
+          <ImgGallery oosStatus={oosStatus} stylesToDisplay={currentStyle} />
           <Container
             disableGutters
             justifycontent="space-between"
