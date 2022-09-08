@@ -3,8 +3,6 @@ import { MenuItem, Menu, Button, IconButton, Container } from "@mui/material";
 import { Element } from "react-scroll";
 
 const SelectSizeButton = (props) => {
-  // const [anchorEl, setAnchorEl] = useState(null);
-  console.log(props);
   const open = Boolean(props.anchorEl);
   const handleClick = (event) => {
     props.setAnchorEl(event.currentTarget);

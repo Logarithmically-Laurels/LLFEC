@@ -16,10 +16,10 @@ const StyleSelector = (props) => {
         sx={{
           display: "grid",
           columnGap: 0,
-          rowGap: 0,
+          rowGap: 1,
           gridTemplateColumns: "repeat(4, 1fr)",
           my: "0%",
-          ml: -2,
+          ml: "0%",
           width: "100%",
           height: "60%",
           alignItems: "center",
