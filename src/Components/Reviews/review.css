@@ -1,8 +1,15 @@
+
+html {
+  background-color: #8D8741;
+  padding-bottom: 20px;
+  width: 95vw;
+}
 .reviewAppRoot {
   height: 85vh;
-  margin-top: 3vh;
+  margin-top: 10px;
   display:flex;
   justify-content: center;
+  margin-bottom:  20px;
 }
 
 .link {
@@ -152,3 +159,7 @@
 /* .innerModal {
   width: 80%;
 } */
+.mainLogo {
+  font-family: 'Mukta', sans-serif;
+  font-size: 75px;
+}

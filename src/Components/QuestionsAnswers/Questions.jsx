@@ -12,6 +12,22 @@ import {
   Paper,
   Box,
 } from "@mui/material";
+import { styled } from "@mui/material/styles";
+
+const Item = styled(Paper)(({ theme }) => ({
+  ...theme.typography.body2,
+  // padding: theme.spacing(1),
+  display: 'flex',
+  maxWidth: "1500px",
+  height: "100%",
+  margin: 'auto',
+  // justifyContent: "center",
+  // alignItems: 'center',
+  color: theme.palette.text.secondary,
+  marginBottom: '10px',
+  marginTop: '10px',
+
+}));
 
 const Questions = ({ currentProd }) => {
   const [questions, setQuestions] = useState([]);
@@ -212,27 +228,28 @@ const Questions = ({ currentProd }) => {
   }, [searched]);
 
   return (
-    <Typography textAlign="center">
-      <Search onSearchChange={onSearchChange} />
-      <br></br>
-      <Box
-        component="span"
-        sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
-      >
-        <QuestionList
-          questions={questions}
-          onYes={onYes}
-          showMoreQuestions={showMoreQuestions}
-          renderedQuestions={renderedQuestions}
-          onReport={onReport}
-          onAddQuestion={onAddQuestion}
-          onQuestionChange={onQuestionChange}
-          onUserChange={onUserChange}
-          onEmailChange={onEmailChange}
-          product_id={currentProd.id}
-        />
-      </Box>
-    </Typography>
+    <Item>
+      <Typography textAlign="center">
+        <Search onSearchChange={onSearchChange} />
+        <Box
+          component="span"
+          sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+        >
+          <QuestionList
+            questions={questions}
+            onYes={onYes}
+            showMoreQuestions={showMoreQuestions}
+            renderedQuestions={renderedQuestions}
+            onReport={onReport}
+            onAddQuestion={onAddQuestion}
+            onQuestionChange={onQuestionChange}
+            onUserChange={onUserChange}
+            onEmailChange={onEmailChange}
+            product_id={currentProd.id}
+          />
+        </Box>
+      </Typography>
+    </Item>
   );
 };
 

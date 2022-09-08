@@ -6,6 +6,7 @@ import AddToCart from "./AddToCart.jsx";
 import ProductDescription from "./ProductDescription.jsx";
 import axios from "axios";
 import { Container, Paper } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 const dummyData = require("./dummydata.js").data;
 
@@ -14,6 +15,21 @@ const Overview = (props) => {
   // var currentProductId = 37315;
   const [allStyles, setAllStyles] = useState(dummyData);
   const [currentStyle, setCurrentStyle] = useState(allStyles.results[0]);
+
+  const Item = styled(Paper)(({ theme }) => ({
+    ...theme.typography.body2,
+    // padding: theme.spacing(1),
+    display: 'flex',
+    maxWidth: "1500px",
+    height: "100%",
+    margin: 'auto',
+    // justifyContent: "center",
+    // alignItems: 'center',
+    color: theme.palette.text.secondary,
+    marginBottom: '10px',
+    marginTop: '10px',
+
+  }));
 
   useEffect(() => {
     let options = {
@@ -43,6 +59,7 @@ const Overview = (props) => {
   }, []);
 
   return (
+    <Item disableGutters>
     <Container disableGutters maxWidth={false} sx={{ mb: "2.5%" }}>
       <Container
         sx={{
@@ -77,6 +94,7 @@ const Overview = (props) => {
         <ProductDescription prodInfo={props.currentProduct} />
       </Container>
     </Container>
+    </Item>
   );
 };
 
