@@ -46,7 +46,6 @@ const Overview = (props) => {
     <Container disableGutters maxWidth={false} sx={{ mb: "2.5%" }}>
       <Container
         sx={{
-          border: 1,
           display: "flex",
         }}
       >

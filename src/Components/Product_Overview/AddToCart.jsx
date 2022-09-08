@@ -18,7 +18,7 @@ const AddToCart = (props) => {
   return (
     <Container
       disableGutters
-      sx={{ border: 1, height: "30%", borderColor: "green", p: 0 }}
+      sx={{ height: "30%", borderColor: "green", p: 0 }}
     >
       <Stack
         direction="row"

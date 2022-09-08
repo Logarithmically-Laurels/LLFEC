@@ -5,7 +5,7 @@ import axios from "axios";
 
 const StyleSelector = (props) => {
   return (
-    <Container disableGutters sx={{ border: 1, height: "33%", width: "100%" }}>
+    <Container disableGutters sx={{ height: "33%", width: "100%" }}>
       <Container disableGutters sx={{ display: "flex", height: "20%" }}>
         <Typography sx={{ fontWeight: "bold" }}>{"Style >   "} </Typography>
         <Typography sx={{ ml: "3%" }}> {props.currentStyle.name}</Typography>
@@ -19,7 +19,7 @@ const StyleSelector = (props) => {
           rowGap: 1,
           gridTemplateColumns: "repeat(4, 1fr)",
           my: "0%",
-          ml: "0%",
+          ml: -2,
           width: "100%",
           height: "60%",
           alignItems: "center",
