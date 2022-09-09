@@ -7,7 +7,7 @@ const Search = ({onSearchChange}) => {
   return (
         <Grid>
           <Grid item xs={12}>
-            <TextField size="large" fullWidth label="HAVE A QUESTION? SEARCH FOR ANSWERS" style={{width: 1450}} onChange={onSearchChange} InputProps={{endAdornment: (
+            <TextField size="large" fullWidth label="HAVE A QUESTION? SEARCH FOR ANSWERS" style={{maxWidth: 1450}} onChange={onSearchChange} InputProps={{endAdornment: (
               <InputAdornment position="end">
                   <SearchIcon />
               </InputAdornment>

@@ -197,8 +197,8 @@ const QuestionListItem = ({
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          width: "1500px",
-          minWidth: "1500px",
+          maxWidth: "1500px",
+          // width: "1500px"
         }}
       >
         <ListItem>
@@ -290,8 +290,8 @@ const QuestionListItem = ({
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          width: "1500px",
-          minWidth: "1500px",
+          maxWidth: "1500px",
+          // width: "1500px"
         }}
       >
         <ListItem>

@@ -114,7 +114,7 @@ const Navbar = () => {
 
         <Toolbar style={{ display: 'flex', justifyContent: 'space-between', maxWidth: '2000px', minWidth: '90vw' }}>
           <ThemeProvider theme={logoTheme}>
-            <h1 className="mainLogo">Laurel</h1>
+            <h1 className="mainLogo">Laurel Outfitters</h1>
           </ThemeProvider>
           <NavSearch />
         </Toolbar>

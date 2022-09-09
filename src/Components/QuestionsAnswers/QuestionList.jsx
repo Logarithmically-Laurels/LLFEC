@@ -18,8 +18,8 @@ const QuestionList = ({
 }) => {
   // console.log(renderedQuestions)
   return (
-    <div>
-    <div style={{ height: "80vh", overflow: "scroll"}}>
+    <div id="questionList">
+    <div style={{ maxHeight: "80vh", overflow: "auto", display: 'flex', flexDirection: 'column-reverse'}}>
       <List>
         {renderedQuestions.map((question) => (
           <QuestionListItem
@@ -37,18 +37,18 @@ const QuestionList = ({
       </List>
     </div>
     <div>
-      <Grid container spacing={0} textAlign="center">
-        <Grid xs={6}>
+      <Grid container spacing={0}>
+        <Grid xs={3}>
           <Button
             size="large"
-            variant="text"
+            variant="outlined"
             onClick={showMoreQuestions}
-            style={{ width: "700px", height: "70px", color: '#000000', borderColor: '#000000' }}
+            style={{ width: "300px", height: "75px", color: '#000000', borderColor: '#000000' }}
           >
-            MORE QUESTIONS...
+            SHOW MORE QUESTIONS...
           </Button>
         </Grid>
-        <Grid xs={6}>
+        <Grid xs={1}>
           <QuestionModal
             onAddQuestion={onAddQuestion}
             onQuestionChange={onQuestionChange}
@@ -59,7 +59,7 @@ const QuestionList = ({
         </Grid>
       </Grid>
     </div>
-    </div>
+  </div>
   );
 };
 
