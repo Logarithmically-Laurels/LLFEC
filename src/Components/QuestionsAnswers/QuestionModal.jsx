@@ -62,7 +62,7 @@ const QuestionModal = ({onQuestionChange, onAddQuestion, onEmailChange, onUserCh
 
   return (
     <div>
-      <Button data-testid="questionModal" size="large" variant="text" onClick={handleOpen} style={{width:'700px', height:'70px', color: '#000000', borderColor: '#000000'}}>Ask a question +</Button>
+      <Button data-testid="questionModal" size="large" variant="outlined" onClick={handleOpen} style={{width:'250px', height:'75px', color: '#000000', borderColor: '#000000'}}>Ask a question +</Button>
       <Modal
         open={open}
         onClose={handleClose}

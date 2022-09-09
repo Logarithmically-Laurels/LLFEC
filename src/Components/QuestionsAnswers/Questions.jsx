@@ -36,7 +36,7 @@ const Questions = ({ currentProd }) => {
   const [currentQuestion, setCurrentQuestion] = useState("");
   const [email, setEmail] = useState("");
   const [searched, setSearched] = useState("");
-  const [shownQuestions, setShownQuestions] = useState(4);
+  const [shownQuestions, setShownQuestions] = useState(2);
   const [renderedQuestions, setRenderedQuestions] = useState([]);
   const [username, setUsername] = useState("");
 
@@ -192,16 +192,8 @@ const Questions = ({ currentProd }) => {
   }, [shownQuestions]);
 
   useEffect(() => {
-    let temp = [];
     if (searched.length >= 3) {
-      for (let element of questions) {
-        if (
-          element.question_body.toLowerCase().includes(searched.toLowerCase())
-        ) {
-          temp.push(element);
-        }
-      }
-      setRenderedQuestions(temp);
+      setRenderedQuestions(questions.filter(element => element.question_body.toLowerCase().includes(searched.toLowerCase())))
     } else {
       var options = {
         method: "GET",
@@ -230,7 +222,7 @@ const Questions = ({ currentProd }) => {
   }, [searched]);
 
   return (
-    <Item>
+    <Item sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
       <Typography textAlign="center">
         <Search onSearchChange={onSearchChange} />
         <Box

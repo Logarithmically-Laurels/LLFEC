@@ -103,7 +103,7 @@ const ReviewNumber = ({ product_id, numReviews, metaData, handleStarSort, starsT
                   max={100}
                   step={1}
                   aria-label="star slider"
-                  sx={{ color: '#464320', width: '65%', display: 'flex', alignItems: 'center' }} />
+                  sx={{ color: '#000000', width: '65%', display: 'flex', alignItems: 'center' }} />
                 <span className='starLabels'>{metaData.ratings[rating] ? metaData.ratings[rating] : 0}</span>
               </Stack>
             ))
@@ -121,7 +121,7 @@ const ReviewNumber = ({ product_id, numReviews, metaData, handleStarSort, starsT
                   max={5}
                   step={1}
                   marks
-                  sx={{ color: '#464320', width: '85%', display: 'flex', alignItems: 'center' }} />
+                  sx={{ color: '#000000', width: '85%', display: 'flex', alignItems: 'center' }} />
                 <div className='characteristicLabels'>
                   <span>{charKey[characteristic][1]}</span>
                   <span> {charKey[characteristic][5]}</span>

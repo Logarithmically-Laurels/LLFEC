@@ -35,7 +35,6 @@ const SelectQuantityButton = (props) => {
         disabled
         sx={{
           border: 1,
-          borderRadius: 0,
           borderColor: "black",
           color: "black",
           width: "100%",
@@ -56,7 +55,6 @@ const SelectQuantityButton = (props) => {
         <Button
           sx={{
             border: 1,
-            borderRadius: 0,
             borderColor: "black",
             color: "black",
             width: "100%",

@@ -69,6 +69,8 @@ const ProductInfo = (props) => {
           <Box
             sx={{
               textDecoration: "underline",
+              mt: 0.5,
+              ml: 1,
             }}
           >
             {reviewText()}

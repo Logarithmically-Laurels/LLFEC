@@ -11,7 +11,6 @@ export default function () {
     return (
       <ToggleButton
         sx={{
-          borderRadius: 0,
           borderColor: "black",
           width: "20%",
         }}
@@ -28,7 +27,6 @@ export default function () {
     return (
       <ToggleButton
         sx={{
-          borderRadius: 0,
           borderColor: "black",
           width: "20%",
         }}

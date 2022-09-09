@@ -42,6 +42,7 @@ const ReviewApp = ({ currentProd }) => {
       var index = starsToRender.indexOf(rating)
       tempStars.splice(index, 1)
     }
+    tempStars.sort((a,b) => {return b-a})
     var tempStarsCopy = tempStars.slice()
     setStarsToRender(tempStarsCopy)
   }

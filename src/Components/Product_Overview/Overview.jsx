@@ -11,10 +11,11 @@ import { styled } from "@mui/material/styles";
 const dummyData = require("./dummydata.js").data;
 
 const Overview = (props) => {
-  // var currentProductId = props.currentProduct.id;
-  var currentProductId = 37315;
-  const [allStyles, setAllStyles] = useState(dummyData);
-  const [currentStyle, setCurrentStyle] = useState(allStyles.results[0]);
+  var currentProductId = props.currentProduct.id;
+  // var currentProductId = 37312;
+  const [allStyles, setAllStyles] = useState();
+  const [currentStyle, setCurrentStyle] = useState();
+  const [oosStatus, setOosStatus] = useState(false);
 
   const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -23,10 +24,8 @@ const Overview = (props) => {
     maxWidth: "1500px",
     height: "100%",
     margin: "auto",
-    // justifyContent: "center",
-    // alignItems: 'center',
     color: theme.palette.text.secondary,
-    marginBottom: "10px",
+    marginBottom: "20px",
     marginTop: "10px",
     paddingTop: "15px",
   }));
@@ -43,15 +42,11 @@ const Overview = (props) => {
 
     axios(options)
       .then((response) => {
-        if (response.data.results[0].photos[0].url !== null) {
-          setAllStyles(response.data);
-          setCurrentStyle(response.data.results[0]);
-        } else {
-          setAllStyles(response.data);
-          //TODO change bellow to a dummy data file with an object that will display oos images
-          // setCurrentStyle(allStyles.results[0]);
-          setCurrentStyle(response.data.results[0]);
+        if (response.data.results[0].photos[0].url === null) {
+          setOosStatus(true);
         }
+        setAllStyles(response.data);
+        setCurrentStyle(response.data.results[0]);
       })
       .catch((err) => {
         console.log(err);
@@ -59,35 +54,42 @@ const Overview = (props) => {
   }, []);
 
   return (
-    <Item disableGutters>
+    <Item disableGutters sx={{ mt: 0 }}>
       <Container disableGutters maxWidth={false} sx={{ mb: "2.5%" }}>
         <Container
           sx={{
             display: "flex",
           }}
         >
-          <ImgGallery stylesToDisplay={currentStyle} />
-          <Container
-            disableGutters
-            justifycontent="space-between"
-            sx={{
-              my: "4%",
-              width: "40%",
-            }}
-          >
-            <ProductInfo
-              prodCat={props.currentProduct.category}
-              prodId={currentProductId}
-              prodInfo={currentStyle}
-            />
-            <StyleSelector
-              prodId={currentProductId}
-              currentStyle={currentStyle}
-              allStyles={allStyles}
-              setStyle={setCurrentStyle}
-            />
-            <AddToCart currentStyle={currentStyle} />
-          </Container>
+          {allStyles && (
+            <>
+              <ImgGallery
+                oosStatus={oosStatus}
+                stylesToDisplay={currentStyle}
+              />
+              <Container
+                disableGutters
+                justifycontent="space-between"
+                sx={{
+                  my: "4%",
+                  width: "40%",
+                }}
+              >
+                <ProductInfo
+                  prodCat={props.currentProduct.category}
+                  prodId={currentProductId}
+                  prodInfo={currentStyle}
+                />
+                <StyleSelector
+                  prodId={currentProductId}
+                  currentStyle={currentStyle}
+                  allStyles={allStyles}
+                  setStyle={setCurrentStyle}
+                />
+                <AddToCart currentStyle={currentStyle} />
+              </Container>
+            </>
+          )}
         </Container>
         <Container>
           <ProductDescription prodInfo={props.currentProduct} />

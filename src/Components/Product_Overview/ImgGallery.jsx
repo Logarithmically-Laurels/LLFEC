@@ -7,6 +7,8 @@ import Divider from "@mui/material/Divider";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
+const data = require("./OutOfStockData.js").data;
+
 const ImgGallery = (props) => {
   var addIndex = function (array) {
     for (var i = 0; i < array.length; i++) {
@@ -52,8 +54,16 @@ const ImgGallery = (props) => {
   };
 
   useEffect(() => {
-    setMainImg(`url(${props.stylesToDisplay.photos[0].url})`);
-    setStylePhotos(stylePhotosToDisplay);
+    if (!props.oosStatus) {
+      setMainImg(`url(${props.stylesToDisplay.photos[0].url})`);
+      setStylePhotos(stylePhotosToDisplay);
+      console.log(stylePhotosToDisplay);
+    } else {
+      setMainImg(
+        "url(https://dearsystems.com/wp-content/uploads/2018/02/out-of-stock-1024x684-1.jpg)"
+      );
+      setStylePhotos(data);
+    }
   }, [props.stylesToDisplay]);
 
   const getImgUrl = (i) => {
