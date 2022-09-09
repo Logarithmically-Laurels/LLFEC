@@ -23,6 +23,7 @@ html {
   display:flex;
   justify-content: center;
   margin-bottom:  20px;
+  padding-top: 10px;
 }
 
 .link {
@@ -32,6 +33,7 @@ html {
 .ReviewScroll {
   max-height: 80vh;
   overflow: scroll;
+  min-height: 80vh;
 }
 
 .modalImage {
@@ -175,4 +177,7 @@ html {
 .mainLogo {
   font-family: 'Monoton', sans-serif;
   font-size: 75px;
+}
+.bodyCountDesc {
+  width: 50%;
 }

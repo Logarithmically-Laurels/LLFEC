@@ -23,10 +23,10 @@ const FormCharInput = ({ metaData }) => {
       {charArray && charArray.map(([characteristic, obj], index) => (
         <Stack spacing={2} direction="row" container="true" padding="2%" key={index}>
           {charDescription &&
-            <>
+            <div className='bodyCountDesc'>
               <p className='recommendp'><b>Please evaluate the {characteristic}*. </b></p>
               <p className='bodyCount char'> {charDescription[characteristic] ? charDescription[characteristic] : charDescription.initial} </p>
-            </>}
+            </div>}
           <RadioGroup
             required
             row

@@ -20,6 +20,29 @@ const Item = styled(Paper)(({ theme }) => ({
 
 }));
 
+const CssSelect = styled(Select, {
+  shouldForwardProp: (props) => props !== "focusColor"
+})((p) => ({
+  // input label when focused
+  "& label.Mui-focused": {
+    color: '#000000 !important'
+  },
+  // focused color for input with variant='standard'
+  "&.MuiInput-underline:after": {
+    borderBottomColor: '#000000'
+  },
+  // focused color for input with variant='filled'
+  "& .MuiFilledInput-underline:after": {
+    borderBottomColor: '#000000'
+  },
+
+  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+    borderColor: '#000000',
+},
+
+
+}));
+
 
 const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
   const [currentReviews, setCurrentReviews] = useState(null);
@@ -27,7 +50,7 @@ const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
   const [currentProduct, setCurrentProduct] = useState(currentProd);
   const [metaDataState, setMetaDataState] = useState(metaData)
   const [page, setPage] = useState(1);
-  const [count, setCount] = useState(6);
+  const [count, setCount] = useState(100);
   const [sort, setSort] = useState('relevant')
   // const [sortStars, setSortStars] = useState(starsToRender)
   const [open, setOpen] = useState(false);
@@ -136,21 +159,22 @@ const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
           <span data-testid='reviewListTotalReviews'><b >Total Reviews: {numReviews} </b></span>
         </Grid>
         <Grid
-          justifyContent="flex-end">
+          justifyContent="flex-end" paddingTop="10px">
           <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-            <InputLabel id="demo-select-small">Sort by</InputLabel>
-            <Select
+            <InputLabel id="demo-select-small" style={{color: '#000000'}}>Sort by</InputLabel>
+            <CssSelect
               labelId="demo-select-small"
               id="demo-select-small"
               value={sort}
               label="Sort on"
+              variant="outlined"
               onChange={(e) => { handleSortChange(e) }}
               data-testid='reviewListSortSelector'
             >
               <MenuItem value={'relevant'}>Relevant</MenuItem>
               <MenuItem value={'newest'}>Newest</MenuItem>
               <MenuItem value={'helpful'}>Helpful</MenuItem>
-            </Select>
+            </CssSelect>
           </FormControl>
         </Grid>
       </Grid>
