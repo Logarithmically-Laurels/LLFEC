@@ -14,18 +14,23 @@ const ProductInfo = (props) => {
 
   useEffect(() => {
     var options = {
-      url: "/reviews",
+      url: "/reviews/meta",
       method: "get",
       headers: {
         "Content-Type": "application/json",
       },
       params: {
         product_id: props.prodId,
-        count: 1000,
       },
     };
     axios(options).then((results) => {
-      setNumbOfReviews(results.data.results.length);
+      var numbOfReviews = 0;
+      if (results.data.ratings) {
+        for (var rating in results.data.ratings) {
+          numbOfReviews += parseInt(results.data.ratings[rating]);
+        }
+      }
+      setNumbOfReviews(numbOfReviews);
     });
   }, [numbOfReviews]);
 
