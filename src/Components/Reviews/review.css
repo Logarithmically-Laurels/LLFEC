@@ -19,7 +19,7 @@ html {
 }
 .reviewAppRoot {
   height: 85vh;
-  margin-top: 10px;
+  /* margin-top: 10px; */
   display:flex;
   justify-content: center;
   margin-bottom:  20px;

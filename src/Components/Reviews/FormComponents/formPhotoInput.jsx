@@ -21,14 +21,19 @@ const FormPhotoInput = ({ }) => {
     var photoArray = photos.slice()
     var photoArrayString = photosString;
     if (e?.target?.currentPhotoURL?.value) {
+      console.log('e.target.value ', e.target.currentPhotoURL.value)
       var url = e.target.currentPhotoURL.value
     } else {
-      var url = e;
+        var url = e;
+        console.log('url', url)
     }
-    photoArray.push(url,);
-    photoArrayString.push(url, toString())
-    setPhotos([...photoArray])
-    setPhotosString([...photoArrayString])
+    if (typeof url === 'string') {
+      photoArray.push(url,);
+      console.log(photoArray)
+      photoArrayString.push(url, toString())
+      setPhotos([...photoArray])
+      setPhotosString([...photoArrayString])
+    }
   }
 
   const handlePhotoDelete = (index) => {

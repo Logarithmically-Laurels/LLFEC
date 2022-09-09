@@ -68,10 +68,9 @@ const FormPhotoModal = ({ photos, handlePhotoUpload, handlePhotoDelete, handleIn
       <Box sx={style} textAlign="center" data-testid="reviewsPhotoModalRoot">
         <Typography color="#5A5A5A" variant="h5" id="child-modal-title">Add Photos</Typography>
         <form onSubmit={(e) => {
-
-          e.preventDefault()
-          handlePhotoUpload(e)
-          handleInnerClose()
+          e.preventDefault();
+          handlePhotoUpload(e);
+          handleInnerClose();
         }}>
 
           <Grid container spacing={1}>
@@ -95,7 +94,7 @@ const FormPhotoModal = ({ photos, handlePhotoUpload, handlePhotoDelete, handleIn
             <Grid item xs={12}>
               <Button variant="contained" component="label" size="large"  style={{color: '#000000', backgroundColor: '#8D8741'}} endIcon={<AddAPhotoIcon />}>
                 UPLOAD PHOTO
-                <input hidden type='file' name="currentPhotoFile" onChange={onFileChange} onClick={e => (e.target.value = null)}></input>
+                <input hidden type='file' name="currentPhotoFile" onChange={onFileChange} onClick={e => {(e.target.value = null); console.log('click')}}></input>
               </Button>
             </Grid>
             <Grid item xs={12} data-testid="reviewPhotoModalPhotos">
