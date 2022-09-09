@@ -36,7 +36,7 @@ const Questions = ({ currentProd }) => {
   const [currentQuestion, setCurrentQuestion] = useState("");
   const [email, setEmail] = useState("");
   const [searched, setSearched] = useState("");
-  const [shownQuestions, setShownQuestions] = useState(4);
+  const [shownQuestions, setShownQuestions] = useState(2);
   const [renderedQuestions, setRenderedQuestions] = useState([]);
   const [username, setUsername] = useState("");
 
