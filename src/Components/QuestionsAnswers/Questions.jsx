@@ -230,7 +230,7 @@ const Questions = ({ currentProd }) => {
   }, [searched]);
 
   return (
-    <Item>
+    <Item sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
       <Typography textAlign="center">
         <Search onSearchChange={onSearchChange} />
         <Box
