@@ -25,7 +25,7 @@ const Overview = (props) => {
     height: "100%",
     margin: "auto",
     color: theme.palette.text.secondary,
-    marginBottom: "10px",
+    marginBottom: "20px",
     marginTop: "10px",
     paddingTop: "15px",
   }));
