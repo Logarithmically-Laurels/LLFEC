@@ -192,16 +192,8 @@ const Questions = ({ currentProd }) => {
   }, [shownQuestions]);
 
   useEffect(() => {
-    let temp = [];
     if (searched.length >= 3) {
-      for (let element of questions) {
-        if (
-          element.question_body.toLowerCase().includes(searched.toLowerCase())
-        ) {
-          temp.push(element);
-        }
-      }
-      setRenderedQuestions(temp);
+      setRenderedQuestions(questions.filter(element => element.question_body.toLowerCase().includes(searched.toLowerCase())))
     } else {
       var options = {
         method: "GET",
