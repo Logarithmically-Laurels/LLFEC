@@ -74,7 +74,7 @@ const ReviewNumber = ({ product_id, numReviews, metaData, handleStarSort, starsT
   return (
     <div>
 
-      <Stack spacing={2} direction="row" container="true" padding="2%">
+      <Stack spacing={2} direction="row" container="true" padding="2%" justifyContent="center" alignItems="center">
         <span className="largeNumber"><b>{Math.round(avgRating * 10) / 10}</b></span>
         <Stack spacing={0} direction="column" container="true" paddingTop="8%">
           <Stars product_id={product_id} size='small' />

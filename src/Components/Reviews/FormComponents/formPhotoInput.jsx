@@ -34,6 +34,13 @@ const FormPhotoInput = ({ }) => {
       setPhotos([...photoArray])
       setPhotosString([...photoArrayString])
     }
+
+    if (typeof url === 'string') {
+      photoArray.push(url,);
+      photoArrayString.push(url, toString())
+      setPhotos([...photoArray])
+      setPhotosString([...photoArrayString])
+    }
   }
 
   const handlePhotoDelete = (index) => {

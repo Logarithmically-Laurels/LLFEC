@@ -155,7 +155,7 @@ const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
         paddingRight="2%"
       >
         <Grid
-          justifyContent="flex-start">
+          justifyContent="flex-start" >
           <span data-testid='reviewListTotalReviews'><b >Total Reviews: {numReviews} </b></span>
         </Grid>
         <Grid
@@ -163,6 +163,7 @@ const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
           <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
             <InputLabel id="demo-select-small" style={{color: '#000000'}}>Sort by</InputLabel>
             <CssSelect
+
               labelId="demo-select-small"
               id="demo-select-small"
               value={sort}
