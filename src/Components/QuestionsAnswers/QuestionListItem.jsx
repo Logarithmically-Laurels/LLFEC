@@ -197,8 +197,8 @@ const QuestionListItem = ({
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          maxWidth: "1500px",
-          // width: "1500px"
+          maxWidth: "1400px",
+          width: "1400px"
         }}
       >
         <ListItem>
@@ -290,8 +290,8 @@ const QuestionListItem = ({
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          maxWidth: "1500px",
-          // width: "1500px"
+          maxWidth: "1400px",
+          width: "1400px"
         }}
       >
         <ListItem>
@@ -353,7 +353,7 @@ const QuestionListItem = ({
                 <span>
                   <Typography color="#808080" variant="caption">
                     <i>
-                      {asker_name} on {newTime}
+                      Posted by {asker_name} on {newTime}
                     </i>{" "}
                     &nbsp;&nbsp;|&nbsp;&nbsp;{" "}
                   </Typography>
