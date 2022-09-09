@@ -27,7 +27,7 @@ const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
   const [currentProduct, setCurrentProduct] = useState(currentProd);
   const [metaDataState, setMetaDataState] = useState(metaData)
   const [page, setPage] = useState(1);
-  const [count, setCount] = useState(6);
+  const [count, setCount] = useState(40);
   const [sort, setSort] = useState('relevant')
   // const [sortStars, setSortStars] = useState(starsToRender)
   const [open, setOpen] = useState(false);
