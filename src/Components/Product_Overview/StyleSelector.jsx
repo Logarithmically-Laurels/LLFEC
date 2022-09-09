@@ -30,10 +30,15 @@ const StyleSelector = (props) => {
           if (style.style_id === props.currentStyle.style_id) {
             return (
               <Badge
-                color="primary"
-                variant="dot"
                 overlap="circular"
                 invisible={false}
+                anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+                badgeContent={
+                  <Avatar
+                    sx={{ width: 24, height: 24 }}
+                    src="https://www.accuform.com/files/damObject/Image/huge/LADM422GN.jpg"
+                  />
+                }
               >
                 <Avatar
                   onClick={() => props.setStyle(style)}

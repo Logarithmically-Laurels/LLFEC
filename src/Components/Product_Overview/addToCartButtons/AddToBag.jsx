@@ -16,7 +16,6 @@ const AddToBag = (props) => {
       <Button
         onClick={(e) => handleClick(e)}
         sx={{
-          borderRadius: "0",
           width: "70%",
           borderColor: "black",
           color: "black",

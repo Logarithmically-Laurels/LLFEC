@@ -37,7 +37,6 @@ const SelectSizeButton = (props) => {
           sx={{
             border: 1,
             width: "100%",
-            borderRadius: 0,
             color: "red",
             height: "100%",
           }}
@@ -58,7 +57,6 @@ const SelectSizeButton = (props) => {
           sx={{
             border: 1,
             width: "100%",
-            borderRadius: 0,
             color: "black",
             height: "100%",
           }}

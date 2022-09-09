@@ -13,8 +13,8 @@ const dummyData = require("./dummydata.js").data;
 const Overview = (props) => {
   var currentProductId = props.currentProduct.id;
   // var currentProductId = 37312;
-  const [allStyles, setAllStyles] = useState(dummyData);
-  const [currentStyle, setCurrentStyle] = useState(allStyles.results[0]);
+  const [allStyles, setAllStyles] = useState();
+  const [currentStyle, setCurrentStyle] = useState();
   const [oosStatus, setOosStatus] = useState(false);
 
   const Item = styled(Paper)(({ theme }) => ({
@@ -24,8 +24,6 @@ const Overview = (props) => {
     maxWidth: "1500px",
     height: "100%",
     margin: "auto",
-    // justifyContent: "center",
-    // alignItems: 'center',
     color: theme.palette.text.secondary,
     marginBottom: "10px",
     marginTop: "10px",
@@ -56,35 +54,42 @@ const Overview = (props) => {
   }, []);
 
   return (
-    <Item disableGutters>
+    <Item disableGutters sx={{ mt: 0 }}>
       <Container disableGutters maxWidth={false} sx={{ mb: "2.5%" }}>
         <Container
           sx={{
             display: "flex",
           }}
         >
-          <ImgGallery oosStatus={oosStatus} stylesToDisplay={currentStyle} />
-          <Container
-            disableGutters
-            justifycontent="space-between"
-            sx={{
-              my: "4%",
-              width: "40%",
-            }}
-          >
-            <ProductInfo
-              prodCat={props.currentProduct.category}
-              prodId={currentProductId}
-              prodInfo={currentStyle}
-            />
-            <StyleSelector
-              prodId={currentProductId}
-              currentStyle={currentStyle}
-              allStyles={allStyles}
-              setStyle={setCurrentStyle}
-            />
-            <AddToCart currentStyle={currentStyle} />
-          </Container>
+          {allStyles && (
+            <>
+              <ImgGallery
+                oosStatus={oosStatus}
+                stylesToDisplay={currentStyle}
+              />
+              <Container
+                disableGutters
+                justifycontent="space-between"
+                sx={{
+                  my: "4%",
+                  width: "40%",
+                }}
+              >
+                <ProductInfo
+                  prodCat={props.currentProduct.category}
+                  prodId={currentProductId}
+                  prodInfo={currentStyle}
+                />
+                <StyleSelector
+                  prodId={currentProductId}
+                  currentStyle={currentStyle}
+                  allStyles={allStyles}
+                  setStyle={setCurrentStyle}
+                />
+                <AddToCart currentStyle={currentStyle} />
+              </Container>
+            </>
+          )}
         </Container>
         <Container>
           <ProductDescription prodInfo={props.currentProduct} />
