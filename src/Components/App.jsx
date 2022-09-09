@@ -30,7 +30,7 @@ const App = () => {
         let products = results.data;
         setProducts(products);
         var index = Math.floor(Math.random() * products.length);
-        setCurrentProduct(products[index]);
+        setCurrentProduct(products[4]);
       })
       .catch((err) => {
         console.log(err);
