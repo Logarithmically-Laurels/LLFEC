@@ -115,7 +115,7 @@ const ReviewModalComponents = ({ product, metaData }) => {
             id="outlined-multiline-static"
             multiline
             name='summary'
-            placeholder="Why did you like the product or not?"
+            placeholder="Example: Best purchase ever!"
             fullWidth
             inputProps={{
               maxLength: 60,

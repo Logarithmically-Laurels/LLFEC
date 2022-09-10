@@ -1,8 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense, lazy } from "react";
 import axios from "axios";
-import Search from "./Search.jsx";
-import QuestionList from "./QuestionList.jsx";
-import QuestionModal from "./QuestionModal.jsx";
 import {
   Button,
   Grid,
@@ -13,6 +10,10 @@ import {
   Box,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
+
+const Search = React.lazy(() => import("./Search.jsx"));
+const QuestionList = React.lazy(() => import("./QuestionList.jsx"));
+const QuestionModal = React.lazy(() => import("./QuestionModal.jsx"));
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -165,33 +166,6 @@ const Questions = ({ currentProd }) => {
   };
 
   useEffect(() => {
-    var options = {
-      method: "GET",
-      url: "/qa/questions",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      params: {
-        product_id: currentProd.id,
-      },
-    };
-    axios(options)
-      .then((res) => {
-        // console.log(res);
-        let temp = res.data.results.sort(
-          (a, b) =>
-            parseFloat(b.question_helpfulness) -
-            parseFloat(a.question_helpfulness)
-        );
-        setQuestions(temp);
-        setRenderedQuestions(temp.slice(0, shownQuestions));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [shownQuestions]);
-
-  useEffect(() => {
     if (searched.length >= 3) {
       setRenderedQuestions(questions.filter(element => element.question_body.toLowerCase().includes(searched.toLowerCase())))
     } else {
@@ -219,11 +193,12 @@ const Questions = ({ currentProd }) => {
           console.log(err);
         });
     }
-  }, [searched]);
+  }, [searched, shownQuestions]);
 
   return (
     <Item sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
       <Typography textAlign="center">
+      <Suspense fallback={<h1>Loading...</h1>}>
         <Search onSearchChange={onSearchChange} />
         <Box
           component="span"
@@ -242,6 +217,7 @@ const Questions = ({ currentProd }) => {
             product_id={currentProd.id}
           />
         </Box>
+      </Suspense>
       </Typography>
     </Item>
   );

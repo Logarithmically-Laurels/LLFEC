@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense, lazy } from "react";
 import axios from "axios";
 import { Button, Grid, TextField, List, Box } from "@mui/material";
-import QuestionListItem from "./QuestionListItem.jsx";
 import QuestionModal from "./QuestionModal.jsx";
+
+const QuestionListItem = React.lazy(() => import("./QuestionListItem.jsx"));
 
 const QuestionList = ({
   questions,
@@ -22,17 +23,19 @@ const QuestionList = ({
     <div style={{ maxHeight: "80vh", overflow: "auto", display: 'flex', flexDirection: 'column-reverse'}}>
       <List>
         {renderedQuestions.map((question) => (
-          <QuestionListItem
-            question={question.question_body}
-            question_date={question.question_date}
-            question_helpfulness={question.question_helpfulness}
-            question_id={question.question_id}
-            reported={question.reported}
-            answers={question.answers}
-            onYes={onYes}
-            asker_name={question.asker_name}
-            onReport={onReport}
-          />
+          <Suspense fallback={<h1>Loading...</h1>}>
+            <QuestionListItem
+              question={question.question_body}
+              question_date={question.question_date}
+              question_helpfulness={question.question_helpfulness}
+              question_id={question.question_id}
+              reported={question.reported}
+              answers={question.answers}
+              onYes={onYes}
+              asker_name={question.asker_name}
+              onReport={onReport}
+            />
+          </Suspense>
         ))}
       </List>
     </div>

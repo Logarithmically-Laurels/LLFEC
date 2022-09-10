@@ -1,5 +1,6 @@
 // For node to know our absolute file path we will be using the internal module path
 const path = require("path");
+const CompressionPlugin = require('compression-webpack-plugin');
 
 // Our export here is the configuration webpack will use
 module.exports = {
@@ -45,4 +46,15 @@ module.exports = {
     // [port] what port on our local machine to run the dev server
     port: 3000,
   },
+
+  plugins: [
+    new CompressionPlugin({
+      filename: "[path][base].gz",
+      algorithm: "gzip",
+      test: /\.js$|\.css$|\.html$/,
+      threshold: 10240,
+      minRatio: 0.8,
+      compressionOptions: { level : 9 }
+    })
+  ]
 };

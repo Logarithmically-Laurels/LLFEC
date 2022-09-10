@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense, lazy } from "react";
 import axios from "axios";
 import Overview from "./Product_Overview/Overview.jsx";
 import ReviewApp from "./Reviews/reviewApp.jsx";
@@ -6,8 +6,10 @@ import Questions from "./QuestionsAnswers/Questions.jsx";
 import Navbar from "./Navbar.jsx";
 import { Container } from "@mui/material";
 import { Element } from "react-scroll";
-import ClickTracker from "./ClickTracker.jsx";
 import '../Components/Reviews/review.css'
+
+const ClickTracker = React.lazy(() => import("./ClickTracker.jsx"));
+
 
 const App = () => {
   //effect calling api get /products
@@ -54,20 +56,21 @@ const App = () => {
     <div style={{width:'100vw', height: '100%', padding:'0px'}} className={darkTheme} >
       {currentProduct && (
         <>
+        <Suspense fallback={<h1>Loading...</h1>}>
           <div id="Navbar">
             <ClickTracker widget={"Navbar"} render={(onClickHandler) => (
               <Navbar darkTheme={darkTheme} changeTheme={changeTheme}/>
             )} />
           </div>
           <div id="Overview">
-            <ClickTracker widget={"Overview"} render={(onClickHandler) => (
-              <Overview currentProduct={currentProduct} />
-            )} />
+              <ClickTracker widget={"Overview"} render={(onClickHandler) => (
+                <Overview currentProduct={currentProduct} />
+              )} />
           </div>
           <div id="Questions">
-            <ClickTracker widget={"Questions"} render={(onClickHandler) => (
-              <Questions currentProd={currentProduct} />
-            )} />
+              <ClickTracker widget={"Questions"} render={(onClickHandler) => (
+                <Questions currentProd={currentProduct} />
+              )} />
           </div>
           <div id="Reviews" >
             <ClickTracker widget={"Reviews"} render={(onClickHandler) => (
@@ -76,6 +79,7 @@ const App = () => {
               </Element>
             )} />
           </div>
+        </Suspense>
         </>
       )}
     </div>
