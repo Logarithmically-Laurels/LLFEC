@@ -2,13 +2,23 @@ require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const axios = require("axios");
+const compression = require('compression');
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname + "/../public")));
 app.use(express.urlencoded({ extended: true }));
+app.use(compression());
+
+app.get('*.js', (req, res, next) => {
+  req.url = req.url + '.gz';
+  res.set('Content-Encoding', 'gzip');
+  res.set('Content-Type', 'text/javascript');
+  next();
+})
+
+app.use(express.static(path.join(__dirname + "/../public")));
 
 app.get("/products", (req, res) => {
   var options = {
