@@ -49,7 +49,7 @@ const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
   const [reviewsInView, setReviewsInView] = useState(null);
   const [currentProduct, setCurrentProduct] = useState(currentProd);
   const [page, setPage] = useState(1);
-  const [count, setCount] = useState(100);
+  const [count, setCount] = useState(60);
   const [sort, setSort] = useState('relevant')
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -61,14 +61,12 @@ const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
 
   };
 
-  const handleMoreReviews = (e) => {
-    e.preventDefault()
-    if (reviewsInView.length < currentReviews.length) {
-      setReviewsInView(currentReviews.slice(0, reviewsInView.length + 2))
-    } else {
-      setPage(page + 1)
-    }
 
+  const handleScroll = (e) => {
+    e.preventDefault()
+    if (e.target.scrollHeight - e.target.scrollTop < 800) {
+      setReviewsInView(currentReviews.slice(0, reviewsInView.length + 2))
+    }
   }
 
 
@@ -97,7 +95,7 @@ const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
         var sortedReviews = results.data.results;
 
         var starCurrentReviews = []
-        if (!reviewsInView) {
+        // if (!reviewsInView) {
           if (starsToRender.length > 0) {
             starsToRender.forEach(star => {
               sortedReviews.forEach(review => {
@@ -107,27 +105,28 @@ const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
               })
             })
             setCurrentReviews(starCurrentReviews)
-            setReviewsInView(starCurrentReviews.slice(0, 2))
+            setReviewsInView(starCurrentReviews.slice(0, 4))
           } else {
             setCurrentReviews(sortedReviews);
-            setReviewsInView(sortedReviews.slice(0, 2))
+            setReviewsInView(sortedReviews.slice(0, 4))
           }
-        } else {
-          if (starsToRender.length > 0) {
-            starsToRender.forEach(star => {
-              sortedReviews.forEach(review => {
-                if (review.rating === star) {
-                  starCurrentReviews.push(review)
-                }
-              })
-            })
-            setCurrentReviews(starCurrentReviews)
-            setReviewsInView(starCurrentReviews.slice(0, 2))
-          } else {
-            setCurrentReviews(sortedReviews);
-            setReviewsInView(sortedReviews.slice(0, reviewsInView.length + 2))
-          }
-        }
+        // }
+        //  else {
+        //   if (starsToRender.length > 0) {
+        //     starsToRender.forEach(star => {
+        //       sortedReviews.forEach(review => {
+        //         if (review.rating === star) {
+        //           starCurrentReviews.push(review)
+        //         }
+        //       })
+        //     })
+        //     setCurrentReviews(starCurrentReviews)
+        //     setReviewsInView(starCurrentReviews.slice(0, 4))
+        //   } else {
+        //     setCurrentReviews(sortedReviews);
+        //     setReviewsInView(sortedReviews.slice(0, reviewsInView.length + 2))
+        //   }
+        // }
       })
       .catch((err) => {
         console.log(err);
@@ -172,7 +171,7 @@ const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
           </FormControl>
         </Grid>
       </Grid>
-      <div className='ReviewScroll' data-testid='reviewListTiles'>
+      <div className='ReviewScroll' data-testid='reviewListTiles' onScroll={(e)=>{handleScroll(e)}}>
         {(currentReviews && reviewsInView.length > 0) && <>
           {reviewsInView.map((review) => (
             <ReviewTile key={review.review_id} data-testid={review.review_id.toString()}
