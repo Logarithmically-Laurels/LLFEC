@@ -38,7 +38,7 @@ const CssSelect = styled(Select, {
 
   '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
     borderColor: '#000000',
-},
+  },
 
 
 }));
@@ -50,17 +50,12 @@ const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
   const [currentProduct, setCurrentProduct] = useState(currentProd);
   const [metaDataState, setMetaDataState] = useState(metaData)
   const [page, setPage] = useState(1);
-  const [count, setCount] = useState(100);
+  const [count, setCount] = useState(500);
   const [sort, setSort] = useState('relevant')
-  // const [sortStars, setSortStars] = useState(starsToRender)
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-
-
-
-  // console.log('reviewsinView ', reviewsInView)
 
   const handleSortChange = (e) => {
     e.preventDefault();
@@ -68,14 +63,11 @@ const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
 
   };
 
-  const handleMoreReviews = (e) => {
-  e.preventDefault()
-    if (reviewsInView.length < currentReviews.length) {
+  const handleScroll = (e) => {
+    e.preventDefault()
+    if (e.target.scrollHeight - e.target.scrollTop < 800) {
       setReviewsInView(currentReviews.slice(0, reviewsInView.length + 2))
-    } else {
-      setPage(page + 1)
     }
-
   }
 
 
@@ -104,7 +96,7 @@ const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
         var sortedReviews = results.data.results;
 
         var starCurrentReviews = []
-        if (!reviewsInView) {
+        // if (!reviewsInView) {
           if (starsToRender.length > 0) {
             starsToRender.forEach(star => {
               sortedReviews.forEach(review => {
@@ -114,27 +106,28 @@ const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
               })
             })
             setCurrentReviews(starCurrentReviews)
-            setReviewsInView(starCurrentReviews.slice(0, 2))
+            setReviewsInView(starCurrentReviews.slice(0, 4))
           } else {
             setCurrentReviews(sortedReviews);
-            setReviewsInView(sortedReviews.slice(0, 2))
+            setReviewsInView(sortedReviews.slice(0, 4))
           }
-        } else {
-          if (starsToRender.length > 0) {
-            starsToRender.forEach(star => {
-              sortedReviews.forEach(review => {
-                if (review.rating === star) {
-                  starCurrentReviews.push(review)
-                }
-              })
-            })
-            setCurrentReviews(starCurrentReviews)
-            setReviewsInView(starCurrentReviews.slice(0, 2))
-          } else {
-            setCurrentReviews(sortedReviews);
-            setReviewsInView(sortedReviews.slice(0, reviewsInView.length + 2))
-          }
-        }
+        // }
+        //  else {
+        //   if (starsToRender.length > 0) {
+        //     starsToRender.forEach(star => {
+        //       sortedReviews.forEach(review => {
+        //         if (review.rating === star) {
+        //           starCurrentReviews.push(review)
+        //         }
+        //       })
+        //     })
+        //     setCurrentReviews(starCurrentReviews)
+        //     setReviewsInView(starCurrentReviews.slice(0, 4))
+        //   } else {
+        //     setCurrentReviews(sortedReviews);
+        //     setReviewsInView(sortedReviews.slice(0, reviewsInView.length + 2))
+        //   }
+        // }
       })
       .catch((err) => {
         console.log(err);
@@ -161,7 +154,7 @@ const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
         <Grid
           justifyContent="flex-end" paddingTop="10px">
           <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-            <InputLabel id="demo-select-small" style={{color: '#000000'}}>Sort by</InputLabel>
+            <InputLabel id="demo-select-small" style={{ color: '#000000' }}>Sort by</InputLabel>
             <CssSelect
 
               labelId="demo-select-small"
@@ -179,7 +172,7 @@ const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
           </FormControl>
         </Grid>
       </Grid>
-      <div className='ReviewScroll' data-testid='reviewListTiles'>
+      <div className='ReviewScroll' data-testid='reviewListTiles' onScroll={(e)=>{handleScroll(e)}}>
         {(currentReviews && reviewsInView.length > 0) && <>
           {reviewsInView.map((review) => (
             <ReviewTile key={review.review_id} data-testid={review.review_id.toString()}
@@ -192,10 +185,10 @@ const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
       </div>
       <Stack spacing={2} direction="row" container="true" padding="2%">
         {(currentReviews && reviewsInView.length > 0) &&
-          <Button variant="outlined"  style={{color: '#000000', borderColor: '#000000'}}
+          <Button variant="outlined" style={{ color: '#000000', borderColor: '#000000' }}
             onClick={(e) => { handleMoreReviews(e) }}> More Reviews</Button>}
         <Button variant="outlined"
-        style={{color: '#000000', borderColor: '#000000'}}
+          style={{ color: '#000000', borderColor: '#000000' }}
           endIcon={<AddIcon />}
           onClick={handleOpen}
           data-testid="reviewModalButton"
