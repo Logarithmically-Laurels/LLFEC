@@ -12,17 +12,12 @@
        url('../../fonts/monoton-v15-latin/monoton-v15-latin-regular.svg#Monoton') format('svg'); /* Legacy iOS */
 }
 
-html {
-  background-color: #8D8741;
-  padding-bottom: 20px;
-  width: 95vw;
-}
 .reviewAppRoot {
   height: 85vh;
   /* margin-top: 10px; */
   display:flex;
   justify-content: center;
-  margin-bottom:  20px;
+  margin-bottom:  150px;
   padding-top: 10px;
 }
 
@@ -104,7 +99,7 @@ html {
   margin-top: 2vh;
 }
 .ratingTitle {
-  font-size: 1.25em;
+  font-size: 25px;
   font-weight: bold;
 }
 .starLabels {
@@ -171,13 +166,22 @@ html {
   width: 100%;
 
 }
-/* .innerModal {
-  width: 80%;
-} */
+
 .mainLogo {
   font-family: 'Monoton', sans-serif;
   font-size: 75px;
 }
 .bodyCountDesc {
   width: 50%;
+}
+
+.dark {
+  background-color: #000000;
+  color: white;
+  width: 95vw;
+}
+
+.light {
+  background-color: #8D8741;
+  width: 95vw;
 }

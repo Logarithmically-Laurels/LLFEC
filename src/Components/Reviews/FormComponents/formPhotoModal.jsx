@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
-import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
-import AddAPhotoOutlinedIcon from '@mui/icons-material/AddAPhotoOutlined';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 
 const CssTextField = styled(TextField, {
@@ -39,7 +37,6 @@ const FormPhotoModal = ({ photos, handlePhotoUpload, handlePhotoDelete, handleIn
 
   const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
-    // padding: theme.spacing(1),
     height: "100%",
     textAlign: "center",
     color: theme.palette.text.secondary,
@@ -52,12 +49,9 @@ const FormPhotoModal = ({ photos, handlePhotoUpload, handlePhotoDelete, handleIn
     width: '50%',
     maxHeight: '70vh',
     bgcolor: 'background.paper',
-    // bgcolor: 'white',
     border: '2px solid #000',
-
     boxShadow: 24,
     p: 4,
-
   };
 
 
@@ -66,7 +60,7 @@ const FormPhotoModal = ({ photos, handlePhotoUpload, handlePhotoDelete, handleIn
     < >
 
       <Box sx={style} textAlign="center" data-testid="reviewsPhotoModalRoot">
-        <Typography color="#5A5A5A" variant="h5" id="child-modal-title">Add Photos</Typography>
+        <Typography color="#717171" variant="h5" id="child-modal-title">Add Photos</Typography>
         <form onSubmit={(e) => {
           e.preventDefault();
           handlePhotoUpload(e);
@@ -105,7 +99,7 @@ const FormPhotoModal = ({ photos, handlePhotoUpload, handlePhotoDelete, handleIn
               }
             </Grid>
             <Grid item xs={12}>
-              <Typography color="#5A5A5A">You can upload {5 - photos.length} more photos</Typography>
+              <Typography color="#717171">You can upload {5 - photos.length} more photos</Typography>
             </Grid>
             <Grid item xs={6} textAlign="center">
               <Button type="submit" variant="outlined" style={{ width: '300px', height: '50px', color: '#000000', borderColor: '#000000' }}>Submit Photo</Button>

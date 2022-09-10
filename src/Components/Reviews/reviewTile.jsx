@@ -55,16 +55,11 @@ const ReviewTile = ({ review, product_id, metaData }) => {
 
   const handleShowMore = (e, state) => {
     e.preventDefault()
-    if (state === 'summary') {
-      setShowSummary(null)
-    } else {
-      setShowBody(null)
-    }
+    state === 'summary' ? setShowSummary(null) : setShowBody(null)
   }
 
   const handleHelpfulClick = (e) => {
     e.preventDefault()
-    // console.log('helpful click')
     var options = {
       url: `/reviews/helpful`,
       method: 'put',
@@ -87,7 +82,6 @@ const ReviewTile = ({ review, product_id, metaData }) => {
 
   const handleReportClick = (e) => {
     e.preventDefault()
-    // console.log('click Report')
     var options = {
       url: `/reviews/report`,
       method: 'put',
@@ -110,7 +104,6 @@ const ReviewTile = ({ review, product_id, metaData }) => {
 
 
   useEffect(() => {
-    // console.log(review)
     if (review.summary && review.summary.length > 60) {
       setShowSummary(review.summary.slice(0, 60) + '...')
     }
