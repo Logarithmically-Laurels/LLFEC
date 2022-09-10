@@ -43,7 +43,7 @@ const QuestionList = ({
             size="large"
             variant="outlined"
             onClick={showMoreQuestions}
-            style={{ width: "300px", height: "75px", color: '#000000', borderColor: '#000000' }}
+            style={{ width: "300px", height: "45px", color: '#000000', borderColor: '#000000' }}
           >
             SHOW MORE QUESTIONS...
           </Button>

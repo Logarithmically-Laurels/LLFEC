@@ -1,11 +1,6 @@
 import React, { setState, useState, useEffect, useRef } from "react";
 import axios from "axios";
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
-import InputAdornment from '@mui/material/InputAdornment';
-import Modal from '@mui/material/Modal';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import ReviewModalComponents from './reviewModalComponents.jsx';
@@ -60,27 +55,20 @@ const ReviewModal = ({ product, metaData, handleClose }) => {
 
   return (
     <div data-testid='reviewModalRoot'>
-
       <Item>
-
         <Box component="form"
           onSubmit={(e) => {
-            console.log('on outer submit review modal')
             e.preventDefault()
             if (e?.target?.body?.value && e?.target?.email?.value) {
-              console.log('making it into handleFormSubmit call')
               handleFormSubmit(e)
             }
           }}>
-
           <ReviewModalComponents
             product={product}
             metaData={metaData}
           />
-
         </Box>
       </Item>
-
     </div >
   )
 }

@@ -4,7 +4,6 @@ import Paper from "@mui/material/Paper";
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
 import FormPhotoModal from './formPhotoModal.jsx';
 
 const FormPhotoInput = ({ }) => {
@@ -21,11 +20,9 @@ const FormPhotoInput = ({ }) => {
     var photoArray = photos.slice()
     var photoArrayString = photosString;
     if (e?.target?.currentPhotoURL?.value) {
-      console.log('e.target.value ', e.target.currentPhotoURL.value)
       var url = e.target.currentPhotoURL.value
     } else {
         var url = e;
-        console.log('url', url)
     }
     if (typeof url === 'string') {
       photoArray.push(url,);
@@ -55,7 +52,6 @@ const FormPhotoInput = ({ }) => {
 
   const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
-    // padding: theme.spacing(1),
     height: "100%",
     textAlign: "center",
     color: theme.palette.text.secondary,
@@ -68,7 +64,6 @@ const FormPhotoInput = ({ }) => {
     width: '70vw',
     maxHeight: '70vh',
     bgcolor: 'background.paper',
-    // bgcolor: 'white',
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
@@ -80,7 +75,7 @@ const FormPhotoInput = ({ }) => {
     < >
       <input name='photos' aria-label='photosInput' type='hidden' value={photos}></input>
       <Box sx={{ gridArea: 'upload' }} data-testid="reviewsFormPhotoInputRoot">
-        {photos.length < 5 && <Button variant="outlined" component="span" onClick={handleInnerOpen}  style={{color: '#000000', borderColor: '#000000'}} name="inputButton">
+        {photos.length < 5 && <Button variant="outlined" component="span" onClick={handleInnerOpen} style={{ color: '#000000', borderColor: '#000000' }} name="inputButton">
           Upload a Photo
         </Button>}
         <Modal

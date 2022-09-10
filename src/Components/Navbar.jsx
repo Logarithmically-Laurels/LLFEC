@@ -6,7 +6,7 @@ import Toolbar from "@mui/material/Toolbar";
 import "./Reviews/review.css";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-const Navbar = () => {
+const Navbar = ({darkTheme, changeTheme}) => {
   const logoTheme = createTheme({
     typography: {
       fontFamily: ['"Mukta"', "sans-serif"].join(","),
@@ -39,7 +39,7 @@ const Navbar = () => {
           <ThemeProvider theme={logoTheme}>
             <h1 className="mainLogo">Laurel Outfitters</h1>
           </ThemeProvider>
-          <NavSearch />
+          <NavSearch darkTheme={darkTheme} changeTheme={changeTheme}/>
         </Toolbar>
       </AppBar>
       <Container

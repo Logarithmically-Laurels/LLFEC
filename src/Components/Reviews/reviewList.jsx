@@ -38,7 +38,7 @@ const CssSelect = styled(Select, {
 
   '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
     borderColor: '#000000',
-},
+  },
 
 
 }));
@@ -48,19 +48,12 @@ const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
   const [currentReviews, setCurrentReviews] = useState(null);
   const [reviewsInView, setReviewsInView] = useState(null);
   const [currentProduct, setCurrentProduct] = useState(currentProd);
-  const [metaDataState, setMetaDataState] = useState(metaData)
   const [page, setPage] = useState(1);
   const [count, setCount] = useState(100);
   const [sort, setSort] = useState('relevant')
-  // const [sortStars, setSortStars] = useState(starsToRender)
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
-
-
-
-  // console.log('reviewsinView ', reviewsInView)
 
   const handleSortChange = (e) => {
     e.preventDefault();
@@ -69,7 +62,7 @@ const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
   };
 
   const handleMoreReviews = (e) => {
-  e.preventDefault()
+    e.preventDefault()
     if (reviewsInView.length < currentReviews.length) {
       setReviewsInView(currentReviews.slice(0, reviewsInView.length + 2))
     } else {
@@ -161,7 +154,7 @@ const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
         <Grid
           justifyContent="flex-end" paddingTop="10px">
           <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-            <InputLabel id="demo-select-small" style={{color: '#000000'}}>Sort by</InputLabel>
+            <InputLabel id="demo-select-small" style={{ color: '#000000' }}>Sort by</InputLabel>
             <CssSelect
 
               labelId="demo-select-small"
@@ -192,15 +185,13 @@ const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
       </div>
       <Stack spacing={2} direction="row" container="true" padding="2%">
         {(currentReviews && reviewsInView.length > 0) &&
-          <Button variant="outlined"  style={{color: '#000000', borderColor: '#000000'}}
-            onClick={(e) => { handleMoreReviews(e) }}> More Reviews</Button>}
-        <Button variant="outlined"
-        style={{color: '#000000', borderColor: '#000000'}}
-          endIcon={<AddIcon />}
-          onClick={handleOpen}
-          data-testid="reviewModalButton"
-
-        >Add a Review </Button>
+          <Button variant="outlined"
+            style={{ color: '#000000', height: '45px', borderColor: '#000000' }}
+            endIcon={<AddIcon />}
+            onClick={handleOpen}
+            data-testid="reviewModalButton">
+            Add a Review
+          </Button>}
       </Stack>
 
       <Item>
@@ -212,7 +203,7 @@ const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
           data-testid='reviewModal'
         >
           <div>
-            <ReviewModal product={currentProduct} metaData={metaDataState} handleClose={handleClose} />
+            <ReviewModal product={currentProduct} metaData={metaData} handleClose={handleClose} />
           </div>
         </Modal>
       </Item>

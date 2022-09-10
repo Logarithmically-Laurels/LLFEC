@@ -62,7 +62,7 @@ const AnswerModalPhotos = ({ onChangePhotos, newPhotos, onURLChange, photoURL, o
           aria-describedby="child-modal-description"
         >
           <Box sx={style} textAlign="center">
-            <Typography color="#5A5A5A" variant="h5" id="child-modal-title">Maximum photo upload count reached</Typography>
+            <Typography color="#717171" variant="h5" id="child-modal-title">Maximum photo upload count reached</Typography>
             <br></br>
             <form>
               <Grid container spacing={1}>
@@ -90,7 +90,7 @@ const AnswerModalPhotos = ({ onChangePhotos, newPhotos, onURLChange, photoURL, o
           aria-describedby="child-modal-description"
         >
           <Box sx={style} textAlign="center">
-            <Typography color="#5A5A5A" variant="h5" id="child-modal-title">Add Photos</Typography>
+            <Typography color="#717171" variant="h5" id="child-modal-title">Add Photos</Typography>
             <form>
               <Grid container spacing={1}>
                 <Grid item xs={12}>
@@ -109,7 +109,7 @@ const AnswerModalPhotos = ({ onChangePhotos, newPhotos, onURLChange, photoURL, o
                   {newPhotos.map((photo) => <span><img width={100} height={100} src={`${photo}`}/>&nbsp;&nbsp;</span>)}
                 </Grid>
                 <Grid item xs={12}>
-                  <Typography color="#5A5A5A">You can upload {5 - newPhotos.length} more photos</Typography>
+                  <Typography color="#717171">You can upload {5 - newPhotos.length} more photos</Typography>
                 </Grid>
                 <Grid item xs={6} textAlign="center">
                   <Button onClick={onChangePhotos} variant="outlined" style={{width:'300px', height:'50px', color: '#000000', borderColor: '#000000'}}>Submit Photo</Button>
@@ -135,7 +135,7 @@ const AnswerModalPhotos = ({ onChangePhotos, newPhotos, onURLChange, photoURL, o
           aria-describedby="child-modal-description"
         >
           <Box sx={style} textAlign="center">
-            <Typography color="#5A5A5A" variant="h5" id="child-modal-title">Add Photos</Typography>
+            <Typography color="#717171" variant="h5" id="child-modal-title">Add Photos</Typography>
             <form>
               <Grid container spacing={1}>
                 <Grid item xs={12}>
@@ -151,7 +151,7 @@ const AnswerModalPhotos = ({ onChangePhotos, newPhotos, onURLChange, photoURL, o
                   </Button>
                 </Grid>
                 <Grid item xs={12}>
-                  <Typography color="#5A5A5A">You can upload 5 more photos</Typography>
+                  <Typography color="#717171">You can upload 5 more photos</Typography>
                 </Grid>
                 <Grid item xs={6} textAlign="center">
                   <Button onClick={onChangePhotos} variant="outlined" style={{width:'300px', height:'50px', color: '#000000', borderColor: '#000000'}}>Submit Photo</Button>

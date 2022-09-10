@@ -17,7 +17,6 @@ const ReviewNumber = ({ product_id, numReviews, metaData, handleStarSort, starsT
 
   const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
-    // padding: theme.spacing(1),
     height: "100%",
     textAlign: "center",
     color: theme.palette.text.secondary,
@@ -131,7 +130,6 @@ const ReviewNumber = ({ product_id, numReviews, metaData, handleStarSort, starsT
           </Stack>
         </Stack>
       </div>
-
     </div>
   )
 }

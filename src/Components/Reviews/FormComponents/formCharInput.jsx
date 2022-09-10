@@ -1,7 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Rating from '@mui/material/Rating';
-import { styled, Container } from "@mui/material/styles";
-import Paper from "@mui/material/Paper";
 import Stack from '@mui/material/Stack';
 import charKey from '../reviewData.jsx'
 import Radio from '@mui/material/Radio';
