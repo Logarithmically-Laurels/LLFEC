@@ -48,20 +48,19 @@ const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
   const [currentReviews, setCurrentReviews] = useState(null);
   const [reviewsInView, setReviewsInView] = useState(null);
   const [currentProduct, setCurrentProduct] = useState(currentProd);
-  const [metaDataState, setMetaDataState] = useState(metaData)
   const [page, setPage] = useState(1);
-  const [count, setCount] = useState(500);
+  const [count, setCount] = useState(60);
   const [sort, setSort] = useState('relevant')
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
 
   const handleSortChange = (e) => {
     e.preventDefault();
     setSort(e.target.value);
 
   };
+
 
   const handleScroll = (e) => {
     e.preventDefault()
@@ -185,15 +184,13 @@ const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
       </div>
       <Stack spacing={2} direction="row" container="true" padding="2%">
         {(currentReviews && reviewsInView.length > 0) &&
-          <Button variant="outlined" style={{ color: '#000000', borderColor: '#000000' }}
-            onClick={(e) => { handleMoreReviews(e) }}> More Reviews</Button>}
-        <Button variant="outlined"
-          style={{ color: '#000000', borderColor: '#000000' }}
-          endIcon={<AddIcon />}
-          onClick={handleOpen}
-          data-testid="reviewModalButton"
-
-        >Add a Review </Button>
+          <Button variant="outlined"
+            style={{ color: '#000000', height: '45px', borderColor: '#000000' }}
+            endIcon={<AddIcon />}
+            onClick={handleOpen}
+            data-testid="reviewModalButton">
+            Add a Review
+          </Button>}
       </Stack>
 
       <Item>
@@ -205,7 +202,7 @@ const ReviewList = ({ currentProd, metaData, numReviews, starsToRender }) => {
           data-testid='reviewModal'
         >
           <div>
-            <ReviewModal product={currentProduct} metaData={metaDataState} handleClose={handleClose} />
+            <ReviewModal product={currentProduct} metaData={metaData} handleClose={handleClose} />
           </div>
         </Modal>
       </Item>

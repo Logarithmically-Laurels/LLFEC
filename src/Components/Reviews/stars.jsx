@@ -2,7 +2,6 @@ import axios from "axios";
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
-import Typography from '@mui/material/Typography';
 import "./review.css";
 
 const Stars = ({ product_id, size='large' }) => {
@@ -22,7 +21,6 @@ const Stars = ({ product_id, size='large' }) => {
     }
     axios(options)
       .then((results) => {
-        // console.log(results)
         var totalRating = 0;
         var totalReviews = 0;
         for (var key in results.data.ratings) {
@@ -30,7 +28,6 @@ const Stars = ({ product_id, size='large' }) => {
           totalReviews += parseInt(results.data.ratings[key])
         }
         var avgRating = totalRating / totalReviews;
-        // console.log(avgRating)
         setRating(avgRating)
       })
       .catch(err => {

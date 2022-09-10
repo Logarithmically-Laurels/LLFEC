@@ -86,9 +86,6 @@ const QuestionListItem = ({
             setNewEmail("");
             setNewPhotos([]);
           })
-          // .catch((err) => {
-          //   console.log(err);
-          // });
       })
       .catch((err) => {
         console.log("error", err);
@@ -205,14 +202,14 @@ const QuestionListItem = ({
           <Paper elevation={1} sx={{ width: "100%" }}>
             <Grid container spacing={0}>
               <Grid item xs={9}>
-                <Typography color="#5A5A5A" variant="h6">
+                <Typography color="#717171" variant="h6">
                   <strong>Q: {question}</strong>
                 </Typography>
               </Grid>
               <Grid item xs={1.5} textAlign="center">
                 <span>
                   <Typography
-                    color="#5A5A5A"
+                    color="#717171"
                     variant="caption"
                     id={question_id}
                     onClick={helpfulQuestion}
@@ -298,14 +295,14 @@ const QuestionListItem = ({
           <Paper elevation={1} sx={{ width: "100%" }}>
             <Grid container spacing={0}>
               <Grid item xs={9}>
-                <Typography color="#5A5A5A" variant="h6">
+                <Typography color="#717171" variant="h6">
                   <strong>Q: {question}</strong>
                 </Typography>
               </Grid>
               <Grid item xs={1.5} textAlign="center">
                 <span>
                   <Typography
-                    color="#5A5A5A"
+                    color="#717171"
                     variant="caption"
                     id={question_id}
                     onClick={helpfulQuestion}

@@ -59,7 +59,7 @@ const AnswerModalText = ({onAnswerSubmit, onChangeNewAnswer, onChangeNewEmail, o
 
   return (
     <div>
-      <u><Typography data-testid="answerModal" color="#5A5A5A" variant="caption" onClick={handleOpen}>Add answer +</Typography></u>
+      <u><Typography data-testid="answerModal" color="#717171" variant="caption" onClick={handleOpen}>Add answer +</Typography></u>
       <Modal
         open={open}
         onClose={handleClose}
@@ -67,7 +67,7 @@ const AnswerModalText = ({onAnswerSubmit, onChangeNewAnswer, onChangeNewEmail, o
         aria-describedby="modal-modal-description"
       >
         <Box sx={style} textAlign="center">
-          <Typography color="#5A5A5A" id="modal-modal-title" variant="h5" component="h2">
+          <Typography color="#717171" id="modal-modal-title" variant="h5" component="h2">
             Write your answer
           </Typography>
           <form onSubmit={twoFunctionsSubmit}>

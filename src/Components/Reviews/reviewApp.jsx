@@ -7,21 +7,20 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import "./review.css";
 
-const ReviewApp = ({ currentProd }) => {
+const ReviewApp = ({ currentProd, darkTheme }) => {
   const [currentProduct, setCurrentProduct] = useState(currentProd);
   const [currentReviews, setCurrentReviews] = useState(null);
   const [reviewMetaData, setReviewMetaData] = useState(null);
   const [starsToRender, setStarsToRender] = useState([]);
 
 
-
   const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
-    // padding: theme.spacing(1),
     height: "100%",
     textAlign: "center",
     color: theme.palette.text.secondary,
   }));
+
 
   if (reviewMetaData) {
     var numReviews = 0;
@@ -42,7 +41,7 @@ const ReviewApp = ({ currentProd }) => {
       var index = starsToRender.indexOf(rating)
       tempStars.splice(index, 1)
     }
-    tempStars.sort((a,b) => {return b-a})
+    tempStars.sort((a, b) => { return b - a })
     var tempStarsCopy = tempStars.slice()
     setStarsToRender(tempStarsCopy)
   }
@@ -81,12 +80,12 @@ const ReviewApp = ({ currentProd }) => {
           maxWidth='1500px'
         >
           <Grid item xs={3}>
-            <Item>
+            <Item >
               <ReviewNumber
                 product_id={currentProduct.id}
                 metaData={reviewMetaData}
                 numReviews={numReviews}
-                style={{ height: "100%" }}
+                // style={{ height: "50%"}}
                 handleStarSort={handleStarSort}
                 starsToRender={starsToRender}
                 clearStarFilter={clearStarFilter}
@@ -99,14 +98,14 @@ const ReviewApp = ({ currentProd }) => {
                 numReviews={numReviews}
                 currentProd={currentProduct}
                 metaData={reviewMetaData}
-                style={{ height: "100%" }}
+                // style={{ height: "80%" }}
                 starsToRender={starsToRender}
               />
             </Item>
           </Grid>
-        </Grid>
+        </Grid >
       )}
-    </div>
+    </div >
   );
 };
 

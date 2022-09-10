@@ -1,8 +1,11 @@
 import React from "react";
-import { Container } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
+import NightsStayIcon from '@mui/icons-material/NightsStay';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
+import Stack from '@mui/material/Stack';
+
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -44,27 +47,33 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const NavSearch = () => {
+const NavSearch = ({ darkTheme, changeTheme }) => {
   return (
-    <Search
-      disableGutters
-      wrap="nowrap"
-      sx={{
-        display: "flex",
-        width: "15%",
-        mr: 0,
-        justifyContent: "right",
-        backgroundColor: "inherit",
-      }}
-    >
-      <StyledInputBase
-        placeholder="Search…"
-        inputProps={{ "aria-label": "search" }}
-      />
-      <SearchIconWrapper>
-        <SearchIcon />
-      </SearchIconWrapper>
-    </Search>
+
+    <Stack spacing={2} direction="row" container="true" padding="2%" justifyContent="center" alignItems="center">
+      <Search
+        disableGutters
+        wrap="nowrap"
+        sx={{
+          display: "flex",
+          width: "15%",
+          mr: 0,
+          justifyContent: "right",
+          backgroundColor: "inherit",
+        }}
+        >
+        <StyledInputBase
+          placeholder="Search…"
+          inputProps={{ "aria-label": "search" }}
+          />
+        <SearchIconWrapper>
+          <SearchIcon />
+        </SearchIconWrapper>
+
+      </Search>
+      {darkTheme === 'light' && <NightsStayIcon onClick={(e) => { changeTheme(e) }} />}
+      {darkTheme === 'dark' && <Brightness7Icon onClick={(e) => { changeTheme(e) }} />}
+    </Stack>
   );
 };
 

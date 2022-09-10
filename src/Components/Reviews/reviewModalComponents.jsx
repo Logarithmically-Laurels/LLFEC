@@ -1,12 +1,10 @@
 import React, { setState, useState, useEffect, useRef } from "react";
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import TextField from '@mui/material/TextField';
-import InputAdornment from '@mui/material/InputAdornment';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import FormBodyInput from './FormComponents/formBodyInput.jsx';
@@ -117,7 +115,7 @@ const ReviewModalComponents = ({ product, metaData }) => {
             id="outlined-multiline-static"
             multiline
             name='summary'
-            placeholder="Why did you like the product or not?"
+            placeholder="Example: Best purchase ever!"
             fullWidth
             inputProps={{
               maxLength: 60,

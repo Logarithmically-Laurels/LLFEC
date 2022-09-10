@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import Rating from '@mui/material/Rating';
-import { styled, Container } from "@mui/material/styles";
-import Paper from "@mui/material/Paper";
 import Stack from '@mui/material/Stack';
 
 const FormRatingInput = () => {
@@ -17,7 +15,6 @@ const ratingKey = {
   5: 'Great',
 }
   return (
-
 
      <Stack spacing={2} direction="row" container="true" padding="2%">
         <p className='recommendp rating'><b>Rating* </b></p>
@@ -36,8 +33,6 @@ const ratingKey = {
 
     );
 }
-
-
 
 export default FormRatingInput;
 

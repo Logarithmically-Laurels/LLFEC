@@ -62,7 +62,7 @@ const QuestionModal = ({onQuestionChange, onAddQuestion, onEmailChange, onUserCh
 
   return (
     <div>
-      <Button data-testid="questionModal" size="large" variant="outlined" onClick={handleOpen} style={{width:'250px', height:'75px', color: '#000000', borderColor: '#000000'}}>Ask a question +</Button>
+      <Button data-testid="questionModal" size="large" variant="outlined" onClick={handleOpen} style={{width:'250px', height:'45px', color: '#000000', borderColor: '#000000'}}>Ask a question +</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -70,7 +70,7 @@ const QuestionModal = ({onQuestionChange, onAddQuestion, onEmailChange, onUserCh
         aria-describedby="modal-modal-description"
       >
         <Box sx={style} textAlign="center">
-          <Typography color="#5A5A5A" id="modal-modal-title" variant="h5" component="h2">
+          <Typography color="#717171" id="modal-modal-title" variant="h5" component="h2">
             Ask a question
           </Typography>
           <form onSubmit={twoFunctionsSubmit}>
