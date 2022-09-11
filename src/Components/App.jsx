@@ -54,14 +54,15 @@ const App = () => {
   }, []);
   return (
     <div style={{width:'100vw', height: '100%', padding:'0px'}} className={darkTheme} >
-      {currentProduct && (
-        <>
-        <Suspense fallback={<h1>Loading...</h1>}>
+
           <div id="Navbar">
             <ClickTracker widget={"Navbar"} render={(onClickHandler) => (
               <Navbar darkTheme={darkTheme} changeTheme={changeTheme}/>
             )} />
           </div>
+        <Suspense fallback={<h1>Loading...</h1>}>
+          {currentProduct && (
+        <>
           <div id="Overview">
               <ClickTracker widget={"Overview"} render={(onClickHandler) => (
                 <Overview currentProduct={currentProduct} />
@@ -79,9 +80,10 @@ const App = () => {
               </Element>
             )} />
           </div>
-        </Suspense>
-        </>
+          </>
       )}
+        </Suspense>
+
     </div>
   );
 };
