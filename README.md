@@ -107,4 +107,4 @@ At the conclusion of the project, we were able to improve the efficiency of our 
 
 * [Greta Grover](https://github.com/grgrover) - Ratings & Reviews
 * [Anthony Liang](https://github.com/anthonyliang3) - Questions & Answers
-* [Jeremy Biagiotti](hhttps://github.com/Jremedyy) - Product Overview
+* [Jeremy Biagiotti](https://github.com/Jremedyy) - Product Overview
