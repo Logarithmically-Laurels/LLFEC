@@ -3,7 +3,7 @@
 
 ## Overview
 
-As a part of the Hack Reactor Full Stack Immersive Software Engineering program, the Front End Capstone is a comissioned e-commerce site built with React and Express. Built following a business requirements document and an API provided by the project stakeholders, the final product is produced over a three week working period. Beginnign with adaptation of agile workflow, a team of three engineers established best practices, held daily standups, and organized workflow using the task management system Trello. This project included the implementation of a number of new technologies to the team including React hooks, Jest, AWS hosting, and Gzip.
+Part of the Hack Reactor Full Stack Immersive Software Engineering program, the Front End Capstone is a comissioned e-commerce site built with React and Express. Created following a business requirements document and an API provided by the project stakeholders, the final product is produced over a three week working period. Beginning with adaptation of agile workflow, a team of three engineers established best practices, held daily standups, and organized workflow using the task management system Trello. This project included the implementation of a number of new technologies to the team including React hooks, Jest, AWS hosting, and Gzip.
 
 ## Table of Contents
 
