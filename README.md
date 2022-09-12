@@ -93,7 +93,7 @@ npm run build
 ```
 
 ## Lighthouse
-At the conclusion of the project, we were able to improve the efficiency of our codebase and utilized Gzip to further compress the application. This resulted in a 21% improvement in our Lighthouse Performance score and reduced our first contentful paint from 10.2ms to 2.2ms.
+At the conclusion of the project, we were able to improve the efficiency of our codebase and utilized Gzip to further compress the application. This resulted in a 70% improvement in our Lighthouse Performance score and reduced our first contentful paint from 10.2ms to 2.2ms.
 
 >Before
 
